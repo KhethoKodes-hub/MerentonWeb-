@@ -3,1711 +3,1567 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Team | Merenton Enterprise Reengineering Consultancy</title>
+    <title>Our Team | Merenton · Yellow Glass Reengineers</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <link href="assets/merentonLogo.png" rel="icon" type="image/png">
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
         :root {
-            --primary: #1a5f7a;
-            --secondary: #2a9d8f;
-            --accent: #e76f51;
-            --dark: #264653;
-            --light: #f8f9fa;
-            --gradient-primary: linear-gradient(135deg, #1a5f7a 0%, #2a9d8f 100%);
-            --gradient-dark: linear-gradient(135deg, rgba(38, 70, 83, 0.95) 0%, rgba(26, 60, 79, 0.95) 100%);
-            --gradient-accent: linear-gradient(135deg, #e76f51 0%, #f4a261 100%);
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            --shadow-hover: 0 20px 50px rgba(0, 0, 0, 0.2);
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            --border-radius: 16px;
+            --y1: #fde047;
+            --y2: #facc15;
+            --y3: #eab308;
+            --y4: #ca8a04;
+            --y5: #854d0e;
+            --amber: #f59e0b;
+            --cream: #fffbeb;
+            --white: #ffffff;
+            --ink: #0c0a09;
+            --ink2: #1c1917;
+            --ink3: #292524;
+            --muted: #78716c;
+            --glass1: rgba(255,255,255,0.65);
+            --glass2: rgba(255,255,255,0.35);
+            --glass3: rgba(255,255,255,0.15);
+            --gborder: rgba(255,255,255,0.75);
+            --yborder: rgba(250,204,21,0.4);
+            --gshadow: 0 32px 64px -16px rgba(0,0,0,0.12);
+            --yshadow: 0 24px 60px -12px rgba(234,179,8,0.35);
+            --font-display: 'Syne', sans-serif;
+            --font-body: 'Outfit', sans-serif;
+            --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+
+        /* ===== BASE ===== */
+        html { scroll-behavior: smooth; }
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: var(--font-body);
+            background: var(--cream);
+            color: var(--ink2);
             line-height: 1.6;
-            color: #333;
-            background-color: var(--light);
             overflow-x: hidden;
+            cursor: none;
         }
-        
-        h1, h2, h3, h4, h5 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            color: var(--dark);
-            line-height: 1.3;
+
+        /* ===== CUSTOM CURSOR ===== */
+        .cursor {
+            width: 12px; height: 12px;
+            background: var(--y2);
+            border-radius: 50%;
+            position: fixed;
+            top: 0; left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: multiply;
+            transition: transform 0.1s var(--ease);
         }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        .cursor-ring {
+            width: 40px; height: 40px;
+            border: 1.5px solid var(--y3);
+            border-radius: 50%;
+            position: fixed;
+            top: 0; left: 0;
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.35s var(--ease), width 0.3s, height 0.3s, opacity 0.3s;
         }
-        
-        section {
-            padding: 100px 0;
+        body:has(.team-card:hover) .cursor-ring,
+        body:has(.btn:hover) .cursor-ring {
+            width: 60px; height: 60px;
+            border-color: var(--y2);
         }
-        
-        /* Header & Navigation - Matching Homepage */
+
+        /* ===== NOISE OVERLAY ===== */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 256px;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.4;
+        }
+
+        /* ===== AMBIENT ORBS ===== */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 0;
+            animation: floatOrb 12s ease-in-out infinite;
+        }
+        .orb-1 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(250,204,21,0.18) 0%, transparent 70%); top: -200px; right: -150px; animation-delay: 0s; }
+        .orb-2 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, transparent 70%); bottom: 10%; left: -150px; animation-delay: -5s; }
+        .orb-3 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(234,179,8,0.12) 0%, transparent 70%); top: 50%; left: 40%; animation-delay: -8s; }
+        @keyframes floatOrb {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -40px) scale(1.05); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        /* ===== LAYOUT ===== */
+        .container { max-width: 1320px; margin: 0 auto; padding: 0 2.5rem; position: relative; z-index: 2; }
+
+        /* ===== HEADER / NAV ===== */
         header {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
+            top: 1.25rem; left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 3rem);
+            max-width: 1320px;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
+            background: rgba(255,255,255,0.55);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid rgba(255,255,255,0.8);
+            border-radius: 100px;
+            box-shadow: 0 8px 32px -8px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.9);
+            transition: all 0.4s var(--ease);
         }
-        
         header.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+            background: rgba(255,255,255,0.8);
+            border-color: var(--yborder);
+            box-shadow: 0 20px 48px -12px rgba(234,179,8,0.2), inset 0 1px 0 rgba(255,255,255,1);
         }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-        }
-        
-        .logo:hover {
-            transform: scale(1.05);
-        }
-        
-        .logo i {
-            font-size: 2rem;
-            color: var(--primary);
-            transition: var(--transition);
-        }
-        
-        .logo:hover i {
-            transform: rotate(180deg);
-            color: var(--accent);
-        }
-        
-        .logo-text {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-left: 10px;
-            letter-spacing: -0.5px;
-        }
-        
-        .logo-text span {
-            background: var(--gradient-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 40px;
-        }
-        
+        nav { display: flex; align-items: center; justify-content: space-between; padding: 0.7rem 1.5rem; }
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+        .logo-icon { width: 42px; height: 42px; background: linear-gradient(135deg, var(--y1), var(--y3)); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: white; box-shadow: 0 6px 20px -4px rgba(234,179,8,0.5); }
+        .logo-text { font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; color: var(--ink); letter-spacing: -0.5px; }
+        .logo-text span { color: var(--y4); }
+        .nav-links { display: flex; gap: 0.25rem; list-style: none; }
         .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: var(--transition);
+            text-decoration: none; font-weight: 500; color: var(--ink3); font-size: 0.9rem;
+            padding: 0.5rem 1.1rem; border-radius: 100px; transition: all 0.25s var(--ease);
             position: relative;
-            padding: 8px 0;
         }
-        
-        .nav-links a:before {
+        .nav-links a:hover { background: rgba(250,204,21,0.12); color: var(--y4); }
+        .nav-links a.active { background: linear-gradient(135deg, var(--y1), var(--y2)); color: white; font-weight: 600; box-shadow: 0 6px 20px -6px rgba(234,179,8,0.6); }
+        .nav-cta { background: var(--ink); color: white !important; padding: 0.55rem 1.4rem !important; border-radius: 100px !important; font-weight: 600 !important; }
+        .nav-cta:hover { background: var(--y3) !important; color: white !important; box-shadow: 0 8px 24px -6px rgba(234,179,8,0.5); }
+        .mobile-btn { display: none; background: none; border: none; font-size: 1.5rem; color: var(--y3); cursor: pointer; }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 75vh;
+            display: flex; align-items: center;
+            padding-top: 7rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-bg-grid {
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(234,179,8,0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(234,179,8,0.06) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: 0;
+        }
+        .hero-content { position: relative; z-index: 2; max-width: 900px; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            background: rgba(255,255,255,0.7); backdrop-filter: blur(12px);
+            border: 1px solid var(--gborder); border-radius: 100px;
+            padding: 0.5rem 1.25rem 0.5rem 0.6rem;
+            font-size: 0.82rem; font-weight: 600; color: var(--y5);
+            margin-bottom: 2rem;
+            animation: slideIn 0.7s var(--ease) both;
+            box-shadow: 0 4px 16px -4px rgba(0,0,0,0.06);
+        }
+        .hero-badge-dot {
+            width: 28px; height: 28px;
+            background: linear-gradient(135deg, var(--y1), var(--y3));
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem; color: white;
+        }
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-weight: 800;
+            line-height: 0.95;
+            letter-spacing: -3px;
+            color: var(--ink);
+            animation: slideIn 0.8s var(--ease) 0.1s both;
+        }
+        .hero h1 .grad {
+            background: linear-gradient(135deg, var(--y3) 0%, var(--amber) 50%, var(--y4) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .hero-sub {
+            font-size: 1.15rem; color: var(--muted); max-width: 600px;
+            margin: 1.75rem 0 2.5rem;
+            animation: slideIn 0.8s var(--ease) 0.2s both;
+        }
+        .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; animation: slideIn 0.8s var(--ease) 0.3s both; }
+        .hero-stat-strip {
+            display: flex; gap: 0;
+            background: rgba(255,255,255,0.5); backdrop-filter: blur(16px);
+            border: 1px solid var(--gborder); border-radius: 24px;
+            overflow: hidden; margin-top: 4rem;
+            box-shadow: var(--gshadow), inset 0 1px 0 rgba(255,255,255,0.8);
+            animation: slideIn 0.8s var(--ease) 0.4s both;
+        }
+        .hero-stat {
+            flex: 1; padding: 1.75rem 2rem; text-align: center;
+            border-right: 1px solid rgba(255,255,255,0.6); position: relative;
+            transition: all 0.3s var(--ease);
+        }
+        .hero-stat:last-child { border-right: none; }
+        .hero-stat:hover { background: rgba(250,204,21,0.08); }
+        .hero-stat-num { font-family: var(--font-display); font-size: 2.4rem; font-weight: 800; color: var(--y4); line-height: 1; }
+        .hero-stat-label { font-size: 0.78rem; color: var(--muted); font-weight: 500; margin-top: 0.3rem; text-transform: uppercase; letter-spacing: 0.08em; }
+
+        @keyframes slideIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ===== SECTION BASE ===== */
+        section { padding: 6rem 0; position: relative; z-index: 2; }
+        .section-label {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+            color: var(--y4); margin-bottom: 1rem;
+        }
+        .section-label::before { content: ''; width: 20px; height: 2px; background: linear-gradient(90deg, var(--y2), var(--y4)); border-radius: 2px; }
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            font-weight: 800; line-height: 1.05;
+            letter-spacing: -1.5px; color: var(--ink);
+            margin-bottom: 1rem;
+        }
+        .section-desc { font-size: 1.05rem; color: var(--muted); max-width: 600px; }
+
+        /* ===== LEADERSHIP ===== */
+        .leadership-grid {
+            display: grid; grid-template-columns: 1fr 1.6fr; gap: 3rem; align-items: center;
+        }
+        .leader-card {
+            background: var(--glass1);
+            backdrop-filter: blur(24px) saturate(200%);
+            -webkit-backdrop-filter: blur(24px) saturate(200%);
+            border: 1px solid var(--gborder);
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: var(--gshadow), inset 0 1px 0 rgba(255,255,255,0.9);
+            transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+            position: relative;
+        }
+        .leader-card::before {
             content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
+            position: absolute; inset: 0;
+            background: linear-gradient(145deg, rgba(250,204,21,0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .leader-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: var(--yshadow), 0 40px 80px -20px rgba(0,0,0,0.15), inset 0 1px 0 white;
+        }
+        .leader-img-wrap {
+            height: 320px;
+            background: linear-gradient(145deg, #fef9c3 0%, #fef3c7 100%);
+            display: flex; align-items: center; justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .leader-img-wrap::after {
+            content: '';
+            position: absolute; bottom: 0; left: 0; right: 0;
+            height: 60%;
+            background: linear-gradient(transparent, rgba(255,255,255,0.6));
+        }
+        .leader-avatar-big {
+            width: 160px; height: 160px;
+            background: linear-gradient(135deg, var(--y1), var(--y3));
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 4rem; color: white;
+            box-shadow: 0 20px 60px -10px rgba(234,179,8,0.5);
+            position: relative; z-index: 1;
+        }
+        .founder-chip {
+            position: absolute; top: 1.25rem; right: 1.25rem;
+            background: linear-gradient(135deg, var(--y1), var(--y3));
+            color: white; font-weight: 700; font-size: 0.78rem;
+            padding: 0.45rem 1.1rem; border-radius: 100px;
+            z-index: 2;
+            box-shadow: 0 8px 20px -4px rgba(234,179,8,0.5);
+            display: flex; align-items: center; gap: 0.4rem;
+        }
+        .leader-body { padding: 2rem; }
+        .leader-body h3 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px; color: var(--ink); }
+        .leader-role { color: var(--y4); font-weight: 600; font-size: 0.9rem; margin-top: 0.2rem; }
+        .leader-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }
+        .pill {
+            background: rgba(250,204,21,0.12);
+            border: 1px solid rgba(250,204,21,0.3);
+            color: var(--y5); font-weight: 600; font-size: 0.75rem;
+            padding: 0.35rem 1rem; border-radius: 100px;
+            transition: all 0.2s var(--ease);
+        }
+        .pill:hover { background: var(--y1); border-color: var(--y2); color: var(--ink); }
+
+        /* Right side info */
+        .leader-info-panel { display: flex; flex-direction: column; gap: 2rem; }
+        .info-glass {
+            background: var(--glass1);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--gborder);
+            border-radius: 28px;
+            padding: 2rem 2.5rem;
+            box-shadow: var(--gshadow), inset 0 1px 0 rgba(255,255,255,0.9);
+            transition: all 0.3s var(--ease);
+        }
+        .info-glass:hover { border-color: var(--yborder); transform: translateX(6px); }
+        .info-glass h4 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.75rem; }
+        .info-glass p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
+        .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .mini-stat {
+            background: rgba(255,255,255,0.5);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--gborder);
+            border-radius: 20px; padding: 1.25rem;
+            text-align: center;
+            transition: all 0.3s var(--ease);
+        }
+        .mini-stat:hover { background: white; border-color: var(--y2); transform: translateY(-4px); box-shadow: 0 16px 32px -8px rgba(234,179,8,0.2); }
+        .mini-stat-n { font-family: var(--font-display); font-size: 2rem; font-weight: 800; color: var(--y4); }
+        .mini-stat-l { font-size: 0.72rem; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+
+        /* ===== TEAM STRUCTURE ===== */
+        .structure-section { background: linear-gradient(180deg, transparent 0%, rgba(250,204,21,0.04) 50%, transparent 100%); }
+        .structure-tier { margin-bottom: 3rem; }
+        .tier-header {
+            display: flex; align-items: center; gap: 1rem; margin-bottom: 1.75rem;
+        }
+        .tier-badge {
+            background: linear-gradient(135deg, var(--y1), var(--y2));
+            color: var(--ink); font-family: var(--font-display);
+            font-weight: 800; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em;
+            padding: 0.5rem 1.25rem; border-radius: 100px;
+            box-shadow: 0 8px 20px -6px rgba(234,179,8,0.4);
+        }
+        .tier-line { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(250,204,21,0.3), transparent); }
+        .members-row { display: flex; flex-wrap: wrap; gap: 1.25rem; }
+        .member-card {
+            flex: 1; min-width: 180px; max-width: 240px;
+            background: var(--glass1);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--gborder);
+            border-radius: 28px; padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: var(--gshadow), inset 0 1px 0 rgba(255,255,255,0.9);
+            transition: all 0.35s var(--ease);
+            position: relative; overflow: hidden;
+            cursor: pointer;
+        }
+        .member-card::after {
+            content: '';
+            position: absolute; bottom: 0; left: 0; right: 0;
             height: 3px;
-            background: var(--gradient-accent);
-            transition: var(--transition);
-            transform: translateX(-50%);
-            border-radius: 10px;
+            background: linear-gradient(90deg, var(--y1), var(--y3));
+            transform: scaleX(0); transform-origin: left;
+            transition: transform 0.3s var(--ease);
         }
-        
-        .nav-links a:hover {
-            color: var(--accent);
+        .member-card:hover { background: white; transform: translateY(-12px) scale(1.03); box-shadow: var(--yshadow), 0 40px 60px -20px rgba(0,0,0,0.1); border-color: rgba(250,204,21,0.4); }
+        .member-card:hover::after { transform: scaleX(1); }
+        .member-icon {
+            width: 72px; height: 72px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--y1), var(--y3));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.75rem; color: white; margin: 0 auto 1.25rem;
+            box-shadow: 0 12px 30px -8px rgba(234,179,8,0.4);
+            transition: all 0.4s var(--ease);
         }
-        
-        .nav-links a:hover:before {
-            width: 100%;
+        .member-card:hover .member-icon { transform: rotateY(180deg) scale(1.1); background: linear-gradient(135deg, var(--y3), var(--y5)); }
+        .member-name { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--ink); }
+        .member-role { font-size: 0.78rem; color: var(--muted); margin-top: 0.3rem; }
+
+        /* ===== DEPARTMENTS ===== */
+        .dept-tabs {
+            display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2.5rem;
+            background: rgba(255,255,255,0.4); backdrop-filter: blur(12px);
+            border: 1px solid var(--gborder); border-radius: 24px; padding: 0.5rem;
+            width: fit-content;
         }
-        
-        .mobile-menu-btn {
+        .dept-tab {
+            padding: 0.65rem 1.6rem; border-radius: 16px;
+            font-weight: 600; font-size: 0.88rem; color: var(--muted);
+            cursor: pointer; border: none; background: transparent;
+            transition: all 0.25s var(--ease);
+        }
+        .dept-tab:hover { color: var(--ink); background: rgba(255,255,255,0.7); }
+        .dept-tab.active {
+            background: linear-gradient(135deg, var(--y1), var(--y2));
+            color: var(--ink); box-shadow: 0 8px 20px -6px rgba(234,179,8,0.45);
+        }
+        .dept-panel {
             display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--primary);
-            cursor: pointer;
-            transition: var(--transition);
+            background: var(--glass1);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--gborder);
+            border-radius: 36px; padding: 3rem;
+            box-shadow: var(--gshadow), inset 0 1px 0 rgba(255,255,255,0.9);
+            animation: panelIn 0.4s var(--ease) both;
         }
-        
-        .mobile-menu-btn:hover {
-            color: var(--accent);
-            transform: scale(1.1);
+        .dept-panel.active { display: block; }
+        @keyframes panelIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+        .dept-panel-header { display: flex; gap: 2rem; align-items: center; margin-bottom: 2rem; }
+        .dept-icon-big {
+            width: 80px; height: 80px; flex-shrink: 0;
+            background: linear-gradient(135deg, var(--y1), var(--y3));
+            border-radius: 24px; display: flex; align-items: center; justify-content: center;
+            font-size: 2.2rem; color: white;
+            box-shadow: 0 16px 36px -8px rgba(234,179,8,0.4);
         }
-        
-        /* Page Header */
-        .page-header {
-            height: 70vh;
-            display: flex;
-            align-items: center;
+        .dept-panel-header h3 { font-family: var(--font-display); font-size: 2rem; font-weight: 800; letter-spacing: -0.5px; color: var(--ink); }
+        .dept-panel-header p { color: var(--muted); font-size: 0.9rem; margin-top: 0.25rem; }
+        .dept-body { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .dept-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.75; }
+        .dept-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .dept-stat {
+            background: rgba(255,255,255,0.5);
+            border: 1px solid var(--gborder); border-radius: 20px;
+            padding: 1.5rem; text-align: center;
+            transition: all 0.3s var(--ease);
+        }
+        .dept-stat:hover { background: white; border-color: var(--y2); transform: scale(1.04); }
+        .dept-stat-n { font-family: var(--font-display); font-size: 2rem; font-weight: 800; color: var(--y4); }
+        .dept-stat-l { font-size: 0.72rem; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+        .skill-cloud { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .skill-chip {
+            background: rgba(250,204,21,0.1);
+            border: 1px solid rgba(250,204,21,0.35);
+            color: var(--y5); font-weight: 600; font-size: 0.78rem;
+            padding: 0.4rem 1.1rem; border-radius: 100px;
+            transition: all 0.2s var(--ease);
+        }
+        .skill-chip:hover { background: var(--y1); color: var(--ink); border-color: var(--y2); transform: scale(1.05); }
+
+        /* ===== TEAM GRID ===== */
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.75rem;
+        }
+        .team-card-v2 {
+            background: var(--glass1);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--gborder);
+            border-radius: 32px; overflow: hidden;
+            box-shadow: var(--gshadow), inset 0 1px 0 rgba(255,255,255,0.9);
+            transition: all 0.4s var(--ease);
             position: relative;
-            background: var(--gradient-dark), url('./assets/hero4.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: white;
-            margin-top: 80px;
-            overflow: hidden;
         }
-        
-        .page-header:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(42, 157, 143, 0.2) 0%, transparent 50%);
-            animation: pulse 8s ease-in-out infinite;
-        }
-        
-        .page-header-content {
-            max-width: 800px;
-            position: relative;
-            z-index: 2;
-            animation: fadeInUp 1s ease-out;
-        }
-        
-        .page-header h1 {
-            font-size: 4rem;
-            color: white;
-            margin-bottom: 20px;
-            font-weight: 800;
-            letter-spacing: -1px;
-            animation: fadeInUp 1s ease-out 0.2s both;
-        }
-        
-        .page-header p {
-            font-size: 1.3rem;
-            opacity: 0.95;
-            animation: fadeInUp 1s ease-out 0.4s both;
-            line-height: 1.8;
-        }
-        
-        .breadcrumb {
-            display: flex;
-            align-items: center;
-            margin-top: 30px;
-            font-size: 0.95rem;
-            animation: fadeInUp 1s ease-out 0.6s both;
-        }
-        
-        .breadcrumb a {
-            color: white;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: var(--transition);
-        }
-        
-        .breadcrumb a:hover {
-            opacity: 1;
-            color: var(--accent);
-        }
-        
-        .breadcrumb i {
-            margin: 0 10px;
-            opacity: 0.7;
-        }
-        
-        /* Section Headers - Matching Homepage */
-        .section-header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-        
-        .section-header h2 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-            font-weight: 800;
-            letter-spacing: -1px;
-        }
-        
-        .section-header h2:after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 5px;
-            background: var(--gradient-accent);
-            border-radius: 10px;
-        }
-        
-        .section-header p {
-            max-width: 700px;
-            margin: 30px auto 0;
-            color: #666;
-            font-size: 1.15rem;
-            line-height: 1.8;
-        }
-        
-        /* Leadership Section */
-        .leadership {
+        .team-card-v2:hover {
             background: white;
-            position: relative;
+            transform: translateY(-14px) scale(1.02);
+            box-shadow: var(--yshadow), 0 40px 70px -20px rgba(0,0,0,0.12), inset 0 1px 0 white;
+            border-color: rgba(250,204,21,0.5);
         }
-        
-        .leadership:before {
+        .card-top {
+            height: 200px;
+            position: relative; overflow: hidden;
+        }
+        .card-gradient {
+            position: absolute; inset: 0;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .card-avatar {
+            width: 100px; height: 100px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--y1), var(--y3));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem; color: white;
+            box-shadow: 0 16px 40px -8px rgba(234,179,8,0.5);
+            transition: all 0.4s var(--ease);
+            position: relative; z-index: 2;
+        }
+        .team-card-v2:hover .card-avatar { transform: scale(1.12) rotate(5deg); }
+        .card-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(250,204,21,0.08), rgba(255,255,255,0.5));
+            backdrop-filter: blur(2px);
+        }
+        .card-body { padding: 2rem; }
+        .card-body h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; letter-spacing: -0.3px; color: var(--ink); }
+        .card-position { color: var(--y4); font-weight: 600; font-size: 0.85rem; margin: 0.25rem 0 0.75rem; }
+        .card-desc { color: var(--muted); font-size: 0.88rem; line-height: 1.65; }
+        .card-footer { margin-top: 1.25rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+        /* ===== JOIN CTA ===== */
+        .join-section {
+            background: var(--glass1);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--gborder);
+            border-radius: 48px; padding: 5rem 4rem;
+            text-align: center;
+            box-shadow: var(--gshadow), inset 0 1px 0 rgba(255,255,255,0.9);
+            position: relative; overflow: hidden;
+        }
+        .join-section::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent 0%, rgba(26, 95, 122, 0.03) 50%, transparent 100%);
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(250,204,21,0.1) 0%, transparent 70%);
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
             pointer-events: none;
         }
-        
-        .leader-profile {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-            background: var(--gradient-primary);
-            padding: 80px;
-            border-radius: 30px;
-            color: white;
-            box-shadow: 0 20px 60px rgba(26, 95, 122, 0.3);
-            margin-bottom: 60px;
-            position: relative;
-            overflow: hidden;
-            transition: var(--transition);
-        }
-        
-        .leader-profile:before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            transition: var(--transition);
-        }
-        
-        .leader-profile:hover:before {
-            top: -30%;
-            right: -30%;
-        }
-        
-        .leader-profile:hover {
-            transform: scale(1.02);
-            box-shadow: 0 30px 80px rgba(26, 95, 122, 0.4);
-        }
-        
-        .leader-image {
-            flex: 0 0 400px;
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-            transition: var(--transition);
-        }
-        
-        .leader-profile:hover .leader-image {
-            transform: scale(1.05);
-        }
-        
-        .leader-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: var(--transition);
-        }
-        
-        .leader-badge {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            background: var(--gradient-accent);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            box-shadow: 0 10px 30px rgba(231, 111, 81, 0.4);
-            z-index: 2;
-            transition: var(--transition);
-        }
-        
-        .leader-profile:hover .leader-badge {
-            transform: scale(1.1);
-            box-shadow: 0 15px 40px rgba(231, 111, 81, 0.6);
-        }
-        
-        .leader-info {
-            flex: 1;
-            position: relative;
-        }
-        
-        .leader-info h2 {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            color: white;
-            font-weight: 800;
-        }
-        
-        .leader-title {
-            font-size: 1.5rem;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 30px;
-            font-weight: 600;
-        }
-        
-        .leader-description {
-            margin-bottom: 35px;
-            font-size: 1.15rem;
-            line-height: 1.9;
-            position: relative;
-        }
-        
-        .leader-stats {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-        
-        .leader-stat {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            padding: 25px;
-            border-radius: 20px;
-            text-align: center;
-            min-width: 180px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            transition: var(--transition);
-        }
-        
-        .leader-stat:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-10px);
-            border-color: white;
-        }
-        
-        .leader-stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            display: block;
-            margin-bottom: 5px;
-        }
-        
-        .leader-stat-label {
-            font-size: 1rem;
-            opacity: 0.95;
-        }
-        
-        .leader-qualifications {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 35px;
-        }
-        
-        .qual-badge {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            padding: 12px 25px;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            transition: var(--transition);
-        }
-        
-        .qual-badge:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-5px);
-            border-color: white;
-        }
-        
-        /* Team Structure */
-        .team-structure {
-            background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%);
-            position: relative;
-        }
-        
-        .team-structure:before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            right: -10%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(42, 157, 143, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            transform: translateY(-50%);
-        }
-        
-        .structure-container {
-            position: relative;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-        
-        .structure-level {
-            margin-bottom: 80px;
-            position: relative;
-        }
-        
-        .structure-level:last-child {
-            margin-bottom: 0;
-        }
-        
-        .level-label {
-            background: var(--gradient-accent);
-            color: white;
-            padding: 20px 40px;
-            border-radius: 50px;
-            display: inline-block;
-            margin-bottom: 40px;
-            font-weight: 700;
-            font-size: 1.4rem;
-            box-shadow: 0 10px 30px rgba(231, 111, 81, 0.3);
-            transition: var(--transition);
-        }
-        
-        .level-label:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 50px rgba(231, 111, 81, 0.4);
-        }
-        
-        .level-members {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-        }
-        
-        .structure-member {
-            background: white;
-            padding: 35px;
-            border-radius: 25px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            text-align: center;
-            width: 250px;
-            transition: var(--transition);
-            border: 2px solid transparent;
-        }
-        
-        .structure-member:hover {
-            transform: translateY(-15px) scale(1.05);
-            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.2);
-            border-color: var(--accent);
-        }
-        
-        .structure-member-icon {
-            width: 90px;
-            height: 90px;
-            background: var(--gradient-primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
-            color: white;
-            font-size: 2.5rem;
-            transition: var(--transition);
-        }
-        
-        .structure-member:hover .structure-member-icon {
-            transform: scale(1.1) rotateY(360deg);
-            background: var(--gradient-accent);
-        }
-        
-        .structure-member h4 {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-            color: var(--primary);
-            font-weight: 700;
-            transition: var(--transition);
-        }
-        
-        .structure-member:hover h4 {
-            color: var(--accent);
-        }
-        
-        .structure-member p {
-            color: #666;
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-        
-        /* Departments Section */
-        .departments {
-            background: white;
-            position: relative;
-        }
-        
-        .departments:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent 0%, rgba(26, 95, 122, 0.03) 50%, transparent 100%);
-            pointer-events: none;
-        }
-        
-        .department-tabs {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 60px;
-        }
-        
-        .department-tab {
-            padding: 15px 35px;
-            background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .department-tab:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: var(--transition);
-        }
-        
-        .department-tab:hover:before {
-            left: 100%;
-        }
-        
-        .department-tab:hover,
-        .department-tab.active {
-            background: var(--gradient-accent);
-            color: white;
-            border-color: var(--accent);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(231, 111, 81, 0.3);
-        }
-        
-        .department-content {
-            display: none;
-            background: white;
-            padding: 60px;
-            border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 0.5s ease;
-            border: 2px solid transparent;
-            transition: var(--transition);
-        }
-        
-        .department-content.active {
-            display: block;
-        }
-        
-        .department-content:hover {
-            border-color: var(--accent);
-            transform: translateY(-10px);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .department-header {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .department-icon {
-            width: 100px;
-            height: 100px;
-            background: var(--gradient-accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2.5rem;
-            flex-shrink: 0;
-            transition: var(--transition);
-        }
-        
-        .department-content:hover .department-icon {
-            transform: scale(1.1) rotateY(360deg);
-        }
-        
-        .department-info h3 {
-            font-size: 2.2rem;
-            color: var(--primary);
-            margin-bottom: 10px;
-            font-weight: 800;
-        }
-        
-        .department-info p {
-            font-size: 1.15rem;
-            color: #666;
-            line-height: 1.8;
-        }
-        
-        .department-content p {
-            line-height: 1.9;
-            color: #666;
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-        }
-        
-        .department-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .department-stat {
-            background: linear-gradient(135deg, rgba(26, 95, 122, 0.05), rgba(42, 157, 143, 0.05));
-            text-align: center;
-            padding: 35px 25px;
-            border-radius: 20px;
-            transition: var(--transition);
-            border: 2px solid transparent;
-        }
-        
-        .department-stat:hover {
-            background: white;
-            transform: translateY(-10px);
-            border-color: var(--accent);
-            box-shadow: 0 20px 50px rgba(231, 111, 81, 0.15);
-        }
-        
-        .department-stat-number {
-            font-size: 2.8rem;
-            font-weight: 800;
-            color: var(--primary);
-            display: block;
-            margin-bottom: 10px;
-            transition: var(--transition);
-        }
-        
-        .department-stat:hover .department-stat-number {
-            transform: scale(1.1);
-        }
-        
-        .department-stat-label {
-            font-size: 1.05rem;
-            color: #666;
-            font-weight: 600;
-        }
-        
-        .team-skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 40px;
-        }
-        
-        .skill-tag {
-            background: rgba(26, 95, 122, 0.1);
-            color: var(--primary);
-            padding: 10px 22px;
-            border-radius: 50px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            border: 2px solid transparent;
-            transition: var(--transition);
-        }
-        
-        .skill-tag:hover {
-            background: var(--gradient-primary);
-            color: white;
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(26, 95, 122, 0.2);
-        }
-        
-        /* Team Grid */
-        .team-section {
-            background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 50%, #f8f9fa 100%);
-            position: relative;
-        }
-        
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 40px;
-        }
-        
-        .team-card {
-            background: white;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            transition: var(--transition);
-            border: 2px solid transparent;
-        }
-        
-        .team-card:hover {
-            transform: translateY(-20px) scale(1.02);
-            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.2);
-            border-color: var(--accent);
-        }
-        
-        .team-image {
-            height: 300px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .team-image:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--gradient-primary);
-            opacity: 0;
-            transition: var(--transition);
-        }
-        
-        .team-card:hover .team-image:before {
-            opacity: 0.7;
-        }
-        
-        .team-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
-            color: white;
-            padding: 30px;
-            transform: translateY(100%);
-            transition: var(--transition);
-            z-index: 2;
-        }
-        
-        .team-card:hover .team-overlay {
-            transform: translateY(0);
-        }
-        
-        .team-overlay p {
-            font-size: 1.05rem;
-            line-height: 1.8;
-        }
-        
-        .team-content {
-            padding: 40px 35px;
-        }
-        
-        .team-content h3 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-            color: var(--primary);
-            font-weight: 700;
-            transition: var(--transition);
-        }
-        
-        .team-card:hover .team-content h3 {
-            color: var(--accent);
-        }
-        
-        .team-position {
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
-        
-        .team-content p {
-            color: #666;
-            line-height: 1.8;
-            margin-bottom: 25px;
-            font-size: 1.05rem;
-        }
-        
-        .team-skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        
-        /* Join Team CTA */
-        .join-team {
-            background: var(--gradient-accent), url('https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: white;
-            text-align: center;
-            padding: 120px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .join-team:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(26, 95, 122, 0.3) 0%, transparent 50%);
-        }
-        
-        .join-team h2 {
-            color: white;
-            font-size: 3.5rem;
-            margin-bottom: 25px;
-            font-weight: 800;
-            position: relative;
-        }
-        
-        .join-team p {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto 40px;
-            opacity: 0.95;
-            line-height: 1.8;
-            position: relative;
-        }
-        
+        .join-section h2 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; letter-spacing: -2px; color: var(--ink); margin-bottom: 1rem; position: relative; z-index: 1; }
+        .join-section p { color: var(--muted); font-size: 1.05rem; max-width: 550px; margin: 0 auto 2.5rem; position: relative; z-index: 1; }
+
+        /* ===== BUTTONS ===== */
         .btn {
-            display: inline-block;
-            padding: 18px 45px;
-            background: white;
-            color: var(--accent);
-            border: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            position: relative;
-            overflow: hidden;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.9rem 2.2rem; border-radius: 100px;
+            font-weight: 700; font-size: 0.9rem; text-decoration: none;
+            border: none; cursor: pointer;
+            transition: all 0.3s var(--ease);
+            position: relative; overflow: hidden;
         }
-        
-        .btn:before {
+        .btn::before {
             content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: var(--transition);
+            position: absolute; inset: 0;
+            background: rgba(255,255,255,0.2);
+            transform: translateX(-100%);
+            transition: transform 0.4s var(--ease);
         }
-        
-        .btn:hover:before {
-            left: 100%;
+        .btn:hover::before { transform: translateX(0); }
+        .btn-yellow {
+            background: linear-gradient(135deg, var(--y1), var(--y2));
+            color: var(--ink);
+            box-shadow: 0 12px 30px -8px rgba(234,179,8,0.5);
         }
-        
-        .btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        .btn-yellow:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 20px 40px -8px rgba(234,179,8,0.6); }
+        .btn-ghost {
+            background: rgba(255,255,255,0.5);
+            backdrop-filter: blur(12px);
+            border: 1.5px solid var(--yborder);
+            color: var(--ink3);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
         }
-        
-        .btn-outline {
-            background: transparent;
-            border: 3px solid white;
-            color: white;
-            margin-left: 20px;
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+        .btn-ghost:hover { background: white; border-color: var(--y2); transform: translateY(-3px); }
+        .btn-dark {
+            background: var(--ink); color: white;
+            box-shadow: 0 12px 30px -8px rgba(0,0,0,0.2);
         }
-        
-        .btn-outline:hover {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border-color: var(--accent);
-        }
-        
-        /* Footer - Matching Homepage */
+        .btn-dark:hover { background: var(--ink2); transform: translateY(-3px); box-shadow: 0 20px 40px -8px rgba(0,0,0,0.3); }
+
+        /* ===== FOOTER ===== */
         footer {
-            background: linear-gradient(135deg, #1a1a1a 0%, var(--dark) 100%);
-            color: white;
-            padding: 80px 0 30px;
-            position: relative;
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--gborder);
+            border-radius: 36px 36px 0 0;
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+            position: relative; z-index: 2;
         }
-        
-        footer:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: var(--gradient-accent);
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1.5fr; gap: 3rem; margin-bottom: 3rem; }
+        .footer-brand { font-family: var(--font-display); font-size: 2rem; font-weight: 800; color: var(--ink); letter-spacing: -1px; margin-bottom: 0.75rem; }
+        .footer-brand span { color: var(--y4); }
+        .footer-tagline { color: var(--muted); font-size: 0.85rem; }
+        .footer-col h5 { font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; color: var(--ink); margin-bottom: 1rem; }
+        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+        .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.88rem; transition: all 0.2s var(--ease); display: inline-flex; align-items: center; gap: 0.4rem; }
+        .footer-links a:hover { color: var(--y4); transform: translateX(4px); }
+        .footer-contact p { color: var(--muted); font-size: 0.88rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.6rem; }
+        .footer-contact p i { color: var(--y3); width: 16px; }
+        .footer-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(250,204,21,0.4), transparent); margin-bottom: 2rem; }
+        .footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+        .footer-bottom p { color: var(--muted); font-size: 0.8rem; }
+        .footer-bbbee {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: linear-gradient(135deg, var(--y1), var(--y2));
+            color: var(--ink); font-weight: 700; font-size: 0.75rem;
+            padding: 0.4rem 1rem; border-radius: 100px;
         }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 50px;
-            margin-bottom: 50px;
+
+        /* ===== REVEAL ===== */
+        .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--cream); }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--y1), var(--y3)); border-radius: 100px; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 960px) {
+            .nav-links { display: none; }
+            .mobile-btn { display: block; }
+            .leadership-grid { grid-template-columns: 1fr; }
+            .dept-body { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
         }
-        
-        .footer-logo {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            color: white;
-            letter-spacing: -0.5px;
+        @media (max-width: 640px) {
+            .hero h1 { letter-spacing: -2px; }
+            .hero-stat-strip { flex-direction: column; }
+            .hero-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.6); }
+            .hero-stat:last-child { border-bottom: none; }
+            .join-section { padding: 3rem 1.5rem; }
+            .dept-panel { padding: 2rem 1.5rem; }
+            .dept-tabs { width: 100%; }
         }
-        
-        .footer-about p {
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        .footer-links h4, .footer-contact h4 {
-            font-size: 1.3rem;
-            margin-bottom: 25px;
-            color: var(--accent);
-            font-weight: 700;
-        }
-        
-        .footer-links ul {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-        
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: var(--transition);
-            display: inline-block;
-        }
-        
-        .footer-links a:hover {
-            color: var(--accent);
-            padding-left: 10px;
-        }
-        
-        .footer-contact p {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            color: rgba(255, 255, 255, 0.8);
-            transition: var(--transition);
-        }
-        
-        .footer-contact p:hover {
-            color: white;
-            padding-left: 5px;
-        }
-        
-        .footer-contact i {
-            margin-right: 15px;
-            color: var(--accent);
-            font-size: 1.2rem;
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
-        }
-        
-        .copyright p {
-            margin-bottom: 10px;
-        }
-        
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.6; }
-        }
-        
-        /* Scroll Reveal Animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease-out;
-        }
-        
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Mobile Responsiveness */
-        @media (max-width: 992px) {
-            .page-header h1 {
-                font-size: 3rem;
-            }
-            
-            .section-header h2 {
-                font-size: 2.5rem;
-            }
-            
-            .leader-profile {
-                flex-direction: column;
-                text-align: center;
-                padding: 60px 40px;
-            }
-            
-            .leader-image {
-                flex: 0 0 auto;
-                width: 100%;
-                max-width: 400px;
-                margin-bottom: 40px;
-            }
-            
-            .leader-info h2 {
-                font-size: 2.5rem;
-            }
-            
-            .team-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            }
-            
-            .structure-member {
-                width: 220px;
-            }
-            
-            .department-header {
-                flex-direction: column;
-                text-align: center;
-                gap: 30px;
-            }
-            
-            .department-content {
-                padding: 40px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .nav-links {
-                position: fixed;
-                top: 80px;
-                left: 0;
-                width: 100%;
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(20px);
-                flex-direction: column;
-                align-items: center;
-                padding: 30px 0;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-                transform: translateY(-100%);
-                opacity: 0;
-                visibility: hidden;
-                transition: var(--transition);
-            }
-            
-            .nav-links.active {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
-            }
-            
-            .nav-links li {
-                margin: 15px 0;
-            }
-            
-            .page-header h1 {
-                font-size: 2.5rem;
-            }
-            
-            .page-header p {
-                font-size: 1.1rem;
-            }
-            
-            .section-header h2 {
-                font-size: 2rem;
-            }
-            
-            .leader-stats {
-                justify-content: center;
-            }
-            
-            .department-tab {
-                padding: 12px 25px;
-                font-size: 1rem;
-            }
-            
-            .structure-member {
-                width: 100%;
-                max-width: 280px;
-            }
-            
-            .btn-outline {
-                margin-left: 0;
-                margin-top: 20px;
-                display: block;
-                width: fit-content;
-                margin-right: auto;
-                margin-left: auto;
-            }
-            
-            section {
-                padding: 70px 0;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            section {
-                padding: 60px 0;
-            }
-            
-            .page-header {
-                height: 60vh;
-            }
-            
-            .page-header h1 {
-                font-size: 2rem;
-            }
-            
-            .page-header p {
-                font-size: 1rem;
-            }
-            
-            .leader-profile {
-                padding: 40px 30px;
-            }
-            
-            .leader-stat {
-                min-width: 140px;
-                padding: 20px 15px;
-            }
-            
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .team-image {
-                height: 250px;
-            }
-            
-            .department-content {
-                padding: 30px 25px;
-            }
-            
-            .department-info h3 {
-                font-size: 1.8rem;
-            }
-            
-            .join-team h2 {
-                font-size: 2.5rem;
-            }
-            
-            .join-team p {
-                font-size: 1.1rem;
-            }
-            
-            .section-header h2 {
-                font-size: 1.8rem;
-            }
-        }
+        /* MOBILE RESPONSIVENESS CODE ONLY - TEAMS PAGE */
+
+/* Disable custom cursor on mobile */
+@media (max-width: 768px) {
+    body { cursor: auto; }
+    .cursor, .cursor-ring { display: none; }
+}
+
+/* Container padding adjustments */
+.container { width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 1.5rem; }
+@media (min-width: 640px) { .container { padding: 0 2rem; } }
+@media (min-width: 1024px) { .container { padding: 0 2.5rem; } }
+
+/* Section padding */
+section { padding: 5rem 0; }
+@media (max-width: 640px) { section { padding: 3.5rem 0; } }
+
+/* Header/Navigation */
+header {
+    position: fixed; top: 1rem; left: 50%; transform: translateX(-50%);
+    width: calc(100% - 2rem); max-width: 1320px;
+    border-radius: 60px;
+}
+
+nav { display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 1.2rem; }
+@media (max-width: 360px) { 
+    nav { padding: 0.4rem 1rem; }
+    .logo-text { font-size: 0.9rem; }
+}
+
+.logo-icon { width: 36px; height: 36px; font-size: 1rem; }
+.logo-text { font-size: 1rem; }
+
+/* Mobile menu button */
+.mobile-btn { display: none; background: none; border: none; font-size: 1.6rem; color: var(--y3); cursor: pointer; }
+@media (max-width: 960px) {
+    .nav-links { display: none; }
+    .mobile-btn { display: block; }
+}
+
+/* Mobile menu open state */
+.mobile-menu-open {
+    display: flex !important;
+    flex-direction: column !important;
+    position: fixed !important;
+    top: 80px !important;
+    left: 1rem !important;
+    right: 1rem !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+    backdrop-filter: blur(24px) !important;
+    border: 1px solid rgba(255,255,255,0.9) !important;
+    border-radius: 28px !important;
+    padding: 1.5rem 1rem !important;
+    gap: 0.5rem !important;
+    z-index: 999 !important;
+    box-shadow: 0 30px 60px -15px rgba(0,0,0,0.2) !important;
+}
+.mobile-menu-open li { width: 100%; }
+.mobile-menu-open a { 
+    display: block; 
+    padding: 0.8rem 1rem !important; 
+    white-space: normal; 
+    font-size: 1rem; 
+    border-radius: 16px; 
+}
+
+/* Hero Section */
+.hero h1 { 
+    font-size: clamp(2.8rem, 10vw, 7rem); 
+    letter-spacing: -2px; 
+}
+@media (max-width: 640px) { 
+    .hero h1 { letter-spacing: -1.5px; } 
+}
+@media (max-width: 480px) { 
+    .hero h1 { 
+        font-size: clamp(2.4rem, 8vw, 3.5rem); 
+    } 
+}
+
+.hero-sub { 
+    font-size: clamp(0.95rem, 3.5vw, 1.15rem); 
+}
+
+/* Hero Stats Strip */
+.hero-stat-strip { 
+    display: flex; 
+    gap: 0; 
+    margin-top: 3rem; 
+    flex-wrap: wrap; 
+}
+@media (max-width: 640px) { 
+    .hero-stat-strip { 
+        flex-direction: column; 
+        border-radius: 24px; 
+    }
+    .hero-stat { 
+        border-right: none; 
+        border-bottom: 1px solid rgba(255,255,255,0.6); 
+        padding: 1.25rem 1.5rem; 
+    }
+    .hero-stat:last-child { 
+        border-bottom: none; 
+    }
+}
+
+.hero-stat-num { 
+    font-size: clamp(1.8rem, 5vw, 2.4rem); 
+}
+.hero-stat-label { 
+    font-size: 0.7rem; 
+}
+
+/* Buttons */
+.btn { 
+    padding: 0.7rem 1.6rem; 
+    font-size: 0.85rem; 
+    white-space: nowrap; 
+}
+@media (max-width: 480px) { 
+    .btn { 
+        padding: 0.6rem 1.2rem; 
+        font-size: 0.8rem; 
+        white-space: normal; 
+    } 
+}
+
+/* Leadership Grid */
+.leadership-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1.6fr; 
+    gap: 2.5rem; 
+    align-items: start; 
+}
+@media (max-width: 960px) { 
+    .leadership-grid { 
+        grid-template-columns: 1fr; 
+        gap: 2rem; 
+    } 
+}
+
+/* Leader Card */
+.leader-img-wrap { 
+    height: 320px; 
+}
+@media (max-width: 640px) { 
+    .leader-img-wrap { 
+        height: 280px; 
+    } 
+}
+@media (max-width: 480px) { 
+    .leader-img-wrap { 
+        height: 240px; 
+    } 
+}
+
+.leader-avatar-big { 
+    width: 160px; 
+    height: 160px; 
+    font-size: 4rem; 
+}
+@media (max-width: 640px) { 
+    .leader-avatar-big { 
+        width: 140px; 
+        height: 140px; 
+        font-size: 3.5rem; 
+    } 
+}
+@media (max-width: 480px) { 
+    .leader-avatar-big { 
+        width: 120px; 
+        height: 120px; 
+        font-size: 3rem; 
+    } 
+}
+
+.founder-chip { 
+    top: 1rem; 
+    right: 1rem; 
+    padding: 0.4rem 1rem; 
+    font-size: 0.7rem; 
+}
+@media (max-width: 480px) { 
+    .founder-chip { 
+        padding: 0.3rem 0.8rem; 
+        font-size: 0.65rem; 
+    } 
+}
+
+.leader-body { 
+    padding: 2rem; 
+}
+@media (max-width: 640px) { 
+    .leader-body { 
+        padding: 1.5rem; 
+    } 
+}
+@media (max-width: 480px) { 
+    .leader-body { 
+        padding: 1.25rem; 
+    } 
+}
+
+.leader-body h3 { 
+    font-size: clamp(1.3rem, 4vw, 1.6rem); 
+}
+
+/* Info Glass Panels */
+.info-glass { 
+    padding: 1.8rem 2rem; 
+}
+@media (max-width: 640px) { 
+    .info-glass { 
+        padding: 1.5rem; 
+    } 
+}
+@media (max-width: 480px) { 
+    .info-glass { 
+        padding: 1.25rem; 
+    } 
+}
+
+/* Stat Row */
+.stat-row { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 1rem; 
+}
+@media (max-width: 480px) { 
+    .stat-row { 
+        gap: 0.75rem; 
+    } 
+}
+
+.mini-stat { 
+    padding: 1rem 0.5rem; 
+}
+.mini-stat-n { 
+    font-size: clamp(1.5rem, 4vw, 2rem); 
+}
+.mini-stat-l { 
+    font-size: 0.65rem; 
+}
+
+/* Structure Tier */
+.members-row { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 1.25rem; 
+}
+@media (max-width: 640px) { 
+    .members-row { 
+        gap: 1rem; 
+        justify-content: center; 
+    } 
+}
+
+.member-card { 
+    flex: 1; 
+    min-width: 160px; 
+    max-width: 240px; 
+    padding: 1.5rem 1rem; 
+}
+@media (max-width: 640px) { 
+    .member-card { 
+        min-width: 140px; 
+        max-width: 200px; 
+        padding: 1.25rem 0.8rem; 
+    } 
+}
+@media (max-width: 480px) { 
+    .member-card { 
+        min-width: 100%; 
+        max-width: 100%; 
+    } 
+}
+
+.member-icon { 
+    width: 64px; 
+    height: 64px; 
+    font-size: 1.5rem; 
+    margin-bottom: 1rem; 
+}
+@media (max-width: 640px) { 
+    .member-icon { 
+        width: 56px; 
+        height: 56px; 
+        font-size: 1.3rem; 
+    } 
+}
+
+.member-name { 
+    font-size: 0.95rem; 
+}
+.member-role { 
+    font-size: 0.72rem; 
+}
+
+/* Department Tabs */
+.dept-tabs { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 0.4rem; 
+    padding: 0.4rem; 
+    width: fit-content; 
+}
+@media (max-width: 640px) { 
+    .dept-tabs { 
+        width: 100%; 
+        justify-content: center; 
+    } 
+}
+@media (max-width: 480px) { 
+    .dept-tabs { 
+        flex-direction: column; 
+        width: 100%; 
+        border-radius: 24px; 
+    }
+    .dept-tab { 
+        width: 100%; 
+        text-align: center; 
+    } 
+}
+
+.dept-tab { 
+    padding: 0.5rem 1.2rem; 
+    font-size: 0.82rem; 
+}
+@media (max-width: 640px) { 
+    .dept-tab { 
+        padding: 0.5rem 1rem; 
+        font-size: 0.75rem; 
+    } 
+}
+
+/* Department Panel */
+.dept-panel { 
+    padding: 3rem; 
+    border-radius: 32px; 
+}
+@media (max-width: 640px) { 
+    .dept-panel { 
+        padding: 2rem 1.5rem; 
+    } 
+}
+@media (max-width: 480px) { 
+    .dept-panel { 
+        padding: 1.5rem 1rem; 
+    } 
+}
+
+.dept-panel-header { 
+    display: flex; 
+    gap: 1.5rem; 
+    align-items: center; 
+    margin-bottom: 1.5rem; 
+}
+@media (max-width: 640px) { 
+    .dept-panel-header { 
+        flex-direction: column; 
+        text-align: center; 
+        gap: 1rem; 
+    } 
+}
+
+.dept-icon-big { 
+    width: 70px; 
+    height: 70px; 
+    font-size: 2rem; 
+    border-radius: 20px; 
+}
+@media (max-width: 640px) { 
+    .dept-icon-big { 
+        width: 60px; 
+        height: 60px; 
+        font-size: 1.75rem; 
+    } 
+}
+
+.dept-panel-header h3 { 
+    font-size: clamp(1.5rem, 4vw, 2rem); 
+}
+
+.dept-body { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 2rem; 
+}
+@media (max-width: 960px) { 
+    .dept-body { 
+        grid-template-columns: 1fr; 
+        gap: 1.5rem; 
+    } 
+}
+
+.dept-desc { 
+    font-size: 0.9rem; 
+}
+.dept-stats-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 1rem; 
+}
+@media (max-width: 480px) { 
+    .dept-stats-grid { 
+        gap: 0.75rem; 
+    } 
+}
+
+.dept-stat { 
+    padding: 1.25rem 0.5rem; 
+}
+.dept-stat-n { 
+    font-size: clamp(1.5rem, 4vw, 2rem); 
+}
+.dept-stat-l { 
+    font-size: 0.65rem; 
+}
+
+/* Skill Cloud */
+.skill-cloud { 
+    gap: 0.4rem; 
+    margin-top: 1.5rem; 
+}
+.skill-chip { 
+    font-size: 0.72rem; 
+    padding: 0.3rem 0.9rem; 
+}
+@media (max-width: 480px) { 
+    .skill-chip { 
+        font-size: 0.68rem; 
+        padding: 0.25rem 0.7rem; 
+    } 
+}
+
+/* Team Cards Grid */
+.members-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 1.5rem; 
+}
+@media (max-width: 640px) { 
+    .members-grid { 
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); 
+        gap: 1rem; 
+    } 
+}
+@media (max-width: 480px) { 
+    .members-grid { 
+        grid-template-columns: 1fr; 
+    } 
+}
+
+.team-card-v2 { 
+    border-radius: 28px; 
+}
+.card-top { 
+    height: 180px; 
+}
+@media (max-width: 640px) { 
+    .card-top { 
+        height: 160px; 
+    } 
+}
+
+.card-avatar { 
+    width: 90px; 
+    height: 90px; 
+    font-size: 2.2rem; 
+}
+@media (max-width: 640px) { 
+    .card-avatar { 
+        width: 80px; 
+        height: 80px; 
+        font-size: 2rem; 
+    } 
+}
+
+.card-body { 
+    padding: 1.5rem; 
+}
+@media (max-width: 640px) { 
+    .card-body { 
+        padding: 1.25rem; 
+    } 
+}
+
+.card-body h3 { 
+    font-size: 1.25rem; 
+}
+.card-position { 
+    font-size: 0.8rem; 
+}
+.card-desc { 
+    font-size: 0.82rem; 
+}
+
+/* Join Section */
+.join-section { 
+    padding: 4rem 3rem; 
+    border-radius: 40px; 
+}
+@media (max-width: 640px) { 
+    .join-section { 
+        padding: 3rem 1.5rem; 
+        border-radius: 32px; 
+    } 
+}
+@media (max-width: 480px) { 
+    .join-section { 
+        padding: 2.5rem 1rem; 
+    } 
+}
+
+.join-section h2 { 
+    font-size: clamp(1.8rem, 5vw, 3.5rem); 
+}
+.join-section p { 
+    font-size: clamp(0.9rem, 3vw, 1.05rem); 
+}
+
+/* Footer */
+.footer-grid { 
+    display: grid; 
+    grid-template-columns: 2fr 1fr 1.5fr; 
+    gap: 2rem; 
+}
+@media (max-width: 960px) { 
+    .footer-grid { 
+        grid-template-columns: 1fr; 
+        gap: 2rem; 
+    } 
+}
+
+/* Typography */
+.section-title { 
+    font-size: clamp(1.8rem, 5vw, 3.5rem); 
+}
+.section-desc { 
+    font-size: clamp(0.9rem, 3vw, 1.05rem); 
+}
+
+/* Orb elements - responsive sizing */
+.orb-1 { 
+    width: min(600px, 90vw); 
+    height: min(600px, 90vw); 
+}
+.orb-2 { 
+    width: min(500px, 80vw); 
+    height: min(500px, 80vw); 
+}
+.orb-3 { 
+    width: min(300px, 70vw); 
+    height: min(300px, 70vw); 
+}
+
+/* Pill/Badge adjustments */
+.pill { 
+    font-size: 0.7rem; 
+    padding: 0.3rem 0.9rem; 
+}
+@media (max-width: 480px) { 
+    .pill { 
+        font-size: 0.65rem; 
+        padding: 0.25rem 0.7rem; 
+    } 
+}
+
+/* Structure tier headers */
+.tier-header { 
+    margin-bottom: 1.5rem; 
+}
+.tier-badge { 
+    font-size: 0.75rem; 
+    padding: 0.4rem 1.1rem; 
+}
+@media (max-width: 480px) { 
+    .tier-badge { 
+        font-size: 0.7rem; 
+        padding: 0.3rem 1rem; 
+    } 
+}
     </style>
 </head>
 <body>
-    <!-- Header & Navigation -->
-    <header id="header">
-        <div class="container">
-            <nav>
-                <a href="index.html" class="logo">
-                                       <img src="assets/merentonLogo.png" alt="Merenton Logo" height="80" width="80">
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
 
-                </a>
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="team.html" class="active">Our Team</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- HEADER -->
+    <header id="header">
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-gem"></i></div>
+                <span class="logo-text">MEREN<span>TON</span></span>
+            </a>
+            <button class="mobile-btn" id="mobileBtn"><i class="fas fa-bars"></i></button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="team.html" class="active">Our Team</a></li>
+                <li><a href="contact.html" class="nav-cta">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- Page Header -->
-    <section class="page-header">
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg-grid"></div>
         <div class="container">
-            <div class="page-header-content">
-                <h1>Our Team</h1>
-                <p>Meet the skilled professionals behind Merenton's success - a multidisciplinary team dedicated to excellence in every project.</p>
-                <div class="breadcrumb">
-                    <a href="index.html">Home</a>
-                    <i class="fas fa-chevron-right"></i>
-                    <span>Our Team</span>
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <div class="hero-badge-dot"><i class="fas fa-users"></i></div>
+                    Level 1 BBBEE Certified · 100% Black-Owned
+                </div>
+                <h1>Meet the<br><span class="grad">People Behind</span><br>Merenton</h1>
+                <p class="hero-sub">Multidisciplinary experts united by a passion for excellence — from taxation & engineering to civil works & business development.</p>
+                <div class="hero-actions">
+                    <a href="#leadership" class="btn btn-yellow"><i class="fas fa-arrow-down"></i> Explore Team</a>
+                    <a href="contact.html" class="btn btn-ghost"><i class="fas fa-envelope"></i> Get in Touch</a>
+                </div>
+                <div class="hero-stat-strip">
+                    <div class="hero-stat"><div class="hero-stat-num">17+</div><div class="hero-stat-label">Years Experience</div></div>
+                    <div class="hero-stat"><div class="hero-stat-num">45+</div><div class="hero-stat-label">Team Members</div></div>
+                    <div class="hero-stat"><div class="hero-stat-num">500+</div><div class="hero-stat-label">Projects Done</div></div>
+                    <div class="hero-stat"><div class="hero-stat-num">L1</div><div class="hero-stat-label">BBBEE Status</div></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Leadership Section -->
-    <section class="leadership reveal">
+    <!-- LEADERSHIP -->
+    <section id="leadership">
         <div class="container">
-            <div class="section-header">
-                <h2>Leadership</h2>
-                <p>Guided by experienced professionals with diverse expertise</p>
+            <div class="reveal">
+                <div class="section-label">Leadership</div>
+                <h2 class="section-title">Guided by Vision</h2>
+                <p class="section-desc">Led by a seasoned economist and practitioner with over 17 years across academia, government, and industry.</p>
             </div>
-            
-            <div class="leader-profile">
-                <div class="leader-image">
-                    <!--<img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Oageng Simon Mere">-->
-                    <div class="leader-badge">Founder & Director</div>
-                </div>
-                <div class="leader-info">
-                    <h2>Mr. Oageng Simon Mere</h2>
-                    <div class="leader-title">Sole Director & Shareholder</div>
-                    
-                    <div class="leader-description">
-                        <p>An Economist, General Tax Practitioner, and Business Development Scholar with a BSc Agric and BSc Agric (Hons) in Agricultural Economics and Management Practice from the University of North West and University of Cape Town respectively.</p>
-                        <p>With over 17 years of experience across academia, government, and the private sector, Mr. Mere has held key roles including Researcher, Lecturer, Economist, Business Advisor, and General Manager overseeing project implementation and evaluation.</p>
+            <div class="leadership-grid" style="margin-top: 3rem;">
+                <div class="leader-card reveal reveal-delay-1">
+                    <div class="leader-img-wrap">
+                        <div class="leader-avatar-big"><i class="fas fa-user-tie"></i></div>
+                        <div class="founder-chip"><i class="fas fa-crown"></i> Founder & Director</div>
                     </div>
-                    
-                    <div class="leader-stats">
-                        <div class="leader-stat reveal">
-                            <span class="leader-stat-number">17+</span>
-                            <span class="leader-stat-label">Years Experience</span>
-                        </div>
-                        <div class="leader-stat reveal" style="transition-delay: 0.1s;">
-                            <span class="leader-stat-number">100%</span>
-                            <span class="leader-stat-label">Business Owner</span>
-                        </div>
-                        <div class="leader-stat reveal" style="transition-delay: 0.2s;">
-                            <span class="leader-stat-number">Level 1</span>
-                            <span class="leader-stat-label">BBBEE Status</span>
-                        </div>
-                    </div>
-                    
-                    <div class="leader-qualifications">
-                        <div class="qual-badge">BSc Agric (NWU)</div>
-                        <div class="qual-badge">BSc Agric (Hons) (UCT)</div>
-                        <div class="qual-badge">Tax Practitioner (SA)</div>
-                        <div class="qual-badge">Business Accountant (SA)</div>
-                        <div class="qual-badge">Business Advisor (IBASA)</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Structure -->
-    <section class="team-structure reveal">
-        <div class="container">
-            <div class="section-header">
-                <h2>Team Structure</h2>
-                <p>Our well-structured organizational framework ensures efficient project execution and service delivery</p>
-            </div>
-            
-            <div class="structure-container">
-                <div class="structure-level reveal">
-                    <div class="level-label">Technical & Business Management</div>
-                    <div class="level-members">
-                        <div class="structure-member reveal">
-                            <div class="structure-member-icon">
-                                <i class="fas fa-cogs"></i>
-                            </div>
-                            <h4>Technical Director</h4>
-                            <p>Oversees all technical operations</p>
-                        </div>
-                        <div class="structure-member reveal" style="transition-delay: 0.1s;">
-                            <div class="structure-member-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <h4>Business Manager</h4>
-                            <p>Financial & strategic planning</p>
+                    <div class="leader-body">
+                        <h3>Oageng Simon Mere</h3>
+                        <div class="leader-role">Sole Director & Shareholder</div>
+                        <div class="leader-pills">
+                            <span class="pill">BSc Agric (NWU)</span>
+                            <span class="pill">BSc Hons (UCT)</span>
+                            <span class="pill">Tax Practitioner SA</span>
+                            <span class="pill">Business Accountant</span>
                         </div>
                     </div>
                 </div>
-                
-                <div class="structure-level reveal" style="transition-delay: 0.2s;">
-                    <div class="level-label">Core Operations</div>
-                    <div class="level-members">
-                        <div class="structure-member reveal" style="transition-delay: 0.3s;">
-                            <div class="structure-member-icon">
-                                <i class="fas fa-handshake"></i>
-                            </div>
-                            <h4>Stakeholder Relations</h4>
-                            <p>Client & partner management</p>
+                <div class="leader-info-panel">
+                    <div class="info-glass reveal reveal-delay-1">
+                        <h4><i class="fas fa-quote-left" style="color:var(--y3);margin-right:0.5rem;font-size:0.9rem;"></i> About Mr. Mere</h4>
+                        <p>An economist and General Tax Practitioner with a Business Development background. Over 17 years spanning academia, government, and private sector — serving as researcher, lecturer, and general manager across all disciplines.</p>
+                    </div>
+                    <div class="stat-row reveal reveal-delay-2">
+                        <div class="mini-stat">
+                            <div class="mini-stat-n">17+</div>
+                            <div class="mini-stat-l">Years Active</div>
                         </div>
-                        <div class="structure-member reveal" style="transition-delay: 0.4s;">
-                            <div class="structure-member-icon">
-                                <i class="fas fa-shopping-cart"></i>
-                            </div>
-                            <h4>Procurement</h4>
-                            <p>Supply chain management</p>
+                        <div class="mini-stat">
+                            <div class="mini-stat-n">100%</div>
+                            <div class="mini-stat-l">Owner</div>
                         </div>
-                        <div class="structure-member reveal" style="transition-delay: 0.5s;">
-                            <div class="structure-member-icon">
-                                <i class="fas fa-clipboard-check"></i>
-                            </div>
-                            <h4>Compliance</h4>
-                            <p>Regulatory & quality assurance</p>
+                        <div class="mini-stat">
+                            <div class="mini-stat-n">L1</div>
+                            <div class="mini-stat-l">BBBEE</div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="structure-level reveal" style="transition-delay: 0.6s;">
-                    <div class="level-label">Professional Teams</div>
-                    <div class="level-members">
-                        <div class="structure-member reveal" style="transition-delay: 0.7s;">
-                            <div class="structure-member-icon">
-                                <i class="fas fa-hard-hat"></i>
-                            </div>
-                            <h4>Engineering Team</h4>
-                            <p>Part-time qualified engineers</p>
-                        </div>
-                        <div class="structure-member reveal" style="transition-delay: 0.8s;">
-                            <div class="structure-member-icon">
-                                <i class="fas fa-tools"></i>
-                            </div>
-                            <h4>Construction Team</h4>
-                            <p>Builders & technicians</p>
-                        </div>
-                        <div class="structure-member reveal" style="transition-delay: 0.9s;">
-                            <div class="structure-member-icon">
-                                <i class="fas fa-briefcase"></i>
-                            </div>
-                            <h4>Business Development</h4>
-                            <p>Full-time professionals</p>
-                        </div>
+                    <div class="info-glass reveal reveal-delay-3">
+                        <h4><i class="fas fa-building" style="color:var(--y3);margin-right:0.5rem;font-size:0.9rem;"></i> Founded 2015</h4>
+                        <p>Merenton Enterprise Reengineering Consultancy (Pty) Ltd — Reg. 2015/025597/07. Operating from Kuruman, Northern Cape, with reach across South Africa's public and private sectors.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Departments Section -->
-    <section class="departments reveal">
+    <!-- TEAM STRUCTURE -->
+    <section class="structure-section">
         <div class="container">
-            <div class="section-header">
-                <h2>Our Departments</h2>
-                <p>Explore the specialized teams that make up our multidisciplinary organization</p>
+            <div class="reveal">
+                <div class="section-label">Organisation</div>
+                <h2 class="section-title">Team Architecture</h2>
+                <p class="section-desc">A clear, layered structure built for agility and excellence — from technical leadership to specialised support teams.</p>
             </div>
-            
-            <div class="department-tabs">
-                <div class="department-tab active" data-tab="professional">Professional Services</div>
-                <div class="department-tab" data-tab="construction">Construction & Building</div>
-                <div class="department-tab" data-tab="civil">Civil Works</div>
-                <div class="department-tab" data-tab="support">Support Services</div>
-            </div>
-            
-            <!-- Professional Services Department -->
-            <div class="department-content active" id="professional">
-                <div class="department-header">
-                    <div class="department-icon">
-                        <i class="fas fa-briefcase"></i>
+
+            <div style="margin-top: 3.5rem;">
+                <div class="structure-tier reveal">
+                    <div class="tier-header">
+                        <div class="tier-badge">⚡ Tier 1 — Technical & Business</div>
+                        <div class="tier-line"></div>
                     </div>
-                    <div class="department-info">
-                        <h3>Professional Services Department</h3>
-                        <p>Our team of qualified business advisors, accountants, and tax professionals</p>
-                    </div>
-                </div>
-                
-                <p>The Professional Services Department forms the core of Merenton's original expertise, established in 2015. This team includes qualified tax practitioners, business accountants, and development advisors who provide comprehensive business support services.</p>
-                
-                <div class="department-stats">
-                    <div class="department-stat reveal">
-                        <span class="department-stat-number">8+</span>
-                        <span class="department-stat-label">Qualified Professionals</span>
-                    </div>
-                    <div class="department-stat reveal" style="transition-delay: 0.1s;">
-                        <span class="department-stat-number">12+</span>
-                        <span class="department-stat-label">Years Average Experience</span>
-                    </div>
-                    <div class="department-stat reveal" style="transition-delay: 0.2s;">
-                        <span class="department-stat-number">500+</span>
-                        <span class="department-stat-label">Projects Completed</span>
-                    </div>
-                    <div class="department-stat reveal" style="transition-delay: 0.3s;">
-                        <span class="department-stat-number">3</span>
-                        <span class="department-stat-label">Professional Bodies</span>
+                    <div class="members-row">
+                        <div class="member-card">
+                            <div class="member-icon"><i class="fas fa-cogs"></i></div>
+                            <div class="member-name">Technical Director</div>
+                            <div class="member-role">Oversees all operations</div>
+                        </div>
+                        <div class="member-card">
+                            <div class="member-icon"><i class="fas fa-chart-line"></i></div>
+                            <div class="member-name">Business Manager</div>
+                            <div class="member-role">Finance & strategy</div>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="team-skills">
-                    <span class="skill-tag">Taxation</span>
-                    <span class="skill-tag">Accounting</span>
-                    <span class="skill-tag">Business Planning</span>
-                    <span class="skill-tag">Financial Management</span>
-                    <span class="skill-tag">HR & Payroll</span>
-                    <span class="skill-tag">Risk Assessment</span>
-                    <span class="skill-tag">Feasibility Studies</span>
-                    <span class="skill-tag">Business Coaching</span>
-                </div>
-            </div>
-            
-            <!-- Construction & Building Department -->
-            <div class="department-content" id="construction">
-                <div class="department-header">
-                    <div class="department-icon">
-                        <i class="fas fa-hard-hat"></i>
+
+                <div class="structure-tier reveal">
+                    <div class="tier-header">
+                        <div class="tier-badge">✨ Tier 2 — Core Operations</div>
+                        <div class="tier-line"></div>
                     </div>
-                    <div class="department-info">
-                        <h3>Construction & Building Department</h3>
-                        <p>Skilled builders, engineers, and technicians for construction projects</p>
-                    </div>
-                </div>
-                
-                <p>Established in 2024 as part of our service expansion, the Construction & Building Department brings together qualified engineers, builders, and technicians to deliver high-quality construction and maintenance services. This team works on projects ranging from residential buildings to commercial structures.</p>
-                
-                <div class="department-stats">
-                    <div class="department-stat">
-                        <span class="department-stat-number">15+</span>
-                        <span class="department-stat-label">Skilled Technicians</span>
-                    </div>
-                    <div class="department-stat">
-                        <span class="department-stat-number">CIDB</span>
-                        <span class="department-stat-label">Graded Contractor</span>
-                    </div>
-                    <div class="department-stat">
-                        <span class="department-stat-number">50+</span>
-                        <span class="department-stat-label">Construction Projects</span>
-                    </div>
-                    <div class="department-stat">
-                        <span class="department-stat-number">100%</span>
-                        <span class="department-stat-label">Safety Compliance</span>
+                    <div class="members-row">
+                        <div class="member-card">
+                            <div class="member-icon"><i class="fas fa-handshake"></i></div>
+                            <div class="member-name">Stakeholder Relations</div>
+                            <div class="member-role">Client management</div>
+                        </div>
+                        <div class="member-card">
+                            <div class="member-icon"><i class="fas fa-shopping-cart"></i></div>
+                            <div class="member-name">Procurement</div>
+                            <div class="member-role">Supply chain</div>
+                        </div>
+                        <div class="member-card">
+                            <div class="member-icon"><i class="fas fa-clipboard-check"></i></div>
+                            <div class="member-name">Compliance</div>
+                            <div class="member-role">Quality & regulations</div>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="team-skills">
-                    <span class="skill-tag">Building Construction</span>
-                    <span class="skill-tag">Plumbing</span>
-                    <span class="skill-tag">Electrical Work</span>
-                    <span class="skill-tag">Painting</span>
-                    <span class="skill-tag">Carpentry</span>
-                    <span class="skill-tag">Steel Works</span>
-                    <span class="skill-tag">Maintenance</span>
-                    <span class="skill-tag">Project Management</span>
-                </div>
-            </div>
-            
-            <!-- Civil Works Department -->
-            <div class="department-content" id="civil">
-                <div class="department-header">
-                    <div class="department-icon">
-                        <i class="fas fa-tractor"></i>
+
+                <div class="structure-tier reveal">
+                    <div class="tier-header">
+                        <div class="tier-badge">🌟 Tier 3 — Professional Teams</div>
+                        <div class="tier-line"></div>
                     </div>
-                    <div class="department-info">
-                        <h3>Civil Works Department</h3>
-                        <p>Specialized team for infrastructure and public works projects</p>
+                    <div class="members-row">
+                        <div class="member-card">
+                            <div class="member-icon"><i class="fas fa-hard-hat"></i></div>
+                            <div class="member-name">Engineering</div>
+                            <div class="member-role">Qualified specialists</div>
+                        </div>
+                        <div class="member-card">
+                            <div class="member-icon"><i class="fas fa-tools"></i></div>
+                            <div class="member-name">Construction</div>
+                            <div class="member-role">Builders & technicians</div>
+                        </div>
+                        <div class="member-card">
+                            <div class="member-icon"><i class="fas fa-briefcase"></i></div>
+                            <div class="member-name">Business Dev</div>
+                            <div class="member-role">Full-time growth</div>
+                        </div>
                     </div>
-                </div>
-                
-                <p>Our Civil Works Department handles infrastructure development and repair projects, including roadworks, site preparation, and public works. The team includes experienced civil works specialists who ensure projects meet engineering standards and regulatory requirements.</p>
-                
-                <div class="department-stats">
-                    <div class="department-stat">
-                        <span class="department-stat-number">10+</span>
-                        <span class="department-stat-label">Civil Specialists</span>
-                    </div>
-                    <div class="department-stat">
-                        <span class="department-stat-number">PE 1CE 1GB</span>
-                        <span class="department-stat-label">CIDB Grading</span>
-                    </div>
-                    <div class="department-stat">
-                        <span class="department-stat-number">30+</span>
-                        <span class="department-stat-label">Civil Projects</span>
-                    </div>
-                    <div class="department-stat">
-                        <span class="department-stat-number">24/7</span>
-                        <span class="department-stat-label">Emergency Response</span>
-                    </div>
-                </div>
-                
-                <div class="team-skills">
-                    <span class="skill-tag">Road Repairs</span>
-                    <span class="skill-tag">Pothole Patching</span>
-                    <span class="skill-tag">Fencing</span>
-                    <span class="skill-tag">Site Clearing</span>
-                    <span class="skill-tag">Kerb Laying</span>
-                    <span class="skill-tag">Paving</span>
-                    <span class="skill-tag">Drainage Systems</span>
-                    <span class="skill-tag">Earthworks</span>
-                </div>
-            </div>
-            
-            <!-- Support Services Department -->
-            <div class="department-content" id="support">
-                <div class="department-header">
-                    <div class="department-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <div class="department-info">
-                        <h3>Support Services Department</h3>
-                        <p>Administrative, cleaning, and supply chain management teams</p>
-                    </div>
-                </div>
-                
-                <p>The Support Services Department ensures smooth operations across all our service areas. This includes administrative staff, cleaning teams, and supply chain management professionals who work behind the scenes to support our core service delivery.</p>
-                
-                <div class="department-stats">
-                    <div class="department-stat">
-                        <span class="department-stat-number">12+</span>
-                        <span class="department-stat-label">Support Staff</span>
-                    </div>
-                    <div class="department-stat">
-                        <span class="department-stat-number">Full-time</span>
-                        <span class="department-stat-label">Administrative Team</span>
-                    </div>
-                    <div class="department-stat">
-                        <span class="department-stat-number">20+</span>
-                        <span class="department-stat-label">Supplier Partnerships</span>
-                    </div>
-                    <div class="department-stat">
-                        <span class="department-stat-number">98%</span>
-                        <span class="department-stat-label">Client Satisfaction</span>
-                    </div>
-                </div>
-                
-                <div class="team-skills">
-                    <span class="skill-tag">Administration</span>
-                    <span class="skill-tag">Cleaning Services</span>
-                    <span class="skill-tag">Supply Chain</span>
-                    <span class="skill-tag">Logistics</span>
-                    <span class="skill-tag">Client Support</span>
-                    <span class="skill-tag">Quality Control</span>
-                    <span class="skill-tag">Health & Safety</span>
-                    <span class="skill-tag">Inventory Management</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Team Grid -->
-    <section class="team-section reveal">
+    <!-- DEPARTMENTS -->
+    <section>
         <div class="container">
-            <div class="section-header">
-                <h2>Key Team Members</h2>
-                <p>Meet some of our dedicated professionals across different departments</p>
+            <div class="reveal">
+                <div class="section-label">Departments</div>
+                <h2 class="section-title">Specialised Units</h2>
+                <p class="section-desc">Four focused departments, one unified mission — delivering exceptional results across every domain.</p>
             </div>
-            
-            <div class="team-grid">
-                <!-- Team Member 1 -->
-                <div class="team-card reveal">
-                    <div class="team-image" style="background: var(--gradient-primary), url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'); background-size: cover; background-position: center;">
-                        <div class="team-overlay">
-                            <p>10+ years in business consulting and financial management</p>
+            <div style="margin-top: 2.5rem;">
+                <div class="dept-tabs reveal">
+                    <button class="dept-tab active" data-dept="professional"><i class="fas fa-briefcase"></i> Professional</button>
+                    <button class="dept-tab" data-dept="construction"><i class="fas fa-hard-hat"></i> Construction</button>
+                    <button class="dept-tab" data-dept="civil"><i class="fas fa-tractor"></i> Civil Works</button>
+                    <button class="dept-tab" data-dept="support"><i class="fas fa-headset"></i> Support</button>
+                </div>
+
+                <div class="dept-panel active reveal" id="professional">
+                    <div class="dept-panel-header">
+                        <div class="dept-icon-big"><i class="fas fa-briefcase"></i></div>
+                        <div>
+                            <h3>Professional Services</h3>
+                            <p>Taxation · Accounting · Business Advisory · HR & Payroll</p>
                         </div>
                     </div>
-                    <div class="team-content">
+                    <div class="dept-body">
+                        <div>
+                            <div class="dept-desc">Our core division since 2015. Qualified tax practitioners, business accountants, and strategic development advisors working seamlessly to deliver measurable results for clients across all sectors.</div>
+                            <div class="skill-cloud">
+                                <span class="skill-chip">Taxation</span>
+                                <span class="skill-chip">Accounting</span>
+                                <span class="skill-chip">Business Planning</span>
+                                <span class="skill-chip">HR & Payroll</span>
+                                <span class="skill-chip">Compliance</span>
+                            </div>
+                        </div>
+                        <div class="dept-stats-grid">
+                            <div class="dept-stat"><div class="dept-stat-n">8+</div><div class="dept-stat-l">Professionals</div></div>
+                            <div class="dept-stat"><div class="dept-stat-n">500+</div><div class="dept-stat-l">Projects</div></div>
+                            <div class="dept-stat"><div class="dept-stat-n">9+</div><div class="dept-stat-l">Years Active</div></div>
+                            <div class="dept-stat"><div class="dept-stat-n">98%</div><div class="dept-stat-l">Client Rate</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dept-panel" id="construction">
+                    <div class="dept-panel-header">
+                        <div class="dept-icon-big"><i class="fas fa-hard-hat"></i></div>
+                        <div>
+                            <h3>Construction & Building</h3>
+                            <p>Residential · Commercial · Maintenance · Steel Works</p>
+                        </div>
+                    </div>
+                    <div class="dept-body">
+                        <div>
+                            <div class="dept-desc">Expanded in 2024 to meet growing infrastructure demand. Our construction team delivers residential and commercial builds, maintenance projects, and specialist steel work — all to CIDB standards.</div>
+                            <div class="skill-cloud">
+                                <span class="skill-chip">Plumbing</span>
+                                <span class="skill-chip">Electrical</span>
+                                <span class="skill-chip">Carpentry</span>
+                                <span class="skill-chip">Steel Works</span>
+                                <span class="skill-chip">CIDB 1GB</span>
+                            </div>
+                        </div>
+                        <div class="dept-stats-grid">
+                            <div class="dept-stat"><div class="dept-stat-n">15+</div><div class="dept-stat-l">Technicians</div></div>
+                            <div class="dept-stat"><div class="dept-stat-n">CIDB</div><div class="dept-stat-l">Certified</div></div>
+                            <div class="dept-stat"><div class="dept-stat-n">2024</div><div class="dept-stat-l">Expanded</div></div>
+                            <div class="dept-stat"><div class="dept-stat-n">1GB</div><div class="dept-stat-l">Grade</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dept-panel" id="civil">
+                    <div class="dept-panel-header">
+                        <div class="dept-icon-big"><i class="fas fa-tractor"></i></div>
+                        <div>
+                            <h3>Civil Works</h3>
+                            <p>Infrastructure · Road Repairs · Fencing · Site Clearing</p>
+                        </div>
+                    </div>
+                    <div class="dept-body">
+                        <div>
+                            <div class="dept-desc">Delivering vital public infrastructure services: road repairs, pothole patching, fencing installation, site clearing, kerb laying, and earthworks. Built for resilience and built to last.</div>
+                            <div class="skill-cloud">
+                                <span class="skill-chip">Pothole Patching</span>
+                                <span class="skill-chip">Fencing</span>
+                                <span class="skill-chip">Paving</span>
+                                <span class="skill-chip">Earthworks</span>
+                                <span class="skill-chip">Kerb Laying</span>
+                            </div>
+                        </div>
+                        <div class="dept-stats-grid">
+                            <div class="dept-stat"><div class="dept-stat-n">10+</div><div class="dept-stat-l">Specialists</div></div>
+                            <div class="dept-stat"><div class="dept-stat-n">30+</div><div class="dept-stat-l">Projects</div></div>
+                            <div class="dept-stat"><div class="dept-stat-n">100%</div><div class="dept-stat-l">On-Time</div></div>
+                            <div class="dept-stat"><div class="dept-stat-n">5+</div><div class="dept-stat-l">Municipalities</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dept-panel" id="support">
+                    <div class="dept-panel-header">
+                        <div class="dept-icon-big"><i class="fas fa-headset"></i></div>
+                        <div>
+                            <h3>Support Services</h3>
+                            <p>Admin · Cleaning · Logistics · Quality Control</p>
+                        </div>
+                    </div>
+                    <div class="dept-body">
+                        <div>
+                            <div class="dept-desc">The operational backbone of Merenton. Our support team ensures smooth day-to-day running through professional cleaning services, logistics coordination, quality control, and comprehensive administrative support.</div>
+                            <div class="skill-cloud">
+                                <span class="skill-chip">Cleaning</span>
+                                <span class="skill-chip">Supply Chain</span>
+                                <span class="skill-chip">Quality Control</span>
+                                <span class="skill-chip">H&S</span>
+                                <span class="skill-chip">Administration</span>
+                            </div>
+                        </div>
+                        <div class="dept-stats-grid">
+                            <div class="dept-stat"><div class="dept-stat-n">12+</div><div class="dept-stat-l">Support Staff</div></div>
+                            <div class="dept-stat"><div class="dept-stat-n">98%</div><div class="dept-stat-l">Satisfaction</div></div>
+                            <div class="dept-stat"><div class="dept-stat-n">24/7</div><div class="dept-stat-l">Available</div></div>
+                            <div class="dept-stat"><div class="dept-stat-n">ISO</div><div class="dept-stat-l">Compliant</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEY MEMBERS -->
+    <section>
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">The People</div>
+                <h2 class="section-title">Key Team Members</h2>
+                <p class="section-desc">Dedicated professionals bringing depth, expertise, and passion to every project they touch.</p>
+            </div>
+            <div class="members-grid" style="margin-top: 3rem;">
+                <div class="team-card-v2 reveal reveal-delay-1">
+                    <div class="card-top">
+                        <div class="card-overlay" style="background: linear-gradient(135deg, rgba(250,204,21,0.1), rgba(255,249,199,0.6));"></div>
+                        <div class="card-gradient">
+                            <div class="card-avatar"><i class="fas fa-user-tie"></i></div>
+                        </div>
+                    </div>
+                    <div class="card-body">
                         <h3>Lebo Motsi</h3>
-                        <div class="team-position">Senior Business Advisor</div>
-                        <p>Specializes in business planning, financial management, and corporate taxation with extensive experience in small business development.</p>
-                        <div class="team-skills">
-                            <span class="skill-tag">Business Planning</span>
-                            <span class="skill-tag">Taxation</span>
-                            <span class="skill-tag">Financial Analysis</span>
+                        <div class="card-position">Senior Business Advisor</div>
+                        <div class="card-desc">10+ years in business consulting and taxation. Expert at translating complex financial landscapes into clear, actionable strategy for SMEs and corporates alike.</div>
+                        <div class="card-footer">
+                            <span class="pill">Business Planning</span>
+                            <span class="pill">Tax</span>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Team Member 2 -->
-                <div class="team-card reveal" style="transition-delay: 0.1s;">
-                    <div class="team-image" style="background: var(--gradient-primary), url('https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'); background-size: cover; background-position: center;">
-                        <div class="team-overlay">
-                            <p>Civil engineer with 8+ years in infrastructure projects</p>
+                <div class="team-card-v2 reveal reveal-delay-2">
+                    <div class="card-top">
+                        <div class="card-overlay" style="background: linear-gradient(135deg, rgba(234,179,8,0.08), rgba(255,253,235,0.6));"></div>
+                        <div class="card-gradient">
+                            <div class="card-avatar"><i class="fas fa-hard-hat"></i></div>
                         </div>
                     </div>
-                    <div class="team-content">
+                    <div class="card-body">
                         <h3>Thapelo Mokomele</h3>
-                        <div class="team-position">Civil Works Manager</div>
-                        <p>Leads our civil works projects including road repairs, site clearing, and infrastructure development with a focus on quality and safety.</p>
-                        <div class="team-skills">
-                            <span class="skill-tag">Civil Engineering</span>
-                            <span class="skill-tag">Project Management</span>
-                            <span class="skill-tag">Site Supervision</span>
+                        <div class="card-position">Civil Works Manager</div>
+                        <div class="card-desc">8+ years delivering complex infrastructure projects. Known for precise site supervision and a track record of on-time, on-budget delivery in challenging environments.</div>
+                        <div class="card-footer">
+                            <span class="pill">Civil Engineering</span>
+                            <span class="pill">Site Supervision</span>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Team Member 3 -->
-                <div class="team-card reveal" style="transition-delay: 0.2s;">
-                    <div class="team-image" style="background: var(--gradient-primary), url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'); background-size: cover; background-position: center;">
-                        <div class="team-overlay">
-                            <p>Certified accountant with SAIT and CIBA membership</p>
+                <div class="team-card-v2 reveal reveal-delay-3">
+                    <div class="card-top">
+                        <div class="card-overlay" style="background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(255,251,235,0.6));"></div>
+                        <div class="card-gradient">
+                            <div class="card-avatar"><i class="fas fa-calculator"></i></div>
                         </div>
                     </div>
-                    <div class="team-content">
-                        <h3>Pontsho Nkutlwnag</h3>
-                        <div class="team-position">Financial Controller</div>
-                        <p>Manages payroll, corporate taxation, and financial compliance services with expertise in both small and medium enterprises.</p>
-                        <div class="team-skills">
-                            <span class="skill-tag">Accounting</span>
-                            <span class="skill-tag">Payroll Management</span>
-                            <span class="skill-tag">Tax Compliance</span>
+                    <div class="card-body">
+                        <h3>Pontsho Nkutlwang</h3>
+                        <div class="card-position">Financial Controller</div>
+                        <div class="card-desc">Specialist in payroll, corporate tax, and regulatory compliance. Ensures every Rand is accounted for, every submission is on time, and every client stays compliant.</div>
+                        <div class="card-footer">
+                            <span class="pill">Accounting</span>
+                            <span class="pill">Payroll</span>
                         </div>
                     </div>
                 </div>
@@ -1715,179 +1571,376 @@
         </div>
     </section>
 
-    <!-- Join Team CTA -->
-    <section class="join-team reveal">
+    <!-- JOIN -->
+    <section>
         <div class="container">
-            <h2>Join Our Team</h2>
-            <p>Merenton is always looking for talented professionals to join our growing team. If you're passionate about excellence and want to be part of a dynamic, multidisciplinary organization, we'd love to hear from you.</p>
-            <a href="contact.html" class="btn">Contact HR</a>
-            <a href="services.html" class="btn btn-outline">View Open Positions</a>
+            <div class="join-section reveal">
+                <div class="section-label" style="justify-content:center;">Join the Team</div>
+                <h2>Passionate About<br>Excellence?</h2>
+                <p>We're always looking for talented, driven individuals to join our growing multidisciplinary team. Let's build something great together.</p>
+                <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;">
+                    <a href="contact.html" class="btn btn-yellow"><i class="fas fa-paper-plane"></i> Contact HR</a>
+                    <a href="services.html" class="btn btn-dark"><i class="fas fa-search"></i> View Openings</a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <div class="footer-logo">MERC<span style="color: var(--accent);">ENTON</span></div>
-                    <p>Merenton Enterprise Reengineering Consultancy is a Level 1 BBBEE Contributor and 100% Black-owned company providing high-quality professional and general services since 2015.</p>
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">MEREN<span>TON</span></div>
+                    <div class="footer-tagline">Enterprise Reengineering Consultancy (Pty) Ltd<br>Reg. 2015/025597/07</div>
+                    <div style="margin-top:1.25rem;">
+                        <span class="footer-bbbee"><i class="fas fa-certificate"></i> Level 1 BBBEE · 100% Black-Owned</span>
+                    </div>
                 </div>
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="projects.html">Projects</a></li>
-                        <li><a href="team.html">Our Team</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                <div class="footer-col">
+                    <h5>Navigate</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-right" style="font-size:0.6rem;color:var(--y3);"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right" style="font-size:0.6rem;color:var(--y3);"></i> About</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-right" style="font-size:0.6rem;color:var(--y3);"></i> Services</a></li>
+                        <li><a href="team.html"><i class="fas fa-chevron-right" style="font-size:0.6rem;color:var(--y3);"></i> Our Team</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right" style="font-size:0.6rem;color:var(--y3);"></i> Contact</a></li>
                     </ul>
                 </div>
-                <div class="footer-contact">
-                    <h4>Contact Info</h4>
-                    <p><i class="fas fa-map-marker-alt"></i> 33 Beare Street, Kuruman, 8460</p>
-                    <p><i class="fas fa-phone-alt"></i> 083 573 7525</p>
-                    <p><i class="fas fa-envelope"></i> info@merenton.co.za</p>
-                    <p><i class="fas fa-globe"></i> www.merenton.co.za</p>
+                <div class="footer-col footer-contact">
+                    <h5>Get in Touch</h5>
+                    <p><i class="fas fa-map-marker-alt"></i> 33 Beare Street, Kuruman, NC</p>
+                    <p><i class="fas fa-phone"></i> 083 573 7525</p>
+                    <p><i class="fas fa-calendar"></i> Est. 2015</p>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2026 Merenton Enterprise Reengineering Consultancy (Pty) Ltd. All Rights Reserved.</p>
-                <p>Business Registration: 2015/025597/07 | BBBEE Level: 1 | CIDB Grading: PE 1CE 1GB</p>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p>© 2026 Merenton Enterprise Reengineering Consultancy (Pty) Ltd. All rights reserved.</p>
+                <p style="color:var(--y4);font-weight:600;font-size:0.78rem;">Yellow Glass · Reengineered</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
+        // Custom cursor
+        const cursor = document.getElementById('cursor');
+        const ring = document.getElementById('cursorRing');
+        let mx = 0, my = 0, rx = 0, ry = 0;
+        document.addEventListener('mousemove', e => {
+            mx = e.clientX; my = e.clientY;
+            cursor.style.transform = `translate(${mx - 6}px, ${my - 6}px)`;
         });
-        
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-        
-        // Header scroll effect
+        function animRing() {
+            rx += (mx - rx - 20) * 0.12;
+            ry += (my - ry - 20) * 0.12;
+            ring.style.transform = `translate(${rx}px, ${ry}px)`;
+            requestAnimationFrame(animRing);
+        }
+        animRing();
+
+        // Header scroll
         window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+            document.getElementById('header').classList.toggle('scrolled', scrollY > 60);
         });
-        
-        // Department Tabs Functionality
-        const departmentTabs = document.querySelectorAll('.department-tab');
-        const departmentContents = document.querySelectorAll('.department-content');
-        
-        departmentTabs.forEach(tab => {
+
+        // Reveal on scroll
+        const revealEls = document.querySelectorAll('.reveal');
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+        }, { threshold: 0.1 });
+        revealEls.forEach(el => io.observe(el));
+
+        // Department tabs
+        document.querySelectorAll('.dept-tab').forEach(tab => {
             tab.addEventListener('click', () => {
-                // Remove active class from all tabs and contents
-                departmentTabs.forEach(t => t.classList.remove('active'));
-                departmentContents.forEach(c => c.classList.remove('active'));
-                
-                // Add active class to clicked tab
+                document.querySelectorAll('.dept-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.dept-panel').forEach(p => p.classList.remove('active'));
                 tab.classList.add('active');
-                
-                // Show corresponding content
-                const tabId = tab.getAttribute('data-tab');
-                const content = document.getElementById(tabId);
-                content.classList.add('active');
-                
-                // Add reveal animation
-                content.classList.add('reveal');
-                setTimeout(() => {
-                    content.classList.add('active');
-                }, 50);
+                const panel = document.getElementById(tab.dataset.dept);
+                panel.classList.add('active');
             });
         });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+
+        // Mobile menu
+        document.getElementById('mobileBtn').addEventListener('click', () => {
+            document.getElementById('navLinks').style.display =
+                document.getElementById('navLinks').style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
                 e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
+                const el = document.querySelector(a.getAttribute('href'));
+                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Counter animation
+        function animateCount(el, target, suffix = '') {
+            let start = 0;
+            const duration = 1500;
+            const step = timestamp => {
+                if (!start) start = timestamp;
+                const progress = Math.min((timestamp - start) / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const value = isNaN(parseInt(target)) ? target : Math.floor(eased * parseInt(target));
+                el.textContent = isNaN(parseInt(target)) ? target : value + suffix;
+                if (progress < 1 && !isNaN(parseInt(target))) requestAnimationFrame(step);
+            };
+            requestAnimationFrame(step);
+        }
+        const counterObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    const nums = e.target.querySelectorAll('.hero-stat-num, .mini-stat-n, .dept-stat-n, .leader-stat-number');
+                    nums.forEach(n => {
+                        const raw = n.textContent.trim();
+                        const hasPlus = raw.includes('+');
+                        const num = raw.replace(/\D/g, '');
+                        if (num && !isNaN(num)) animateCount(n, num, hasPlus ? '+' : '');
                     });
+                    counterObs.unobserve(e.target);
                 }
             });
+        }, { threshold: 0.3 });
+        document.querySelectorAll('.hero-stat-strip, .stat-row, .dept-stats-grid, .leader-stats').forEach(el => counterObs.observe(el));
+
+
+        // MOBILE RESPONSIVENESS JAVASCRIPT ONLY - TEAMS PAGE
+
+// Disable custom cursor on mobile (handled in CSS media query)
+document.addEventListener('mousemove', e => { 
+    if (window.innerWidth > 768) { 
+        // Only update cursor on desktop
+        mx = e.clientX; 
+        my = e.clientY; 
+        cursor.style.transform = `translate(${mx - 6}px, ${my - 6}px)`;
+    } 
+});
+
+// Mobile menu toggle
+const mobileBtn = document.getElementById('mobileBtn');
+const navLinks = document.getElementById('navLinks');
+
+// Replace inline style with class-based toggle
+mobileBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = navLinks.classList.contains('mobile-menu-open');
+    
+    if (!isOpen) {
+        navLinks.classList.add('mobile-menu-open');
+        mobileBtn.innerHTML = '<i class="fas fa-times"></i>';
+    } else {
+        navLinks.classList.remove('mobile-menu-open');
+        mobileBtn.innerHTML = '<i class="fas fa-bars"></i>';
+    }
+});
+
+// Close mobile menu when a link is clicked
+navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+        navLinks.classList.remove('mobile-menu-open');
+        mobileBtn.innerHTML = '<i class="fas fa-bars"></i>';
+    });
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (!navLinks.contains(e.target) && !mobileBtn.contains(e.target)) {
+        navLinks.classList.remove('mobile-menu-open');
+        mobileBtn.innerHTML = '<i class="fas fa-bars"></i>';
+    }
+});
+
+// Handle orientation changes
+window.addEventListener('orientationchange', function() {
+    // Force reflow for any layout issues after rotation
+    setTimeout(() => {
+        document.body.style.height = window.innerHeight + 'px';
+    }, 200);
+});
+
+// Fix for 100vh issues on mobile browsers
+const setVh = () => {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+};
+window.addEventListener('resize', setVh);
+window.addEventListener('orientationchange', setVh);
+setVh();
+
+// Enhanced smooth scroll with offset for mobile (accounts for sticky header)
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+        const href = a.getAttribute('href');
+        if (href === '#') return;
+        
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+            // Close mobile menu if open
+            navLinks.classList.remove('mobile-menu-open');
+            mobileBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            
+            // Calculate offset based on viewport width
+            const headerHeight = document.getElementById('header').offsetHeight;
+            const offset = window.innerWidth <= 768 ? 80 : 100;
+            
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - offset;
+            
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// Department tabs - mobile optimized
+const deptTabs = document.querySelectorAll('.dept-tab');
+const deptPanels = document.querySelectorAll('.dept-panel');
+
+deptTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        // Remove active class from all tabs and panels
+        deptTabs.forEach(t => t.classList.remove('active'));
+        deptPanels.forEach(p => p.classList.remove('active'));
+        
+        // Add active class to clicked tab
+        tab.classList.add('active');
+        
+        // Show corresponding panel
+        const panelId = tab.dataset.dept;
+        const panel = document.getElementById(panelId);
+        if (panel) {
+            panel.classList.add('active');
+            
+            // On mobile, smooth scroll to panel after tab click
+            if (window.innerWidth <= 768) {
+                setTimeout(() => {
+                    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
+        }
+    });
+});
+
+// Touch device optimizations
+if ('ontouchstart' in window) {
+    document.body.classList.add('touch-device');
+    
+    // Increase tap targets for better mobile UX
+    const style = document.createElement('style');
+    style.innerHTML = `
+        .touch-device .nav-links a,
+        .touch-device .btn,
+        .touch-device .member-card,
+        .touch-device .dept-tab,
+        .touch-device .footer-links a {
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .touch-device .member-card {
+            min-height: 200px;
+        }
+        .touch-device .pill,
+        .touch-device .skill-chip {
+            padding: 0.5rem 1rem;
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// Lazy load team member cards on mobile for better performance
+if (window.innerWidth <= 768) {
+    const memberCards = document.querySelectorAll('.team-card-v2, .member-card');
+    if (memberCards.length > 6) {
+        // Simple lazy loading - only load first 6, load rest on scroll
+        for (let i = 6; i < memberCards.length; i++) {
+            memberCards[i].style.display = 'none';
+        }
+        
+        // Add "Load More" button if needed
+        const loadMoreBtn = document.createElement('button');
+        loadMoreBtn.className = 'btn btn-ghost';
+        loadMoreBtn.innerHTML = 'Load More Team Members <i class="fas fa-chevron-down"></i>';
+        loadMoreBtn.style.margin = '2rem auto';
+        loadMoreBtn.style.display = 'block';
+        
+        const section = document.querySelector('.members-grid').parentElement;
+        section.appendChild(loadMoreBtn);
+        
+        loadMoreBtn.addEventListener('click', () => {
+            for (let i = 6; i < memberCards.length; i++) {
+                memberCards[i].style.display = 'block';
+            }
+            loadMoreBtn.style.display = 'none';
         });
-        
-        // Scroll reveal animation
-        const revealElements = document.querySelectorAll('.reveal');
-        
-        const revealOnScroll = () => {
-            revealElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementTop < windowHeight - 100) {
-                    element.classList.add('active');
+    }
+}
+
+// Adjust counter animation for mobile performance
+const counterObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            const nums = e.target.querySelectorAll('.hero-stat-num, .mini-stat-n, .dept-stat-n, .leader-stat-number');
+            nums.forEach(n => {
+                const raw = n.textContent.trim();
+                const hasPlus = raw.includes('+');
+                const num = raw.replace(/\D/g, '');
+                if (num && !isNaN(num) && window.innerWidth > 480) {
+                    // Only animate counters on larger screens for performance
+                    animateCount(n, num, hasPlus ? '+' : '');
                 }
             });
-        };
+            counterObs.unobserve(e.target);
+        }
+    });
+}, { threshold: 0.3 });
+
+// Only observe on non-mobile or if performance allows
+if (window.innerWidth > 480) {
+    document.querySelectorAll('.hero-stat-strip, .stat-row, .dept-stats-grid, .leader-stats').forEach(el => counterObs.observe(el));
+}
+
+// Helper function for counter animation (included for reference)
+function animateCount(el, target, suffix = '') {
+    let start = null;
+    const duration = 1500;
+    
+    function step(timestamp) {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = Math.floor(eased * target);
+        el.textContent = value + suffix;
         
-        window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll(); // Initial check
-        
-        // Enhance team cards hover effect
-        document.querySelectorAll('.team-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.zIndex = '10';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.zIndex = '1';
-            });
-        });
-        
-        // Structure member icon animation
-        document.querySelectorAll('.structure-member-icon').forEach(icon => {
-            icon.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.1) rotateY(180deg)';
-            });
-            
-            icon.addEventListener('mouseleave', function() {
-                this.style.transform = 'scale(1) rotateY(0)';
-            });
-        });
-        
-        // Department stats animation on tab change
-        departmentTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                const tabId = tab.getAttribute('data-tab');
-                const content = document.getElementById(tabId);
-                const stats = content.querySelectorAll('.department-stat');
-                
-                stats.forEach((stat, index) => {
-                    stat.classList.add('reveal');
-                    setTimeout(() => {
-                        stat.style.transitionDelay = `${index * 0.1}s`;
-                        stat.classList.add('active');
-                    }, 300);
-                });
-            });
-        });
+        if (progress < 1) {
+            requestAnimationFrame(step);
+        }
+    }
+    
+    requestAnimationFrame(step);
+}
+
+// Handle responsive department tabs layout
+function adjustTabsForMobile() {
+    const tabsContainer = document.querySelector('.dept-tabs');
+    if (window.innerWidth <= 480 && tabsContainer) {
+        // On very small screens, make tabs full width
+        tabsContainer.style.flexDirection = 'column';
+    } else if (tabsContainer) {
+        tabsContainer.style.flexDirection = 'row';
+    }
+}
+
+// Call on load and resize
+adjustTabsForMobile();
+window.addEventListener('resize', adjustTabsForMobile);
     </script>
 </body>
 </html>

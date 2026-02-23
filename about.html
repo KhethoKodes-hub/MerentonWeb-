@@ -4,1198 +4,811 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | Merenton Enterprise Reengineering Consultancy</title>
-        <link href="assets/merentonLogo.png" rel="icon" type="image/png">
-
+    <link href="assets/merentonLogo.png" rel="icon" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
         :root {
-            --primary: #1a5f7a;
-            --secondary: #2a9d8f;
-            --accent: #e76f51;
-            --dark: #264653;
-            --light: #f8f9fa;
-            --gradient-primary: linear-gradient(135deg, #1a5f7a 0%, #2a9d8f 100%);
-            --gradient-dark: linear-gradient(135deg, rgba(38, 70, 83, 0.95) 0%, rgba(26, 60, 79, 0.95) 100%);
-            --gradient-accent: linear-gradient(135deg, #e76f51 0%, #f4a261 100%);
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            --shadow-hover: 0 20px 50px rgba(0, 0, 0, 0.2);
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            --border-radius: 16px;
+            --y1: #fde047; --y2: #facc15; --y3: #eab308; --y4: #ca8a04; --y5: #854d0e;
+            --amber: #f59e0b;
+            --ink: #0c0a09; --ink2: #1c1917; --ink3: #292524;
+            --muted: #78716c; --muted2: #a8a29e;
+            --cream: #fffbeb; --cream2: #fef9c3;
+            --white: #ffffff;
+            --glass1: rgba(255,255,255,0.65);
+            --glass2: rgba(255,255,255,0.35);
+            --gborder: rgba(255,255,255,0.75);
+            --yborder: rgba(250,204,21,0.4);
+            --gshadow: 0 32px 64px -16px rgba(0,0,0,0.1);
+            --yshadow: 0 24px 60px -12px rgba(234,179,8,0.3);
+            --font-d: 'Syne', sans-serif;
+            --font-b: 'Outfit', sans-serif;
+            --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+
+        html { scroll-behavior: smooth; }
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: var(--font-b);
+            background: var(--cream);
+            color: var(--ink2);
             line-height: 1.6;
-            color: #333;
-            background-color: var(--light);
             overflow-x: hidden;
+            cursor: none;
         }
-        
-        h1, h2, h3, h4, h5 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            color: var(--dark);
-            line-height: 1.3;
+
+        /* CURSOR */
+        .cur { width: 10px; height: 10px; background: var(--y2); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; mix-blend-mode: multiply; }
+        .cur-ring { width: 38px; height: 38px; border: 1.5px solid var(--y3); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; }
+
+        /* NOISE */
+        body::before {
+            content: ''; position: fixed; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+            background-repeat: repeat; background-size: 256px;
+            pointer-events: none; z-index: 1; opacity: 0.35;
         }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+
+        /* AMBIENT ORBS */
+        .orb { position: fixed; border-radius: 50%; filter: blur(90px); pointer-events: none; z-index: 0; animation: floatOrb 14s ease-in-out infinite; }
+        .orb-1 { width: 700px; height: 700px; background: radial-gradient(circle, rgba(250,204,21,0.14) 0%, transparent 70%); top: -200px; right: -200px; }
+        .orb-2 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, transparent 70%); bottom: 5%; left: -150px; animation-delay: -6s; }
+        .orb-3 { width: 350px; height: 350px; background: radial-gradient(circle, rgba(234,179,8,0.09) 0%, transparent 70%); top: 40%; left: 35%; animation-delay: -10s; }
+        @keyframes floatOrb {
+            0%,100%{transform:translate(0,0) scale(1);}
+            33%{transform:translate(25px,-35px) scale(1.04);}
+            66%{transform:translate(-18px,18px) scale(0.96);}
         }
-        
-        section {
-            padding: 100px 0;
-        }
-        
-        /* Header & Navigation - Matching Homepage */
+
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 2.5rem; position: relative; z-index: 2; }
+        section { padding: 6rem 0; position: relative; z-index: 2; }
+
+        /* HEADER */
         header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-        }
-        
-        header.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-        }
-        
-        .logo:hover {
-            transform: scale(1.05);
-        }
-        
-        .logo i {
-            font-size: 2rem;
-            color: var(--primary);
-            transition: var(--transition);
-        }
-        
-        .logo:hover i {
-            transform: rotate(180deg);
-            color: var(--accent);
-        }
-        
-        .logo-text {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-left: 10px;
-            letter-spacing: -0.5px;
-        }
-        
-        .logo-text span {
-            background: var(--gradient-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 40px;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: var(--transition);
-            position: relative;
-            padding: 8px 0;
-        }
-        
-        .nav-links a:before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 3px;
-            background: var(--gradient-accent);
-            transition: var(--transition);
-            transform: translateX(-50%);
-            border-radius: 10px;
-        }
-        
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-        
-        .nav-links a:hover:before {
-            width: 100%;
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--primary);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .mobile-menu-btn:hover {
-            color: var(--accent);
-            transform: scale(1.1);
-        }
-        
-        /* Page Header */
-        .page-header {
-            height: 70vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            background: var(--gradient-dark), url('./assets/hero2.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: white;
-            margin-top: 80px;
-            overflow: hidden;
-        }
-        
-        .page-header:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(42, 157, 143, 0.2) 0%, transparent 50%);
-            animation: pulse 8s ease-in-out infinite;
-        }
-        
-        .page-header-content {
-            max-width: 800px;
-            position: relative;
-            z-index: 2;
-            animation: fadeInUp 1s ease-out;
-        }
-        
-        .page-header h1 {
-            font-size: 4rem;
-            color: white;
-            margin-bottom: 20px;
-            font-weight: 800;
-            letter-spacing: -1px;
-            animation: fadeInUp 1s ease-out 0.2s both;
-        }
-        
-        .page-header p {
-            font-size: 1.3rem;
-            opacity: 0.95;
-            animation: fadeInUp 1s ease-out 0.4s both;
-            line-height: 1.8;
-        }
-        
-        .breadcrumb {
-            display: flex;
-            align-items: center;
-            margin-top: 30px;
-            font-size: 0.95rem;
-            animation: fadeInUp 1s ease-out 0.6s both;
-        }
-        
-        .breadcrumb a {
-            color: white;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: var(--transition);
-        }
-        
-        .breadcrumb a:hover {
-            opacity: 1;
-            color: var(--accent);
-        }
-        
-        .breadcrumb i {
-            margin: 0 10px;
-            opacity: 0.7;
-        }
-        
-        /* Section Headers - Matching Homepage */
-        .section-header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-        
-        .section-header h2 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-            font-weight: 800;
-            letter-spacing: -1px;
-        }
-        
-        .section-header h2:after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 5px;
-            background: var(--gradient-accent);
-            border-radius: 10px;
-        }
-        
-        .section-header p {
-            max-width: 700px;
-            margin: 30px auto 0;
-            color: #666;
-            font-size: 1.15rem;
-            line-height: 1.8;
-        }
-        
-        /* Company Overview */
-        .company-overview {
-            background: white;
-            position: relative;
-        }
-        
-        .company-overview:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(to right, rgba(26, 95, 122, 0.03), transparent);
-            pointer-events: none;
-        }
-        
-        .overview-content {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-        }
-        
-        .overview-text {
-            flex: 1;
-        }
-        
-        .overview-text p {
-            margin-bottom: 20px;
-            font-size: 1.05rem;
-            line-height: 1.9;
-            color: #555;
-        }
-        
-        .overview-image {
-            flex: 1;
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            position: relative;
-            transition: var(--transition);
-        }
-        
-        .overview-image:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--gradient-primary);
-            opacity: 0;
-            transition: var(--transition);
-            z-index: 1;
-        }
-        
-        .overview-image:hover:before {
-            opacity: 0.2;
-        }
-        
-        .overview-image:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
-        }
-        
-        .overview-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: var(--transition);
-        }
-        
-        .overview-image:hover img {
-            transform: scale(1.1);
-        }
-        
-        .company-stats {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 60px;
-            gap: 20px;
-        }
-        
-        .stat-card {
-            text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, rgba(26, 95, 122, 0.05), rgba(42, 157, 143, 0.05));
-            border-radius: 20px;
-            transition: var(--transition);
-            flex: 1;
-            border: 2px solid transparent;
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent);
-            background: white;
-            box-shadow: 0 20px 50px rgba(231, 111, 81, 0.15);
-        }
-        
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: block;
-            transition: var(--transition);
-        }
-        
-        .stat-card:hover .stat-number {
-            transform: scale(1.1);
-        }
-        
-        .stat-label {
-            font-size: 1rem;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 600;
-            margin-top: 10px;
-        }
-        
-        /* Values Section */
-        .values {
-            background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 50%, #f8f9fa 100%);
-            position: relative;
-        }
-        
-        .values:before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            right: -10%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(231, 111, 81, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            transform: translateY(-50%);
-        }
-        
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 40px;
-        }
-        
-        .value-card {
-            background: white;
-            padding: 50px 30px;
-            border-radius: 25px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            text-align: center;
-            transition: var(--transition);
-            position: relative;
-            border: 2px solid transparent;
-        }
-        
-        .value-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.2);
-            border-color: var(--accent);
-        }
-        
-        .value-icon {
-            width: 100px;
-            height: 100px;
-            background: var(--gradient-accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 30px;
-            color: white;
-            font-size: 2.5rem;
-            transition: var(--transition);
-        }
-        
-        .value-card:hover .value-icon {
-            transform: scale(1.1) rotateY(360deg);
-        }
-        
-        .value-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-            font-weight: 700;
-            transition: var(--transition);
-        }
-        
-        .value-card:hover h3 {
-            color: var(--accent);
-        }
-        
-        .value-card p {
-            color: #666;
-            line-height: 1.8;
-        }
-        
-        /* Timeline Section */
-        .timeline {
-            background: white;
-            position: relative;
-        }
-        
-        .timeline:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent 0%, rgba(26, 95, 122, 0.03) 50%, transparent 100%);
-            pointer-events: none;
-        }
-        
-        .timeline-container {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .timeline-container:before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: var(--gradient-primary);
-            transform: translateX(-50%);
-            border-radius: 10px;
-        }
-        
-        .timeline-item {
-            display: flex;
-            margin-bottom: 60px;
-            position: relative;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-        
-        .timeline-item.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .timeline-item:nth-child(odd) {
-            flex-direction: row-reverse;
-        }
-        
-        .timeline-content {
-            flex: 1;
-            padding: 40px;
-            background: white;
-            border-radius: 25px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            position: relative;
-            transition: var(--transition);
-            border: 2px solid transparent;
-        }
-        
-        .timeline-content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            border-color: var(--accent);
-        }
-        
-        .timeline-item:nth-child(even) .timeline-content {
-            margin-right: 40px;
-        }
-        
-        .timeline-item:nth-child(odd) .timeline-content {
-            margin-left: 40px;
-        }
-        
-        .timeline-content:before {
-            content: '';
-            position: absolute;
-            top: 40px;
-            width: 25px;
-            height: 25px;
-            background: var(--gradient-accent);
-            border-radius: 50%;
-            border: 5px solid white;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        .timeline-item:nth-child(even) .timeline-content:before {
-            right: -52px;
-        }
-        
-        .timeline-item:nth-child(odd) .timeline-content:before {
-            left: -52px;
-        }
-        
-        .timeline-year {
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: var(--accent);
-            margin-bottom: 15px;
-            display: inline-block;
-            padding: 8px 20px;
-            background: rgba(231, 111, 81, 0.1);
-            border-radius: 50px;
-        }
-        
-        .timeline-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--primary);
-            font-weight: 700;
-        }
-        
-        .timeline-content p {
-            color: #666;
-            line-height: 1.8;
-        }
-        
-        /* Our Team Section */
-        .team-section {
-            background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
-            position: relative;
-        }
-        
-        .team-lead {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-            background: var(--gradient-primary);
-            padding: 60px;
-            border-radius: 30px;
-            color: white;
-            box-shadow: 0 20px 60px rgba(26, 95, 122, 0.3);
-            margin-bottom: 60px;
-            position: relative;
-            overflow: hidden;
-            transition: var(--transition);
-        }
-        
-        .team-lead:before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            transition: var(--transition);
-        }
-        
-        .team-lead:hover:before {
-            top: -30%;
-            right: -30%;
-        }
-        
-        .team-lead:hover {
-            transform: scale(1.02);
-            box-shadow: 0 30px 80px rgba(26, 95, 122, 0.4);
-        }
-        
-        .lead-image {
-            flex: 0 0 350px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-            position: relative;
-        }
-        
-        .lead-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: var(--transition);
-        }
-        
-        .team-lead:hover .lead-image img {
-            transform: scale(1.05);
-        }
-        
-        .lead-info h3 {
-            color: white;
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            font-weight: 800;
-            position: relative;
-        }
-        
-        .lead-title {
-            font-size: 1.5rem;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 25px;
-            font-weight: 600;
-        }
-        
-        .lead-info p {
-            line-height: 1.9;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            position: relative;
-        }
-        
-        .qualifications {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 25px;
-        }
-        
-        .qual-badge {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            transition: var(--transition);
-        }
-        
-        .qual-badge:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-5px);
-            border-color: white;
-        }
-        
-        /* Certifications */
-        .certifications {
-            background: var(--gradient-dark), url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: white;
-            position: relative;
-        }
-        
-        .certifications:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 80% 50%, rgba(231, 111, 81, 0.2) 0%, transparent 50%);
-        }
-        
-        .certifications h2 {
-            color: white;
-        }
-        
-        .certs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 40px;
-        }
-        
+            position: fixed; top: 1.2rem; left: 50%; transform: translateX(-50%);
+            width: calc(100% - 3rem); max-width: 1300px; z-index: 1000;
+            background: rgba(255,255,255,0.55);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid rgba(255,255,255,0.8); border-radius: 100px;
+            box-shadow: 0 8px 32px -8px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,0.9);
+            transition: all 0.4s var(--ease);
+        }
+        header.scrolled { background: rgba(255,255,255,0.82); border-color: var(--yborder); box-shadow: 0 20px 48px -12px rgba(234,179,8,0.18), inset 0 1px 0 white; }
+        nav { display: flex; align-items: center; justify-content: space-between; padding: 0.65rem 1.5rem; }
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--y1), var(--y3)); border-radius: 13px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: white; box-shadow: 0 6px 18px -4px rgba(234,179,8,0.5); transition: transform 0.3s var(--ease); }
+        .logo:hover .logo-icon { transform: rotate(8deg) scale(1.08); }
+        .logo-text { font-family: var(--font-d); font-weight: 800; font-size: 1.1rem; color: var(--ink); letter-spacing: -0.5px; }
+        .logo-text span { color: var(--y4); }
+        .nav-links { display: flex; gap: 0.2rem; list-style: none; }
+        .nav-links a { text-decoration: none; font-weight: 500; color: var(--ink3); font-size: 0.88rem; padding: 0.5rem 1rem; border-radius: 100px; transition: all 0.25s var(--ease); }
+        .nav-links a:hover { background: rgba(250,204,21,0.12); color: var(--y4); }
+        .nav-links a.active { background: linear-gradient(135deg, var(--y1), var(--y2)); color: var(--ink); font-weight: 600; box-shadow: 0 6px 18px -6px rgba(234,179,8,0.5); }
+        .nav-cta { background: var(--ink) !important; color: white !important; font-weight: 600 !important; }
+        .nav-cta:hover { background: var(--y3) !important; color: white !important; }
+        .mob-btn { display: none; background: none; border: none; font-size: 1.4rem; color: var(--y3); cursor: pointer; }
+
+        /* PAGE HERO */
+        .page-hero {
+            min-height: 72vh; display: flex; align-items: center;
+            padding-top: 7rem; padding-bottom: 4rem;
+            position: relative; overflow: hidden;
+            background: linear-gradient(145deg, rgba(13,13,13,0.96) 0%, rgba(26,20,0,0.93) 60%, rgba(42,32,0,0.88) 100%),
+                        url('./assets/hero2.png') center/cover no-repeat fixed;
+        }
+        .ph-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(250,204,21,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(250,204,21,0.04) 1px, transparent 1px); background-size: 60px 60px; }
+        .ph-glow { position: absolute; inset: 0; background: radial-gradient(ellipse at 15% 50%, rgba(250,204,21,0.14) 0%, transparent 55%), radial-gradient(ellipse at 85% 80%, rgba(255,224,102,0.07) 0%, transparent 45%); animation: heroPulse 10s ease-in-out infinite; }
+        @keyframes heroPulse { 0%,100%{opacity:0.5;} 50%{opacity:1;} }
+        .ph-orb-1 { position: absolute; top: 10%; right: 7%; width: 220px; height: 220px; border-radius: 50%; background: rgba(250,204,21,0.07); backdrop-filter: blur(20px); border: 1px solid rgba(250,204,21,0.18); animation: floatOrb 9s ease-in-out infinite; }
+        .ph-orb-2 { position: absolute; bottom: 12%; left: 5%; width: 130px; height: 130px; border-radius: 50%; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); animation: floatOrb 13s ease-in-out infinite reverse; }
+
+        .ph-content { position: relative; z-index: 2; }
+        .ph-badge { display: inline-flex; align-items: center; gap: 0.6rem; background: rgba(250,204,21,0.1); backdrop-filter: blur(12px); border: 1px solid rgba(250,204,21,0.3); border-radius: 100px; padding: 0.5rem 1.25rem 0.5rem 0.6rem; color: var(--y1); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.75rem; animation: slideUp 0.8s var(--ease) both; }
+        .ph-badge-dot { width: 26px; height: 26px; background: linear-gradient(135deg, var(--y1), var(--y3)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: white; }
+        .ph-content h1 { font-family: var(--font-d); font-size: clamp(3rem, 7vw, 6rem); font-weight: 800; line-height: 0.95; letter-spacing: -3px; color: white; margin-bottom: 1.5rem; animation: slideUp 0.8s var(--ease) 0.1s both; }
+        .ph-content h1 .acc { background: linear-gradient(135deg, var(--y1), var(--y2), var(--amber)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .ph-sub { font-size: 1.05rem; color: rgba(255,255,255,0.65); max-width: 560px; line-height: 1.75; margin-bottom: 2rem; animation: slideUp 0.8s var(--ease) 0.2s both; }
+        .breadcrumb { display: inline-flex; align-items: center; gap: 0.6rem; background: rgba(255,255,255,0.07); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.12); border-radius: 100px; padding: 0.5rem 1.25rem; font-size: 0.8rem; color: rgba(255,255,255,0.6); animation: slideUp 0.8s var(--ease) 0.3s both; }
+        .breadcrumb a { color: rgba(255,255,255,0.75); text-decoration: none; transition: color 0.2s; }
+        .breadcrumb a:hover { color: var(--y1); }
+        .breadcrumb i { font-size: 0.55rem; color: rgba(255,255,255,0.35); }
+        .breadcrumb span { color: var(--y2); font-weight: 600; }
+
+        @keyframes slideUp { from{opacity:0;transform:translateY(24px);} to{opacity:1;transform:translateY(0);} }
+
+        /* SECTION LABELS */
+        .s-label { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--y4); margin-bottom: 0.75rem; }
+        .s-label::before { content: ''; width: 20px; height: 2px; background: linear-gradient(90deg, var(--y2), var(--y4)); border-radius: 2px; }
+        .s-title { font-family: var(--font-d); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; letter-spacing: -1.5px; color: var(--ink); line-height: 1.05; margin-bottom: 1rem; }
+        .s-desc { font-size: 1.02rem; color: var(--muted); max-width: 640px; }
+        .s-center { text-align: center; margin-bottom: 4rem; }
+        .s-center .s-label { justify-content: center; }
+        .s-center .s-desc { margin: 0 auto; }
+        .s-underline { position: relative; display: inline-block; }
+        .s-underline::after { content: ''; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); width: 72px; height: 4px; background: linear-gradient(90deg, var(--y1), var(--y3)); border-radius: 100px; }
+
+        /* OVERVIEW */
+        .overview-section { background: linear-gradient(160deg, var(--white) 0%, var(--cream) 60%, var(--white) 100%); }
+        .overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .overview-visual { position: relative; }
+        .overview-img-card {
+            background: linear-gradient(145deg, var(--cream2), var(--cream));
+            border-radius: 36px; overflow: hidden;
+            height: 460px; display: flex; align-items: center; justify-content: center;
+            border: 1px solid var(--yborder);
+            box-shadow: 0 30px 70px -20px rgba(0,0,0,0.14);
+            position: relative; transition: all 0.4s var(--ease);
+        }
+        .overview-img-card:hover { transform: translateY(-8px); box-shadow: var(--yshadow), 0 40px 80px -20px rgba(0,0,0,0.1); }
+        .overview-img-card img { width: 100%; height: 100%; object-fit: cover; }
+        .oi-placeholder { font-size: 7rem; color: var(--y2); opacity: 0.25; }
+        .oi-badge {
+            position: absolute; bottom: -1.2rem; right: -1.2rem;
+            background: linear-gradient(135deg, var(--y1), var(--y2));
+            color: var(--ink); font-family: var(--font-d); font-weight: 800;
+            padding: 1.25rem 1.75rem; border-radius: 22px;
+            box-shadow: 0 16px 40px -8px rgba(234,179,8,0.5);
+            font-size: 0.82rem; text-align: center; z-index: 3;
+        }
+        .oi-badge strong { font-size: 2rem; display: block; line-height: 1; }
+        .overview-text p { color: var(--muted); font-size: 0.97rem; line-height: 1.85; margin-bottom: 1.25rem; }
+        .overview-highlights { display: flex; flex-direction: column; gap: 0.9rem; margin-top: 2rem; }
+        .hl-row {
+            display: flex; align-items: flex-start; gap: 1rem;
+            padding: 1.1rem 1.4rem;
+            background: rgba(255,255,255,0.5); backdrop-filter: blur(8px);
+            border: 1px solid var(--gborder); border-radius: 18px;
+            transition: all 0.3s var(--ease);
+        }
+        .hl-row:hover { background: white; border-color: var(--yborder); transform: translateX(6px); box-shadow: 0 12px 30px -8px rgba(234,179,8,0.14); }
+        .hl-ic { width: 40px; height: 40px; flex-shrink: 0; background: linear-gradient(135deg, var(--y1), var(--y3)); border-radius: 11px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.95rem; }
+        .hl-t strong { display: block; font-weight: 700; color: var(--ink); font-size: 0.88rem; }
+        .hl-t span { font-size: 0.8rem; color: var(--muted); }
+
+        /* STATS */
+        .stats-band { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.25rem; margin-top: 4rem; }
+        .sg {
+            background: var(--glass1); backdrop-filter: blur(16px);
+            border: 1px solid var(--gborder); border-radius: 24px;
+            padding: 2rem 1.25rem; text-align: center;
+            box-shadow: var(--gshadow), inset 0 1px 0 rgba(255,255,255,0.9);
+            transition: all 0.35s var(--ease);
+        }
+        .sg:hover { background: white; border-color: var(--yborder); transform: translateY(-10px); box-shadow: var(--yshadow); }
+        .sg-n { font-family: var(--font-d); font-size: 2.4rem; font-weight: 800; color: var(--y4); display: block; line-height: 1; }
+        .sg-l { font-size: 0.7rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.5rem; }
+
+        /* VALUES */
+        .values-section { background: linear-gradient(180deg, var(--cream) 0%, var(--white) 50%, var(--cream) 100%); }
+        .values-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; }
+        .val-card {
+            background: var(--glass1); backdrop-filter: blur(18px);
+            border: 1px solid var(--gborder); border-radius: 28px;
+            padding: 2.5rem 2rem;
+            box-shadow: var(--gshadow), inset 0 1px 0 rgba(255,255,255,0.9);
+            transition: all 0.4s var(--ease);
+            position: relative; overflow: hidden;
+        }
+        .val-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--y1), var(--y3)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s var(--ease); }
+        .val-card:hover { background: white; transform: translateY(-10px) scale(1.01); box-shadow: var(--yshadow), 0 40px 70px -20px rgba(0,0,0,0.1); border-color: var(--yborder); }
+        .val-card:hover::after { transform: scaleX(1); }
+        .val-icon { width: 72px; height: 72px; background: linear-gradient(135deg, var(--y1), var(--y3)); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: white; margin-bottom: 1.5rem; box-shadow: 0 12px 28px -8px rgba(234,179,8,0.4); transition: all 0.4s var(--ease); }
+        .val-card:hover .val-icon { transform: scale(1.1) rotate(6deg); }
+        .val-card h3 { font-family: var(--font-d); font-size: 1.25rem; font-weight: 700; color: var(--ink); margin-bottom: 0.75rem; letter-spacing: -0.3px; }
+        .val-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.75; }
+
+        /* TIMELINE */
+        .timeline-section { background: linear-gradient(160deg, var(--white) 0%, var(--cream) 100%); position: relative; }
+        .tl-wrap { position: relative; max-width: 860px; margin: 0 auto; }
+        .tl-spine { position: absolute; left: 50%; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, var(--y1), var(--y3), var(--y4)); border-radius: 100px; transform: translateX(-50%); }
+
+        .tl-item { display: grid; grid-template-columns: 1fr 60px 1fr; gap: 0; margin-bottom: 3.5rem; align-items: center; }
+        .tl-item:nth-child(even) .tl-card { grid-column: 3; }
+        .tl-item:nth-child(even) .tl-spacer { grid-column: 1; }
+        .tl-dot-col { grid-column: 2; display: flex; justify-content: center; align-items: center; }
+        .tl-dot {
+            width: 48px; height: 48px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--y1), var(--y3));
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 0.9rem; font-weight: 700;
+            box-shadow: 0 8px 24px -6px rgba(234,179,8,0.5), 0 0 0 6px rgba(250,204,21,0.15);
+            z-index: 2; position: relative;
+            transition: all 0.3s var(--ease);
+        }
+        .tl-item:hover .tl-dot { transform: scale(1.15); box-shadow: 0 12px 32px -6px rgba(234,179,8,0.6), 0 0 0 10px rgba(250,204,21,0.12); }
+
+        .tl-card {
+            background: var(--glass1); backdrop-filter: blur(18px);
+            border: 1px solid var(--gborder); border-radius: 26px;
+            padding: 2rem 2.25rem;
+            box-shadow: var(--gshadow), inset 0 1px 0 rgba(255,255,255,0.9);
+            transition: all 0.35s var(--ease);
+        }
+        .tl-item:nth-child(odd) .tl-card { margin-right: 0.5rem; }
+        .tl-item:nth-child(even) .tl-card { margin-left: 0.5rem; }
+        .tl-card:hover { background: white; border-color: var(--yborder); transform: scale(1.02); box-shadow: var(--yshadow), 0 30px 60px -15px rgba(0,0,0,0.1); }
+        .tl-year { display: inline-block; background: linear-gradient(135deg, var(--y1), var(--y2)); color: var(--ink); font-family: var(--font-d); font-weight: 800; font-size: 0.8rem; padding: 0.3rem 1rem; border-radius: 100px; margin-bottom: 0.75rem; box-shadow: 0 6px 16px -4px rgba(234,179,8,0.4); }
+        .tl-card h3 { font-family: var(--font-d); font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.6rem; letter-spacing: -0.3px; }
+        .tl-card p { color: var(--muted); font-size: 0.85rem; line-height: 1.7; }
+
+        /* TEAM */
+        .leadership-section { background: var(--ink2); position: relative; overflow: hidden; }
+        .leadership-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 50%, rgba(250,204,21,0.12) 0%, transparent 55%), radial-gradient(ellipse at 80% 30%, rgba(250,204,21,0.06) 0%, transparent 45%); }
+        .ls-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(250,204,21,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(250,204,21,0.03) 1px, transparent 1px); background-size: 60px 60px; }
+        .leadership-section .s-label { color: var(--y2); }
+        .leadership-section .s-title { color: white; }
+
+        .lead-card {
+            background: rgba(255,255,255,0.05); backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 36px;
+            padding: 3.5rem; position: relative; overflow: hidden;
+            box-shadow: 0 30px 80px -20px rgba(0,0,0,0.4), 0 0 0 1px rgba(250,204,21,0.12);
+            transition: all 0.4s var(--ease);
+        }
+        .lead-card::before { content: ''; position: absolute; top: -60%; right: -30%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(250,204,21,0.1) 0%, transparent 70%); border-radius: 50%; transition: all 0.5s var(--ease); }
+        .lead-card:hover::before { top: -40%; right: -20%; }
+        .lead-card:hover { border-color: rgba(250,204,21,0.28); box-shadow: 0 40px 100px -20px rgba(0,0,0,0.5), 0 0 0 1px rgba(250,204,21,0.28), var(--yshadow); }
+        .lead-inner { display: grid; grid-template-columns: 200px 1fr; gap: 3rem; align-items: center; position: relative; z-index: 1; }
+        .lead-avatar-wrap { position: relative; text-align: center; }
+        .lead-avatar { width: 160px; height: 160px; border-radius: 50%; background: linear-gradient(135deg, var(--y1), var(--y3)); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: white; box-shadow: 0 20px 50px -10px rgba(234,179,8,0.5); margin: 0 auto; transition: transform 0.4s var(--ease); }
+        .lead-card:hover .lead-avatar { transform: scale(1.05) rotate(3deg); }
+        .lead-chip { position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--y1), var(--y2)); color: var(--ink); font-weight: 700; font-size: 0.65rem; padding: 0.3rem 0.9rem; border-radius: 100px; white-space: nowrap; box-shadow: 0 8px 20px -4px rgba(234,179,8,0.5); }
+        .lead-info h3 { font-family: var(--font-d); font-size: 2rem; font-weight: 800; color: var(--y1); letter-spacing: -0.5px; }
+        .lead-pos { color: rgba(255,255,255,0.6); font-size: 0.88rem; font-weight: 500; margin: 0.3rem 0 1.25rem; }
+        .lead-info p { color: rgba(255,255,255,0.68); font-size: 0.9rem; line-height: 1.8; margin-bottom: 0.75rem; }
+        .lead-quals { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
+        .q-chip { background: rgba(250,204,21,0.1); border: 1px solid rgba(250,204,21,0.28); color: var(--y1); font-weight: 600; font-size: 0.73rem; padding: 0.38rem 1rem; border-radius: 100px; transition: all 0.2s var(--ease); }
+        .q-chip:hover { background: rgba(250,204,21,0.2); border-color: var(--y2); transform: translateY(-2px); }
+
+        /* Team desc box */
+        .team-desc-box {
+            background: rgba(255,255,255,0.04); backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.08); border-radius: 24px;
+            padding: 2.5rem; margin-top: 2rem;
+            position: relative; z-index: 1;
+        }
+        .team-desc-box p { color: rgba(255,255,255,0.65); font-size: 0.92rem; line-height: 1.8; margin-bottom: 0.75rem; }
+        .team-desc-box p:last-child { margin-bottom: 0; }
+
+        /* CERTIFICATIONS */
+        .certs-section {
+            background: linear-gradient(145deg, rgba(13,13,13,0.97) 0%, rgba(26,20,0,0.93) 60%, rgba(42,32,0,0.88) 100%),
+                        url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=2070&q=80') center/cover fixed;
+            position: relative; overflow: hidden;
+        }
+        .certs-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 75% 50%, rgba(250,204,21,0.1) 0%, transparent 55%); }
+        .certs-section .s-label { color: var(--y2); }
+        .certs-section .s-title { color: white; }
+        .certs-section .s-underline::after { background: linear-gradient(90deg, var(--y1), var(--y3)); }
+        .certs-section .s-desc { color: rgba(255,255,255,0.6); }
+
+        .certs-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.25rem; position: relative; z-index: 1; }
         .cert-card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            padding: 50px 30px;
-            border-radius: 25px;
+            background: rgba(255,255,255,0.05); backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 28px;
+            padding: 2.5rem 1.75rem; text-align: center;
+            transition: all 0.35s var(--ease); position: relative; overflow: hidden;
+        }
+        .cert-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(250,204,21,0.08), rgba(255,255,255,0.04)); opacity: 0; transition: opacity 0.3s var(--ease); }
+        .cert-card:hover::before { opacity: 1; }
+        .cert-card:hover { border-color: rgba(250,204,21,0.35); transform: translateY(-10px); box-shadow: 0 30px 60px -15px rgba(0,0,0,0.4), var(--yshadow); }
+        .cert-icon { width: 72px; height: 72px; background: linear-gradient(135deg, var(--y1), var(--y3)); border-radius: 22px; display: flex; align-items: center; justify-content: center; font-size: 1.75rem; color: white; margin: 0 auto 1.5rem; box-shadow: 0 12px 28px -8px rgba(234,179,8,0.4); transition: all 0.4s var(--ease); position: relative; }
+        .cert-card:hover .cert-icon { transform: scale(1.1) rotateY(180deg); }
+        .cert-card h3 { font-family: var(--font-d); font-size: 0.95rem; font-weight: 700; color: white; margin-bottom: 0.75rem; position: relative; }
+        .cert-card p { color: rgba(255,255,255,0.58); font-size: 0.82rem; line-height: 1.7; position: relative; }
+        .cert-card .cert-code { color: var(--y2); font-weight: 600; font-size: 0.8rem; margin-top: 0.5rem; position: relative; }
+
+        /* CTA */
+        .cta-section {
+            background: var(--ink2); position: relative; overflow: hidden;
             text-align: center;
-            transition: var(--transition);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
         }
-        
-        .cert-card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(231, 111, 81, 0.2), rgba(42, 157, 143, 0.2));
-            opacity: 0;
-            transition: var(--transition);
+        .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 20% 50%, rgba(250,204,21,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 30%, rgba(250,204,21,0.06) 0%, transparent 50%); }
+        .cta-inner { position: relative; z-index: 1; }
+        .cta-section .s-label { justify-content: center; color: var(--y2); }
+        .cta-section h2 { font-family: var(--font-d); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; color: white; letter-spacing: -2px; margin-bottom: 1rem; }
+        .cta-section h2 span { background: linear-gradient(135deg, var(--y1), var(--y2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .cta-section p { color: rgba(255,255,255,0.6); font-size: 1.05rem; max-width: 550px; margin: 0 auto 2.5rem; }
+
+        /* BUTTONS */
+        .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.9rem 2.2rem; border-radius: 100px; font-weight: 700; font-size: 0.88rem; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s var(--ease); position: relative; overflow: hidden; }
+        .btn::before { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0.2); transform: translateX(-100%); transition: transform 0.4s var(--ease); }
+        .btn:hover::before { transform: translateX(0); }
+        .btn-y { background: linear-gradient(135deg, var(--y1), var(--y2)); color: var(--ink); box-shadow: 0 12px 30px -8px rgba(234,179,8,0.5); }
+        .btn-y:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 20px 40px -8px rgba(234,179,8,0.6); }
+        .btn-ghost-w { background: rgba(255,255,255,0.07); backdrop-filter: blur(12px); border: 1.5px solid rgba(250,204,21,0.4); color: white; }
+        .btn-ghost-w:hover { background: rgba(250,204,21,0.12); border-color: var(--y2); transform: translateY(-3px); }
+
+        /* FOOTER */
+        footer { background: linear-gradient(135deg, #0d0d0d 0%, #1a1600 100%); color: white; padding: 5rem 0 2rem; position: relative; z-index: 2; border-top: 3px solid transparent; border-image: linear-gradient(90deg, transparent, var(--y2), transparent) 1; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1.5fr; gap: 3rem; margin-bottom: 3.5rem; }
+        .footer-brand { font-family: var(--font-d); font-size: 2rem; font-weight: 800; color: white; letter-spacing: -1px; margin-bottom: 1rem; }
+        .footer-brand span { color: var(--y2); }
+        .footer-tagline { color: rgba(255,255,255,0.5); font-size: 0.83rem; line-height: 1.7; }
+        .footer-bbbee { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(250,204,21,0.1); border: 1px solid rgba(250,204,21,0.25); color: var(--y1); font-weight: 600; font-size: 0.73rem; padding: 0.38rem 0.9rem; border-radius: 100px; margin-top: 1.25rem; }
+        .footer-col h5 { font-family: var(--font-d); font-size: 0.92rem; font-weight: 700; color: var(--y2); margin-bottom: 1.25rem; }
+        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+        .footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.83rem; transition: all 0.2s var(--ease); display: inline-flex; align-items: center; gap: 0.4rem; }
+        .footer-links a:hover { color: var(--y2); transform: translateX(4px); }
+        .fc-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; color: rgba(255,255,255,0.55); font-size: 0.83rem; }
+        .fc-row i { color: var(--y3); width: 16px; flex-shrink: 0; }
+        .footer-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(250,204,21,0.3), transparent); margin-bottom: 2rem; }
+        .footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+        .footer-bottom p { color: rgba(255,255,255,0.4); font-size: 0.76rem; }
+        .f-tag { color: var(--y4); font-weight: 600; font-size: 0.73rem; }
+
+        /* REVEAL */
+        .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .rd1{transition-delay:.1s;} .rd2{transition-delay:.2s;} .rd3{transition-delay:.3s;}
+
+        /* SCROLLBAR */
+        ::-webkit-scrollbar{width:5px;} ::-webkit-scrollbar-track{background:var(--cream);} ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--y1),var(--y3));border-radius:100px;}
+
+        /* RESPONSIVE */
+        @media(max-width:1024px){
+            .certs-grid{grid-template-columns:repeat(2,1fr);}
+            .stats-band{grid-template-columns:repeat(2,1fr);}
+            .values-grid{grid-template-columns:1fr;}
         }
-        
-        .cert-card:hover:before {
-            opacity: 1;
+        @media(max-width:900px){
+            .nav-links{display:none;} .mob-btn{display:block;}
+            .overview-grid{grid-template-columns:1fr;}
+            .lead-inner{grid-template-columns:1fr;text-align:center;}
+            .lead-avatar{margin:0 auto;}
+            .footer-grid{grid-template-columns:1fr;}
+            .tl-spine{left:24px;}
+            .tl-item{grid-template-columns:48px 1fr!important;}
+            .tl-dot-col{grid-column:1!important;}
+            .tl-card,.tl-item:nth-child(even) .tl-card,.tl-item:nth-child(odd) .tl-card{grid-column:2!important;margin:0 0 0 0.5rem!important;}
+            .tl-item:nth-child(even) .tl-spacer{display:none;}
         }
-        
-        .cert-card:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-10px);
-            border-color: var(--accent);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        @media(max-width:640px){
+            .certs-grid{grid-template-columns:1fr;}
+            .stats-band{grid-template-columns:repeat(2,1fr);}
+            .lead-card{padding:2rem 1.5rem;}
+            .ph-content h1{letter-spacing:-2px;}
         }
-        
-        .cert-icon {
-            font-size: 3.5rem;
-            color: var(--accent);
-            margin-bottom: 30px;
-            transition: var(--transition);
-            position: relative;
-        }
-        
-        .cert-card:hover .cert-icon {
-            transform: scale(1.2) rotateY(360deg);
-        }
-        
-        .cert-card h3 {
-            color: white;
-            margin-bottom: 15px;
-            font-size: 1.4rem;
-            position: relative;
-        }
-        
-        .cert-card p {
-            position: relative;
-            font-size: 1.05rem;
-            opacity: 0.9;
-            line-height: 1.8;
-        }
-        
-        /* CTA Section */
-        .cta {
-            background: var(--gradient-accent), url('https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: white;
-            text-align: center;
-            padding: 120px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cta:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(26, 95, 122, 0.3) 0%, transparent 50%);
-        }
-        
-        .cta h2 {
-            color: white;
-            font-size: 3.5rem;
-            margin-bottom: 25px;
-            font-weight: 800;
-            position: relative;
-        }
-        
-        .cta p {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto 40px;
-            opacity: 0.95;
-            line-height: 1.8;
-            position: relative;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 18px 45px;
-            background: white;
-            color: var(--accent);
-            border: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: var(--transition);
-        }
-        
-        .btn:hover:before {
-            left: 100%;
-        }
-        
-        .btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-        }
-        
-        /* Footer - Matching Homepage */
-        footer {
-            background: linear-gradient(135deg, #1a1a1a 0%, var(--dark) 100%);
-            color: white;
-            padding: 80px 0 30px;
-            position: relative;
-        }
-        
-        footer:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: var(--gradient-accent);
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 50px;
-            margin-bottom: 50px;
-        }
-        
-        .footer-logo {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            color: white;
-            letter-spacing: -0.5px;
-        }
-        
-        .footer-about p {
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        .footer-links h4, .footer-contact h4 {
-            font-size: 1.3rem;
-            margin-bottom: 25px;
-            color: var(--accent);
-            font-weight: 700;
-        }
-        
-        .footer-links ul {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-        
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: var(--transition);
-            display: inline-block;
-        }
-        
-        .footer-links a:hover {
-            color: var(--accent);
-            padding-left: 10px;
-        }
-        
-        .footer-contact p {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            color: rgba(255, 255, 255, 0.8);
-            transition: var(--transition);
-        }
-        
-        .footer-contact p:hover {
-            color: white;
-            padding-left: 5px;
-        }
-        
-        .footer-contact i {
-            margin-right: 15px;
-            color: var(--accent);
-            font-size: 1.2rem;
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
-        }
-        
-        .copyright p {
-            margin-bottom: 10px;
-        }
-        
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.6; }
-        }
-        
-        /* Scroll Reveal Animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease-out;
-        }
-        
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Mobile Responsiveness */
-        @media (max-width: 992px) {
-            .page-header h1 {
-                font-size: 3rem;
-            }
-            
-            .section-header h2 {
-                font-size: 2.5rem;
-            }
-            
-            .overview-content, .team-lead {
-                flex-direction: column;
-            }
-            
-            .lead-image {
-                flex: 0 0 auto;
-                width: 100%;
-                max-width: 400px;
-                margin: 0 auto 40px;
-            }
-            
-            .company-stats {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 20px;
-            }
-            
-            .stat-card {
-                min-width: 200px;
-            }
-            
-            .timeline-container:before {
-                left: 30px;
-            }
-            
-            .timeline-item {
-                flex-direction: row !important;
-            }
-            
-            .timeline-content {
-                margin-left: 70px !important;
-                margin-right: 0 !important;
-            }
-            
-            .timeline-content:before {
-                left: -50px !important;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .nav-links {
-                position: fixed;
-                top: 80px;
-                left: 0;
-                width: 100%;
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(20px);
-                flex-direction: column;
-                align-items: center;
-                padding: 30px 0;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-                transform: translateY(-100%);
-                opacity: 0;
-                visibility: hidden;
-                transition: var(--transition);
-            }
-            
-            .nav-links.active {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
-            }
-            
-            .nav-links li {
-                margin: 15px 0;
-            }
-            
-            .page-header h1 {
-                font-size: 2.5rem;
-            }
-            
-            .page-header p {
-                font-size: 1.1rem;
-            }
-            
-            .section-header h2 {
-                font-size: 2rem;
-            }
-            
-            .cta h2 {
-                font-size: 2.5rem;
-            }
-            
-            .cta p {
-                font-size: 1.1rem;
-            }
-            
-            section {
-                padding: 70px 0;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            section {
-                padding: 60px 0;
-            }
-            
-            .page-header {
-                height: 60vh;
-            }
-            
-            .page-header h1 {
-                font-size: 2rem;
-            }
-            
-            .page-header p {
-                font-size: 1rem;
-            }
-            
-            .company-stats {
-                grid-template-columns: 1fr;
-            }
-            
-            .values-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .certs-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .timeline-content {
-                padding: 30px 20px;
-            }
-            
-            .team-lead {
-                padding: 40px 30px;
-            }
-            
-            .lead-info h3 {
-                font-size: 2rem;
-            }
-            
-            .cta h2 {
-                font-size: 2rem;
-            }
-            
-            .stat-number {
-                font-size: 2.5rem;
-            }
-            
-            .section-header h2 {
-                font-size: 1.8rem;
-            }
-        }
+
+        /* MOBILE RESPONSIVENESS CODE ONLY - ABOUT PAGE */
+
+/* Disable custom cursor on mobile */
+@media (max-width: 768px) {
+    body { cursor: auto; }
+    .cur, .cur-ring { display: none; }
+}
+
+/* Container padding adjustments */
+.container { width: 100%; max-width: 1300px; margin: 0 auto; padding: 0 1.5rem; }
+@media (min-width: 640px) { .container { padding: 0 2rem; } }
+@media (min-width: 1024px) { .container { padding: 0 2.5rem; } }
+
+/* Section padding */
+section { padding: 5rem 0; }
+@media (max-width: 640px) { section { padding: 3.5rem 0; } }
+
+/* Header/Navigation */
+header {
+    position: fixed; top: 1rem; left: 50%; transform: translateX(-50%);
+    width: calc(100% - 2rem); max-width: 1300px;
+    border-radius: 60px;
+}
+
+nav { display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 1.2rem; }
+@media (max-width: 360px) { 
+    nav { padding: 0.4rem 1rem; }
+    .logo-text { font-size: 0.9rem; }
+}
+
+.logo-icon { width: 36px; height: 36px; font-size: 1rem; }
+.logo-text { font-size: 1rem; }
+
+/* Mobile menu button */
+.mob-btn { display: none; background: none; border: none; font-size: 1.6rem; color: var(--y3); cursor: pointer; }
+@media (max-width: 900px) {
+    .nav-links { display: none; }
+    .mob-btn { display: block; }
+}
+
+/* Mobile menu open state */
+.mobile-menu-open {
+    display: flex !important;
+    flex-direction: column !important;
+    position: fixed !important;
+    top: 80px !important;
+    left: 1rem !important;
+    right: 1rem !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+    backdrop-filter: blur(24px) !important;
+    border: 1px solid rgba(255,255,255,0.9) !important;
+    border-radius: 28px !important;
+    padding: 1.5rem 1rem !important;
+    gap: 0.5rem !important;
+    z-index: 999 !important;
+    box-shadow: 0 30px 60px -15px rgba(0,0,0,0.2) !important;
+}
+.mobile-menu-open li { width: 100%; }
+.mobile-menu-open a { 
+    display: block; 
+    padding: 0.8rem 1rem !important; 
+    white-space: normal; 
+    font-size: 1rem; 
+    border-radius: 16px; 
+}
+
+/* Page Hero */
+@media (max-width: 640px) { 
+    .page-hero { background-attachment: scroll; } /* Prevent fixed background issues on iOS */
+}
+
+.ph-orb-1 { 
+    width: clamp(120px, 20vw, 220px); 
+    height: clamp(120px, 20vw, 220px); 
+}
+.ph-orb-2 { 
+    width: clamp(80px, 12vw, 130px); 
+    height: clamp(80px, 12vw, 130px); 
+}
+
+.ph-content h1 { 
+    font-size: clamp(2.6rem, 13vw, 6rem); 
+    letter-spacing: -2px; 
+}
+@media (max-width: 400px) { 
+    .ph-content h1 { letter-spacing: -1px; } 
+}
+
+.ph-sub { 
+    font-size: clamp(0.9rem, 4vw, 1.05rem); 
+}
+
+/* Buttons */
+.btn { 
+    padding: 0.7rem 1.6rem; 
+    font-size: 0.85rem; 
+    white-space: nowrap; 
+}
+@media (max-width: 480px) { 
+    .btn { 
+        padding: 0.6rem 1.2rem; 
+        font-size: 0.8rem; 
+        white-space: normal; 
+    } 
+}
+
+/* Overview grid */
+.overview-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 2.5rem; 
+}
+@media (max-width: 900px) { 
+    .overview-grid { 
+        grid-template-columns: 1fr; 
+        gap: 2rem; 
+    } 
+}
+
+.overview-img-card { 
+    height: auto; 
+    aspect-ratio: 4/3; 
+}
+.oi-placeholder { font-size: 6rem; }
+.oi-badge { padding: 1rem 1.5rem; }
+@media (max-width: 480px) { 
+    .oi-badge { 
+        padding: 0.7rem 1.2rem; 
+    } 
+}
+
+/* Stats band */
+.stats-band { 
+    display: grid; 
+    grid-template-columns: repeat(4,1fr); 
+    gap: 1rem; 
+    margin-top: 3rem; 
+}
+@media (max-width: 1024px) { 
+    .stats-band { 
+        grid-template-columns: repeat(2,1fr); 
+    } 
+}
+@media (max-width: 600px) { 
+    .stats-band { 
+        gap: 0.8rem; 
+    } 
+}
+
+.sg-n { 
+    font-size: clamp(1.8rem, 5vw, 2.4rem); 
+}
+.sg { 
+    padding: 1.5rem 0.8rem; 
+}
+
+/* Values grid */
+.values-grid { 
+    display: grid; 
+    grid-template-columns: repeat(2,1fr); 
+    gap: 1.5rem; 
+}
+@media (max-width: 1024px) { 
+    .values-grid { 
+        grid-template-columns: 1fr; 
+    } 
+}
+@media (max-width: 600px) { 
+    .values-grid { 
+        gap: 1rem; 
+    } 
+}
+
+.val-card { 
+    padding: 2rem 1.5rem; 
+}
+.val-icon { 
+    width: 60px; 
+    height: 60px; 
+    font-size: 1.5rem; 
+    margin-bottom: 1.2rem; 
+}
+@media (max-width: 480px) { 
+    .val-card { 
+        padding: 1.5rem 1rem; 
+    }
+}
+
+/* Timeline - Mobile Responsive */
+.tl-spine { 
+    position: absolute; 
+    left: 24px; 
+    top: 0; 
+    bottom: 0; 
+    width: 3px; 
+}
+@media (min-width: 901px) {
+    .tl-spine { 
+        left: 50%; 
+    }
+}
+
+.tl-item { 
+    display: grid; 
+    grid-template-columns: 1fr 60px 1fr; 
+    margin-bottom: 2.5rem; 
+}
+@media (max-width: 900px) {
+    .tl-item { 
+        grid-template-columns: 48px 1fr !important; 
+        gap: 1rem !important;
+    }
+    .tl-spine { 
+        left: 24px !important; 
+    }
+    .tl-dot-col { 
+        grid-column: 1 !important; 
+    }
+    .tl-card, 
+    .tl-item:nth-child(even) .tl-card, 
+    .tl-item:nth-child(odd) .tl-card { 
+        grid-column: 2 !important; 
+        margin: 0 !important;
+    }
+    .tl-item:nth-child(even) .tl-spacer { 
+        display: none; 
+    }
+}
+
+.tl-card { 
+    padding: 1.5rem; 
+}
+@media (max-width: 480px) { 
+    .tl-card { 
+        padding: 1.2rem; 
+    }
+}
+
+.tl-dot { 
+    width: 40px; 
+    height: 40px; 
+    font-size: 0.8rem; 
+}
+@media (min-width: 901px) {
+    .tl-dot { 
+        width: 48px; 
+        height: 48px; 
+    }
+}
+
+/* Leadership section */
+.lead-card { 
+    padding: 2.5rem; 
+}
+@media (max-width: 900px) { 
+    .lead-inner { 
+        grid-template-columns: 1fr !important; 
+        text-align: center; 
+        gap: 1.5rem; 
+    }
+}
+@media (max-width: 640px) { 
+    .lead-card { 
+        padding: 2rem 1.5rem; 
+    }
+}
+
+.lead-avatar { 
+    width: 140px; 
+    height: 140px; 
+    font-size: 3.5rem; 
+}
+@media (min-width: 901px) {
+    .lead-avatar { 
+        width: 160px; 
+        height: 160px; 
+    }
+}
+
+.lead-chip { 
+    font-size: 0.6rem; 
+    padding: 0.25rem 0.8rem; 
+}
+
+.lead-info h3 { 
+    font-size: clamp(1.5rem, 5vw, 2rem); 
+}
+.lead-quals { 
+    justify-content: center; 
+}
+@media (min-width: 901px) {
+    .lead-quals { 
+        justify-content: flex-start; 
+    }
+}
+
+.team-desc-box { 
+    padding: 2rem 1.5rem; 
+}
+@media (max-width: 480px) { 
+    .team-desc-box { 
+        padding: 1.5rem 1rem; 
+    }
+}
+
+/* Certifications grid */
+.certs-grid { 
+    display: grid; 
+    grid-template-columns: repeat(4,1fr); 
+    gap: 1.25rem; 
+}
+@media (max-width: 1024px) { 
+    .certs-grid { 
+        grid-template-columns: repeat(2,1fr); 
+    } 
+}
+@media (max-width: 640px) { 
+    .certs-grid { 
+        grid-template-columns: 1fr; 
+    } 
+}
+
+.cert-card { 
+    padding: 2rem 1.25rem; 
+}
+.cert-icon { 
+    width: 60px; 
+    height: 60px; 
+    font-size: 1.5rem; 
+    margin-bottom: 1.2rem; 
+}
+
+/* CTA section */
+.cta-section h2 { 
+    font-size: clamp(2.2rem, 7vw, 4rem); 
+}
+.cta-section p { 
+    font-size: clamp(0.9rem, 3vw, 1.05rem); 
+    padding: 0 1rem; 
+}
+
+/* Footer */
+.footer-grid { 
+    display: grid; 
+    grid-template-columns: 2fr 1fr 1.5fr; 
+    gap: 2rem; 
+}
+@media (max-width: 900px) { 
+    .footer-grid { 
+        grid-template-columns: 1fr; 
+        gap: 2rem; 
+    } 
+}
+
+/* Typography */
+.s-title { 
+    font-size: clamp(1.8rem, 6vw, 3.2rem); 
+}
+.s-desc { 
+    font-size: clamp(0.9rem, 3vw, 1.02rem); 
+}
+
+/* Orb elements - responsive sizing */
+.orb-1 { 
+    width: min(700px, 90vw); 
+    height: min(700px, 90vw); 
+}
+.orb-2 { 
+    width: min(500px, 80vw); 
+    height: min(500px, 80vw); 
+}
+.orb-3 { 
+    width: min(350px, 70vw); 
+    height: min(350px, 70vw); 
+}
+
+/* Highlight rows */
+.hl-row { 
+    padding: 1rem 1.2rem; 
+}
+.hl-ic { 
+    width: 36px; 
+    height: 36px; 
+    font-size: 0.85rem; 
+}
+
+/* Breadcrumb */
+.breadcrumb { 
+    padding: 0.4rem 1rem; 
+    font-size: 0.75rem; 
+}
+@media (max-width: 480px) { 
+    .breadcrumb { 
+        flex-wrap: wrap; 
+    } 
+}
     </style>
 </head>
 <body>
-    <!-- Header & Navigation -->
+    <div class="cur" id="cur"></div>
+    <div class="cur-ring" id="curRing"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- HEADER -->
     <header id="header">
-        <div class="container">
-            <nav>
-                <a href="index.html" class="logo">
-                                       <img src="assets/merentonLogo.png" alt="Merenton Logo" height="80" width="80">
-
-                </a>
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html" class="active">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                                        <li><a href="teams.html">Our team</a></li>
-
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-gem"></i></div>
+                <span class="logo-text">MEREN<span>TON</span></span>
+            </a>
+            <button class="mob-btn" id="mobBtn"><i class="fas fa-bars"></i></button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="teams.html">Our Team</a></li>
+                <li><a href="contact.html" class="nav-cta">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- Page Header -->
-    <section class="page-header">
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="ph-grid"></div>
+        <div class="ph-glow"></div>
+        <div class="ph-orb-1"></div>
+        <div class="ph-orb-2"></div>
         <div class="container">
-            <div class="page-header-content">
-                <h1>About Merenton</h1>
-                <p>Learn about our journey, values, and the team behind our success as a Level 1 BBBEE Contributor and 100% Black-owned enterprise.</p>
+            <div class="ph-content">
+                <div class="ph-badge">
+                    <div class="ph-badge-dot"><i class="fas fa-info"></i></div>
+                    Our Story · Our Values · Our People
+                </div>
+                <h1>About<br><span class="acc">Merenton</span></h1>
+                <p class="ph-sub">Learn about our journey, values, and the team behind our success as a Level 1 BBBEE Contributor and 100% Black-owned enterprise.</p>
                 <div class="breadcrumb">
                     <a href="index.html">Home</a>
                     <i class="fas fa-chevron-right"></i>
@@ -1205,333 +818,421 @@
         </div>
     </section>
 
-    <!-- Company Overview -->
-    <section class="company-overview reveal" id="overview">
+    <!-- OVERVIEW -->
+    <section class="overview-section">
         <div class="container">
-            <div class="section-header">
-                <h2>Our Story</h2>
-                <p>From a specialized consultancy to a comprehensive service provider</p>
+            <div class="overview-grid">
+                <div class="overview-visual reveal">
+                    <div class="overview-img-card">
+                        <div class="oi-placeholder"><i class="fas fa-city"></i></div>
+                        <div class="oi-badge"><strong>2015</strong>Est. Kuruman</div>
+                    </div>
+                </div>
+                <div class="reveal rd1">
+                    <div class="s-label">Our Story</div>
+                    <h2 class="s-title">Building Excellence<br>Since 2015</h2>
+                    <div style="margin-top:1.25rem;">
+                        <div class="overview-text">
+                            <p>Merenton Enterprise Reengineering Consultancy was founded in 2015 by Oageng Simon Mere, a business consultant with more than 17 years of experience in small business development. Located in Kuruman, Northern Cape, we have built a strong reputation for delivering high-quality services.</p>
+                            <p>Initially focusing on taxation, financial management, payroll, HR, and advisory services, Merenton expanded in 2024 to encompass general building, civil works, steel works, cleaning services, and supply & distribution — transforming into a truly multidisciplinary enterprise.</p>
+                        </div>
+                        <div class="overview-highlights">
+                            <div class="hl-row"><div class="hl-ic"><i class="fas fa-clock"></i></div><div class="hl-t"><strong>Deadline-Driven</strong><span>Consistently delivering on time, every time</span></div></div>
+                            <div class="hl-row"><div class="hl-ic"><i class="fas fa-users"></i></div><div class="hl-t"><strong>Skilled & Dedicated Team</strong><span>Multidisciplinary professionals across all sectors</span></div></div>
+                            <div class="hl-row"><div class="hl-ic"><i class="fas fa-star"></i></div><div class="hl-t"><strong>Outstanding Results</strong><span>Excellence across professional and general services</span></div></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="overview-content">
-                <div class="overview-text">
-                    <h3>Building Excellence Since 2015</h3>
-                    <p>Merenton Enterprise Reengineering Consultancy was founded in 2015 by Oageng Simon Mere, a business consultant with more than 17 years of experience in small business development. Located in Kuruman town, we have established a strong reputation for providing high-quality services.</p>
-                    <p>Initially concentrating on taxation, financial management, payroll, HR, marketing, business coaching, and advisory services, Merenton broadened its services in 2024 to encompass general building, civil works, steel works, cleaning services, as well as the supply and distribution of various goods.</p>
-                    <p>Backed by a skilled and dedicated team, we support clients from planning to project completion. Merenton is known for meeting deadlines, maintaining strong client relationships, and consistently delivering outstanding results across both professional and general service sectors.</p>
-                </div>
-                <!--<div class="overview-image">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Merenton Team Collaboration">
-                </div>-->
-            </div>
-            
-            <div class="company-stats">
-                <div class="stat-card reveal">
-                    <div class="stat-number">2015</div>
-                    <div class="stat-label">Year Established</div>
-                </div>
-                <div class="stat-card reveal" style="transition-delay: 0.1s;">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Black-Owned</div>
-                </div>
-                <div class="stat-card reveal" style="transition-delay: 0.2s;">
-                    <div class="stat-number">Level 1</div>
-                    <div class="stat-label">BBBEE Status</div>
-                </div>
-                <div class="stat-card reveal" style="transition-delay: 0.3s;">
-                    <div class="stat-number">17+</div>
-                    <div class="stat-label">Years Experience</div>
-                </div>
+
+            <!-- STATS BAND -->
+            <div class="stats-band reveal">
+                <div class="sg"><span class="sg-n">2015</span><div class="sg-l">Year Established</div></div>
+                <div class="sg"><span class="sg-n">100%</span><div class="sg-l">Black-Owned</div></div>
+                <div class="sg"><span class="sg-n">Level 1</span><div class="sg-l">BBBEE Status</div></div>
+                <div class="sg"><span class="sg-n">17+</span><div class="sg-l">Years Experience</div></div>
             </div>
         </div>
     </section>
 
-    <!-- Company Values -->
-    <section class="values reveal">
+    <!-- VALUES -->
+    <section class="values-section">
         <div class="container">
-            <div class="section-header">
-                <h2>Our Core Values</h2>
-                <p>The principles that guide everything we do at Merenton</p>
+            <div class="s-center reveal">
+                <div class="s-label">What Drives Us</div>
+                <h2 class="s-title s-underline">Our Core Values</h2>
+                <p class="s-desc" style="margin-top:1.5rem;">The principles that guide every decision, every project, and every relationship at Merenton.</p>
             </div>
-            <div class="values-grid">
-                <div class="value-card reveal">
-                    <div class="value-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
+            <div class="values-grid" style="margin-top:3.5rem;">
+                <div class="val-card reveal">
+                    <div class="val-icon"><i class="fas fa-shield-alt"></i></div>
                     <h3>Safety First</h3>
-                    <p>We prioritize the safety of our team, clients, and community in all operations, adhering to stringent Health, Safety, and Environment guidelines.</p>
+                    <p>We prioritize the safety of our team, clients, and community in all operations, adhering to stringent Health, Safety, and Environment guidelines in everything we do.</p>
                 </div>
-                <div class="value-card reveal" style="transition-delay: 0.1s;">
-                    <div class="value-icon">
-                        <i class="fas fa-award"></i>
-                    </div>
+                <div class="val-card reveal rd1">
+                    <div class="val-icon"><i class="fas fa-award"></i></div>
                     <h3>Excellence in Work</h3>
-                    <p>We are committed to delivering the highest caliber of services, ensuring quality results that exceed client expectations in every project.</p>
+                    <p>Committed to delivering the highest caliber of services — we ensure quality results that consistently meet and exceed client expectations on every project we undertake.</p>
                 </div>
-                <div class="value-card reveal" style="transition-delay: 0.2s;">
-                    <div class="value-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
+                <div class="val-card reveal rd2">
+                    <div class="val-icon"><i class="fas fa-users"></i></div>
                     <h3>Teamwork</h3>
-                    <p>Collaboration is at the heart of our success. We work together, leveraging diverse skills to achieve common goals and deliver exceptional results.</p>
+                    <p>Collaboration is at the heart of our success. We leverage diverse skills and perspectives to achieve common goals, delivering exceptional results through unified effort.</p>
                 </div>
-                <div class="value-card reveal" style="transition-delay: 0.3s;">
-                    <div class="value-icon">
-                        <i class="fas fa-handshake"></i>
-                    </div>
+                <div class="val-card reveal rd3">
+                    <div class="val-icon"><i class="fas fa-handshake"></i></div>
                     <h3>Customer Service</h3>
-                    <p>Building strong, lasting relationships with our clients through responsive communication, reliability, and dedicated support throughout every project.</p>
+                    <p>Building strong, lasting client relationships through responsive communication, reliability, and dedicated support throughout every stage of every project.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Company Timeline -->
-    <section class="timeline reveal">
+    <!-- TIMELINE -->
+    <section class="timeline-section">
         <div class="container">
-            <div class="section-header">
-                <h2>Our Journey</h2>
-                <p>Key milestones in the growth and development of Merenton</p>
+            <div class="s-center reveal">
+                <div class="s-label">Our Journey</div>
+                <h2 class="s-title s-underline">Key Milestones</h2>
+                <p class="s-desc" style="margin-top:1.5rem;">From a specialized consultancy to a multidisciplinary powerhouse — a decade of growth and transformation.</p>
             </div>
-            <div class="timeline-container">
-                <div class="timeline-item reveal">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2015</div>
+            <div class="tl-wrap" style="margin-top:4rem;">
+                <div class="tl-spine"></div>
+
+                <div class="tl-item reveal">
+                    <div class="tl-card">
+                        <div class="tl-year">2015</div>
                         <h3>Company Foundation</h3>
-                        <p>Merenton Enterprise Reengineering Consultancy was founded by Oageng Simon Mere, focusing initially on professional services including taxation, financial management, and business advisory.</p>
+                        <p>Merenton Enterprise Reengineering Consultancy founded by Oageng Simon Mere, focusing on professional services including taxation, financial management, and business advisory.</p>
                     </div>
+                    <div class="tl-dot-col"><div class="tl-dot"><i class="fas fa-flag"></i></div></div>
+                    <div></div>
                 </div>
-                <div class="timeline-item reveal" style="transition-delay: 0.1s;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2017</div>
+
+                <div class="tl-item reveal rd1">
+                    <div></div>
+                    <div class="tl-dot-col"><div class="tl-dot"><i class="fas fa-certificate"></i></div></div>
+                    <div class="tl-card">
+                        <div class="tl-year">2017</div>
                         <h3>BBBEE Level 1 Accreditation</h3>
-                        <p>Achieved Level 1 BBBEE contributor status with 135% recognition level, strengthening our position as a transformation leader in the industry.</p>
+                        <p>Achieved Level 1 BBBEE contributor status with 135% recognition level, cementing our position as a transformation leader in the industry.</p>
                     </div>
                 </div>
-                <div class="timeline-item reveal" style="transition-delay: 0.2s;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2020</div>
+
+                <div class="tl-item reveal rd2">
+                    <div class="tl-card">
+                        <div class="tl-year">2020</div>
                         <h3>Expansion of Professional Services</h3>
-                        <p>Broadened our service offerings to include comprehensive HR management, marketing services, and specialized business development consulting.</p>
+                        <p>Broadened our offering to include comprehensive HR management, marketing services, and specialized business development consulting for SMEs and corporates.</p>
                     </div>
+                    <div class="tl-dot-col"><div class="tl-dot"><i class="fas fa-chart-line"></i></div></div>
+                    <div></div>
                 </div>
-                <div class="timeline-item reveal" style="transition-delay: 0.3s;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2024</div>
+
+                <div class="tl-item reveal rd1">
+                    <div></div>
+                    <div class="tl-dot-col"><div class="tl-dot"><i class="fas fa-hard-hat"></i></div></div>
+                    <div class="tl-card">
+                        <div class="tl-year">2024</div>
                         <h3>Diversification into General Services</h3>
                         <p>Successfully expanded our portfolio to include general building, civil works, steel works, cleaning services, and supply & distribution of goods.</p>
                     </div>
                 </div>
-                <div class="timeline-item reveal" style="transition-delay: 0.4s;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">Present</div>
+
+                <div class="tl-item reveal rd2">
+                    <div class="tl-card">
+                        <div class="tl-year">Present</div>
                         <h3>Multidisciplinary Service Provider</h3>
-                        <p>Now operating as a comprehensive service provider with a skilled team delivering both professional consulting and general contracting services across multiple sectors.</p>
+                        <p>Operating as a comprehensive provider with a skilled team delivering both professional consulting and general contracting services across multiple sectors of South Africa's economy.</p>
                     </div>
+                    <div class="tl-dot-col"><div class="tl-dot"><i class="fas fa-rocket"></i></div></div>
+                    <div></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Our Team -->
-    <section class="team-section reveal">
+    <!-- LEADERSHIP -->
+    <section class="leadership-section">
+        <div class="ls-grid"></div>
         <div class="container">
-            <div class="section-header">
-                <h2>Our Leadership</h2>
-                <p>Meet the experienced professionals driving Merenton's success</p>
+            <div class="s-center reveal">
+                <div class="s-label">The People</div>
+                <h2 class="s-title" style="color:white;">Our Leadership</h2>
+                <p class="s-desc" style="color:rgba(255,255,255,0.55);margin:0 auto;">Meet the experienced professionals driving Merenton's vision, growth, and daily excellence.</p>
             </div>
-            
-            <div class="team-lead">
-                <div class="lead-image">
-                    <!--<img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Oageng Simon Mere">-->
-                </div>
-                <div class="lead-info">
-                    <h3>Mr. Oageng Simon Mere</h3>
-                    <div class="lead-title">Founder, Sole Director & Shareholder</div>
-                    <p>An Economist, General Tax Practitioner, and Business Development Scholar with a BSc Agric and BSc Agric (Hons) in Agricultural Economics and Management Practice from the University of North West and University of Cape Town respectively.</p>
-                    <p>With over 17 years of experience across academia, government, and the private sector, Mr. Mere has held key roles including Researcher, Lecturer, Economist, Business Advisor, and General Manager overseeing project implementation and evaluation.</p>
-                    
-                    <div class="qualifications">
-                        <div class="qual-badge">BSc Agric (NWU)</div>
-                        <div class="qual-badge">BSc Agric (Hons) (UCT)</div>
-                        <div class="qual-badge">Tax Practitioner (SA)</div>
-                        <div class="qual-badge">Business Accountant (SA)</div>
-                        <div class="qual-badge">Business Advisor</div>
+            <div style="margin-top:3.5rem;">
+                <div class="lead-card reveal">
+                    <div class="lead-inner">
+                        <div class="lead-avatar-wrap">
+                            <div class="lead-avatar"><i class="fas fa-user-tie"></i></div>
+                            <div class="lead-chip">Founder & Director</div>
+                        </div>
+                        <div class="lead-info">
+                            <h3>Mr. Oageng Simon Mere</h3>
+                            <div class="lead-pos">Sole Director & Shareholder · Kuruman, Northern Cape</div>
+                            <p>An Economist, General Tax Practitioner, and Business Development Scholar with a BSc Agric and BSc Agric (Hons) in Agricultural Economics and Management Practice from the University of North West and University of Cape Town respectively.</p>
+                            <p>With over 17 years of experience across academia, government, and the private sector, Mr. Mere has held key roles including Researcher, Lecturer, Economist, Business Advisor, and General Manager overseeing project implementation and evaluation.</p>
+                            <div class="lead-quals">
+                                <span class="q-chip">BSc Agric (NWU)</span>
+                                <span class="q-chip">BSc Agric Hons (UCT)</span>
+                                <span class="q-chip">Tax Practitioner (SA)</span>
+                                <span class="q-chip">Business Accountant (SA)</span>
+                                <span class="q-chip">Business Advisor</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="section-header" style="margin-top: 40px;">
-                <h3>Our Multidisciplinary Team</h3>
-                <p>Merenton Enterprise Reengineering Consultancy operates through a well-structured organizational framework designed to ensure efficient project execution and service delivery.</p>
-            </div>
-            
-            <div class="overview-text">
-                <p>The company is guided by Technical & Business Management, which oversees all core operations including stakeholder relations, financial management, procurement, and compliance. Our team includes part-time qualified engineers, builders, and full-time business development professionals who ensure high-quality project planning, execution, and delivery.</p>
-                <p>For tender-based projects, the business consistently assembles a team of highly skilled professionals with specialized expertise to meet specific project requirements. This flexible approach allows us to deliver excellence across our diverse service portfolio.</p>
+
+                <div class="team-desc-box reveal" style="margin-top:2.5rem;">
+                    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;">
+                        <div style="width:48px;height:48px;background:linear-gradient(135deg,var(--y1),var(--y3));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:white;flex-shrink:0;"><i class="fas fa-sitemap"></i></div>
+                        <h3 style="font-family:var(--font-d);color:white;font-size:1.25rem;font-weight:700;letter-spacing:-0.3px;">Our Multidisciplinary Team</h3>
+                    </div>
+                    <p>Merenton operates through a well-structured organisational framework designed to ensure efficient project execution and service delivery. The company is guided by Technical & Business Management, overseeing all core operations including stakeholder relations, financial management, procurement, and compliance.</p>
+                    <p>Our team includes part-time qualified engineers, builders, and full-time business development professionals who ensure high-quality project planning, execution, and delivery. For tender-based projects, we consistently assemble teams of highly skilled professionals with specialised expertise to meet specific project requirements.</p>
+                </div>
+
+                <div style="text-align:center;margin-top:2.5rem;position:relative;z-index:1;">
+                    <a href="team.html" class="btn btn-y reveal"><i class="fas fa-users"></i> Meet the Full Team</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Certifications & Memberships -->
-    <section class="certifications reveal">
+    <!-- CERTIFICATIONS -->
+    <section class="certs-section">
         <div class="container">
-            <div class="section-header">
-                <h2>Accreditations & Memberships</h2>
-                <p>Professional recognition and industry affiliations that underscore our credibility</p>
+            <div class="s-center reveal">
+                <div class="s-label">Credentials</div>
+                <h2 class="s-title s-underline">Accreditations & Memberships</h2>
+                <p class="s-desc" style="margin-top:1.5rem;color:rgba(255,255,255,0.6);">Professional recognition and industry affiliations that underscore our credibility and commitment to standards.</p>
             </div>
-            <div class="certs-grid">
+            <div class="certs-grid" style="margin-top:3.5rem;">
                 <div class="cert-card reveal">
-                    <div class="cert-icon">
-                        <i class="fas fa-balance-scale"></i>
-                    </div>
+                    <div class="cert-icon"><i class="fas fa-balance-scale"></i></div>
                     <h3>SA Institute of Tax Professionals</h3>
-                    <p>Tax Practitioner (SA)™</p>
-                    <p>Practice: 50894211</p>
+                    <p>Registered Tax Practitioner with full practice rights</p>
+                    <div class="cert-code">Practice: 50894211</div>
                 </div>
-                <div class="cert-card reveal" style="transition-delay: 0.1s;">
-                    <div class="cert-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
+                <div class="cert-card reveal rd1">
+                    <div class="cert-icon"><i class="fas fa-chart-line"></i></div>
                     <h3>Chartered Institute for Business Accountants</h3>
-                    <p>Business Accountant (SA)</p>
-                    <p>Practice: BA (SA) 16632</p>
+                    <p>Business Accountant (SA) designation holder</p>
+                    <div class="cert-code">BA (SA) 16632</div>
                 </div>
-                <div class="cert-card reveal" style="transition-delay: 0.2s;">
-                    <div class="cert-icon">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                    <h3>Institute of Business Advisors Southern Africa</h3>
-                    <p>Business Advisor</p>
-                    <p>Practice: M2699</p>
+                <div class="cert-card reveal rd2">
+                    <div class="cert-icon"><i class="fas fa-briefcase"></i></div>
+                    <h3>Institute of Business Advisors SA</h3>
+                    <p>Certified Business Advisor with active membership</p>
+                    <div class="cert-code">Practice: M2699</div>
                 </div>
-                <div class="cert-card reveal" style="transition-delay: 0.3s;">
-                    <div class="cert-icon">
-                        <i class="fas fa-building"></i>
-                    </div>
+                <div class="cert-card reveal rd3">
+                    <div class="cert-icon"><i class="fas fa-hard-hat"></i></div>
                     <h3>CIDB Grading</h3>
-                    <p>PE 1CE 1GB</p>
-                    <p>Construction Industry Development Board</p>
+                    <p>Construction Industry Development Board registered contractor</p>
+                    <div class="cert-code">PE 1CE 1GB</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta reveal">
+    <!-- CTA -->
+    <section class="cta-section">
         <div class="container">
-            <h2>Partner With Merenton Today</h2>
-            <p>Experience the difference of working with a Level 1 BBBEE contributor that combines professional expertise with practical execution capabilities.</p>
-            <a href="contact.html" class="btn">Get In Touch</a>
+            <div class="cta-inner">
+                <div class="s-label reveal" style="justify-content:center;">Partner With Us</div>
+                <h2 class="reveal">Partner With<br><span>Merenton Today</span></h2>
+                <p class="reveal">Experience the difference of working with a Level 1 BBBEE contributor that combines professional expertise with practical execution capabilities.</p>
+                <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;" class="reveal">
+                    <a href="contact.html" class="btn btn-y"><i class="fas fa-paper-plane"></i> Get In Touch</a>
+                    <a href="services.html" class="btn btn-ghost-w"><i class="fas fa-grid-2"></i> Our Services</a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <div class="footer-logo">MERC<span style="color: var(--accent);">ENTON</span></div>
-                    <p>Merenton Enterprise Reengineering Consultancy is a Level 1 BBBEE Contributor and 100% Black-owned company providing high-quality professional and general services since 2015.</p>
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">MEREN<span>TON</span></div>
+                    <div class="footer-tagline">Merenton Enterprise Reengineering Consultancy (Pty) Ltd<br>Reg. 2015/025597/07 · CIDB: PE 1CE 1GB</div>
+                    <div><span class="footer-bbbee"><i class="fas fa-certificate"></i> Level 1 BBBEE · 135% Recognition</span></div>
                 </div>
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="projects.html">Projects</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                <div class="footer-col">
+                    <h5>Navigate</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-right" style="font-size:0.55rem;color:var(--y3);"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right" style="font-size:0.55rem;color:var(--y3);"></i> About</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-right" style="font-size:0.55rem;color:var(--y3);"></i> Services</a></li>
+                        <li><a href="team.html"><i class="fas fa-chevron-right" style="font-size:0.55rem;color:var(--y3);"></i> Our Team</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right" style="font-size:0.55rem;color:var(--y3);"></i> Contact</a></li>
                     </ul>
                 </div>
-                <div class="footer-contact">
-                    <h4>Contact Info</h4>
-                    <p><i class="fas fa-map-marker-alt"></i> 33 Beare Street, Kuruman, 8460</p>
-                    <p><i class="fas fa-phone-alt"></i> 083 573 7525</p>
-                    <p><i class="fas fa-envelope"></i> info@merenton.co.za</p>
-                    <p><i class="fas fa-globe"></i> www.merenton.co.za</p>
+                <div class="footer-col">
+                    <h5>Contact Info</h5>
+                    <div class="fc-row"><i class="fas fa-map-marker-alt"></i> 33 Beare Street, Kuruman, 8460</div>
+                    <div class="fc-row"><i class="fas fa-phone-alt"></i> 083 573 7525</div>
+                    <div class="fc-row"><i class="fas fa-envelope"></i> info@merenton.co.za</div>
+                    <div class="fc-row"><i class="fas fa-globe"></i> www.merenton.co.za</div>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2026 Merenton Enterprise Reengineering Consultancy (Pty) Ltd. All Rights Reserved.</p>
-                <p>Business Registration: 2015/025597/07 | BBBEE Level: 1 | CIDB Grading: PE 1CE 1GB</p>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p>© 2026 Merenton Enterprise Reengineering Consultancy (Pty) Ltd. All Rights Reserved.</p>
+                <span class="f-tag">Yellow Glass · Reengineered</span>
             </div>
         </div>
     </footer>
 
     <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
+        // CURSOR
+        const cur = document.getElementById('cur');
+        const curRing = document.getElementById('curRing');
+        let mx = 0, my = 0, rx = 0, ry = 0;
+        document.addEventListener('mousemove', e => {
+            mx = e.clientX; my = e.clientY;
+            cur.style.transform = `translate(${mx-5}px,${my-5}px)`;
         });
-        
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-        
-        // Header scroll effect
+        (function animRing(){
+            rx += (mx - rx - 19) * 0.12;
+            ry += (my - ry - 19) * 0.12;
+            curRing.style.transform = `translate(${rx}px,${ry}px)`;
+            requestAnimationFrame(animRing);
+        })();
+
+        // HEADER SCROLL
         window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+            document.getElementById('header').classList.toggle('scrolled', scrollY > 60);
         });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+
+        // MOBILE MENU
+        document.getElementById('mobBtn').addEventListener('click', () => {
+            const nl = document.getElementById('navLinks');
+            const open = nl.style.display === 'flex';
+            nl.style.cssText = open ? '' : 'display:flex;flex-direction:column;position:fixed;top:90px;left:1.5rem;right:1.5rem;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.8);border-radius:24px;padding:1.5rem;gap:0.5rem;z-index:999;box-shadow:0 20px 50px -10px rgba(0,0,0,0.15);';
+        });
+
+        // REVEAL ON SCROLL
+        const revEls = document.querySelectorAll('.reveal');
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+        }, { threshold: 0.1 });
+        revEls.forEach(el => io.observe(el));
+
+        // SMOOTH SCROLL
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
                 e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
+                const target = document.querySelector(a.getAttribute('href'));
+                if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
-        
-        // Scroll reveal animation
-        const revealElements = document.querySelectorAll('.reveal');
-        const timelineItems = document.querySelectorAll('.timeline-item');
-        
-        const revealOnScroll = () => {
-            revealElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementTop < windowHeight - 100) {
-                    element.classList.add('active');
-                }
+
+        // MOBILE RESPONSIVENESS JAVASCRIPT ONLY - ABOUT PAGE
+
+// Disable custom cursor on mobile (handled in CSS media query)
+document.addEventListener('mousemove', e => { 
+    if (window.innerWidth > 768) { 
+        // Only update cursor on desktop
+        mx = e.clientX; 
+        my = e.clientY; 
+        cur.style.transform = `translate(${mx-5}px,${my-5}px)`;
+    } 
+});
+
+// Mobile menu toggle
+const mobBtn = document.getElementById('mobBtn');
+const navLinks = document.getElementById('navLinks');
+
+// Replace the inline style approach with class-based toggle
+mobBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = navLinks.classList.contains('mobile-menu-open');
+    
+    if (!isOpen) {
+        navLinks.classList.add('mobile-menu-open');
+        mobBtn.innerHTML = '<i class="fas fa-times"></i>';
+    } else {
+        navLinks.classList.remove('mobile-menu-open');
+        mobBtn.innerHTML = '<i class="fas fa-bars"></i>';
+    }
+});
+
+// Close mobile menu when a link is clicked
+navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+        navLinks.classList.remove('mobile-menu-open');
+        mobBtn.innerHTML = '<i class="fas fa-bars"></i>';
+    });
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (!navLinks.contains(e.target) && !mobBtn.contains(e.target)) {
+        navLinks.classList.remove('mobile-menu-open');
+        mobBtn.innerHTML = '<i class="fas fa-bars"></i>';
+    }
+});
+
+// Handle orientation changes
+window.addEventListener('orientationchange', function() {
+    // Force reflow for any layout issues after rotation
+    setTimeout(() => {
+        document.body.style.height = window.innerHeight + 'px';
+    }, 200);
+});
+
+// Fix for 100vh issues on mobile browsers (addresses bottom bars, etc.)
+const setVh = () => {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+};
+window.addEventListener('resize', setVh);
+window.addEventListener('orientationchange', setVh);
+setVh();
+
+// You can use --vh in your CSS for full-height elements:
+// height: calc(var(--vh, 1vh) * 100);
+
+// Optional: Improve touch targets on mobile
+if ('ontouchstart' in window) {
+    document.body.classList.add('touch-device');
+    // Increase tap targets if needed
+    const style = document.createElement('style');
+    style.innerHTML = `
+        .touch-device .nav-links a,
+        .touch-device .btn,
+        .touch-device .footer-links a {
+            padding: 0.8rem 1rem;
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// Smooth scroll with offset for fixed header on mobile
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            const headerOffset = 100;
+            const elementPosition = target.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
             });
             
-            timelineItems.forEach(item => {
-                const itemTop = item.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (itemTop < windowHeight - 100) {
-                    item.classList.add('active');
-                }
-            });
-        };
-        
-        window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll(); // Initial check
+            // Close mobile menu if open
+            navLinks.classList.remove('mobile-menu-open');
+            mobBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        }
+    });
+});
     </script>
 </body>
 </html>
