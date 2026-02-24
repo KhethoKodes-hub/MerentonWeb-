@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Completed Projects | Merenton Enterprise Reengineering Consultancy</title>
+    <link href="assets/merentonLogo.png" rel="icon" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --y1: #fde047; --y2: #facc15; --y3: #eab308; --y4: #ca8a04; --y5: #854d0e;
+            --amber: #f59e0b;
+            --ink: #0c0a09; --ink2: #1c1917; --ink3: #292524;
+            --muted: #78716c; --muted2: #a8a29e;
+            --cream: #fffbeb; --cream2: #fef9c3;
+            --white: #ffffff;
+            --glass1: rgba(255,255,255,0.65);
+            --gborder: rgba(255,255,255,0.75);
+            --yborder: rgba(250,204,21,0.4);
+            --gshadow: 0 32px 64px -16px rgba(0,0,0,0.10);
+            --yshadow: 0 24px 60px -12px rgba(234,179,8,0.28);
+            --font-d: 'Syne', sans-serif;
+            --font-b: 'Outfit', sans-serif;
+            --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-b); background: var(--cream); color: var(--ink2); line-height: 1.6; overflow-x: hidden; cursor: none; }
+
+        /* CURSOR */
+        .cur { width: 10px; height: 10px; background: var(--y2); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; mix-blend-mode: multiply; }
+        .cur-ring { width: 38px; height: 38px; border: 1.5px solid var(--y3); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; }
+        @media(max-width:768px){ body{cursor:auto;} .cur,.cur-ring{display:none;} }
+
+        /* NOISE */
+        body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E"); background-repeat: repeat; background-size: 256px; pointer-events: none; z-index: 1; opacity: 0.35; }
+
+        /* ORBS */
+        .orb { position: fixed; border-radius: 50%; filter: blur(90px); pointer-events: none; z-index: 0; animation: floatOrb 14s ease-in-out infinite; }
+        .orb-1 { width: 700px; height: 700px; background: radial-gradient(circle, rgba(250,204,21,0.13) 0%, transparent 70%); top: -200px; right: -200px; }
+        .orb-2 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, transparent 70%); bottom: 5%; left: -150px; animation-delay: -6s; }
+        .orb-3 { width: 350px; height: 350px; background: radial-gradient(circle, rgba(234,179,8,0.08) 0%, transparent 70%); top: 40%; left: 35%; animation-delay: -10s; }
+        @keyframes floatOrb { 0%,100%{transform:translate(0,0) scale(1);} 33%{transform:translate(25px,-35px) scale(1.04);} 66%{transform:translate(-18px,18px) scale(0.96);} }
+
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 2.5rem; position: relative; z-index: 2; }
+        @media(max-width:640px){ .container{padding:0 1.25rem;} }
+        section { padding: 6rem 0; position: relative; z-index: 2; }
+        @media(max-width:640px){ section{padding:3.75rem 0;} }
+
+        /* ── HEADER ── */
+        header { position: fixed; top: 1.2rem; left: 50%; transform: translateX(-50%); width: calc(100% - 3rem); max-width: 1300px; z-index: 1000; background: rgba(255,255,255,0.55); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%); border: 1px solid rgba(255,255,255,0.8); border-radius: 100px; box-shadow: 0 8px 32px -8px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,0.9); transition: all 0.4s var(--ease); }
+        header.scrolled { background: rgba(255,255,255,0.82); border-color: var(--yborder); box-shadow: 0 20px 48px -12px rgba(234,179,8,0.18), inset 0 1px 0 white; }
+        nav { display: flex; align-items: center; justify-content: space-between; padding: 0.65rem 1.5rem; }
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--y1), var(--y3)); border-radius: 13px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: white; box-shadow: 0 6px 18px -4px rgba(234,179,8,0.5); transition: transform 0.3s var(--ease); }
+        .logo:hover .logo-icon { transform: rotate(8deg) scale(1.08); }
+        .logo-text { font-family: var(--font-d); font-weight: 800; font-size: 1.1rem; color: var(--ink); letter-spacing: -0.5px; }
+        .logo-text span { color: var(--y4); }
+        .nav-links { display: flex; gap: 0.2rem; list-style: none; }
+        .nav-links a { text-decoration: none; font-weight: 500; color: var(--ink3); font-size: 0.88rem; padding: 0.5rem 1rem; border-radius: 100px; transition: all 0.25s var(--ease); }
+        .nav-links a:hover { background: rgba(250,204,21,0.12); color: var(--y4); }
+        .nav-links a.active { background: linear-gradient(135deg, var(--y1), var(--y2)); color: var(--ink); font-weight: 600; box-shadow: 0 6px 18px -6px rgba(234,179,8,0.5); }
+        .nav-cta { background: var(--ink) !important; color: white !important; font-weight: 600 !important; }
+        .nav-cta:hover { background: var(--y3) !important; color: white !important; }
+        .mob-btn { display: none; background: none; border: none; font-size: 1.4rem; color: var(--y3); cursor: pointer; }
+        @media(max-width:900px){ .nav-links{display:none;} .mob-btn{display:block;} }
+
+        /* ── PAGE HERO ── */
+        .page-hero {
+            min-height: 80vh; display: flex; align-items: center;
+            padding-top: 7rem; padding-bottom: 4rem;
+            position: relative; overflow: hidden;
+            background:
+                linear-gradient(145deg, rgba(10,8,5,0.96) 0%, rgba(22,16,0,0.93) 55%, rgba(36,26,0,0.90) 100%),
+                url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=2076&q=80') center/cover no-repeat fixed;
+        }
+        .ph-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(250,204,21,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(250,204,21,0.05) 1px, transparent 1px); background-size: 60px 60px; }
+        .ph-glow { position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 55%, rgba(250,204,21,0.18) 0%, transparent 55%), radial-gradient(ellipse at 80% 20%, rgba(255,224,102,0.07) 0%, transparent 50%); animation: heroPulse 10s ease-in-out infinite; }
+        @keyframes heroPulse { 0%,100%{opacity:0.5;} 50%{opacity:1;} }
+        .ph-orb-1 { position: absolute; top: 8%; right: 5%; width: 260px; height: 260px; border-radius: 50%; background: rgba(250,204,21,0.07); backdrop-filter: blur(20px); border: 1px solid rgba(250,204,21,0.15); animation: floatOrb 9s ease-in-out infinite; }
+        .ph-orb-2 { position: absolute; bottom: 12%; left: 3%; width: 140px; height: 140px; border-radius: 50%; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); animation: floatOrb 13s ease-in-out infinite reverse; }
+        .ph-content { position: relative; z-index: 2; max-width: 820px; }
+        .ph-badge { display: inline-flex; align-items: center; gap: 0.6rem; background: rgba(250,204,21,0.1); backdrop-filter: blur(12px); border: 1px solid rgba(250,204,21,0.3); border-radius: 100px; padding: 0.5rem 1.25rem 0.5rem 0.6rem; color: var(--y1); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.75rem; animation: slideUp 0.8s var(--ease) both; }
+        .ph-badge-dot { width: 26px; height: 26px; background: linear-gradient(135deg, var(--y1), var(--y3)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: white; }
+        .ph-content h1 { font-family: var(--font-d); font-size: clamp(3rem, 8vw, 6.5rem); font-weight: 800; line-height: 0.95; letter-spacing: -3px; color: white; margin-bottom: 1.5rem; animation: slideUp 0.8s var(--ease) 0.1s both; }
+        .ph-content h1 .acc { background: linear-gradient(135deg, var(--y1), var(--y2), var(--amber)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .ph-sub { font-size: 1.05rem; color: rgba(255,255,255,0.6); max-width: 540px; line-height: 1.75; margin-bottom: 2rem; animation: slideUp 0.8s var(--ease) 0.2s both; }
+        .breadcrumb { display: inline-flex; align-items: center; gap: 0.6rem; background: rgba(255,255,255,0.07); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.12); border-radius: 100px; padding: 0.5rem 1.25rem; font-size: 0.8rem; color: rgba(255,255,255,0.6); animation: slideUp 0.8s var(--ease) 0.25s both; margin-bottom: 3rem; }
+        .breadcrumb a { color: rgba(255,255,255,0.75); text-decoration: none; transition: color 0.2s; }
+        .breadcrumb a:hover { color: var(--y1); }
+        .breadcrumb i { font-size: 0.55rem; color: rgba(255,255,255,0.35); }
+        .breadcrumb span { color: var(--y2); font-weight: 600; }
+
+        /* hero stat strip */
+        .hero-stats { display: grid; grid-template-columns: repeat(4,1fr); background: rgba(255,255,255,0.06); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; overflow: hidden; animation: slideUp 0.8s var(--ease) 0.35s both; }
+        .hs { padding: 1.75rem 1.5rem; text-align: center; border-right: 1px solid rgba(255,255,255,0.08); transition: background 0.3s; }
+        .hs:last-child { border-right: none; }
+        .hs:hover { background: rgba(250,204,21,0.07); }
+        .hs-n { font-family: var(--font-d); font-size: 2.4rem; font-weight: 800; color: var(--y2); line-height: 1; }
+        .hs-l { font-size: 0.7rem; color: rgba(255,255,255,0.5); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.35rem; }
+        @media(max-width:640px){ .hero-stats{grid-template-columns:repeat(2,1fr);} .hs:nth-child(2){border-right:none;} .hs{border-bottom:1px solid rgba(255,255,255,0.08);} .hs:nth-child(3),.hs:nth-child(4){border-bottom:none;} }
+
+        @keyframes slideUp { from{opacity:0;transform:translateY(24px);} to{opacity:1;transform:translateY(0);} }
+
+        /* ── SECTION LABELS ── */
+        .s-label { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--y4); margin-bottom: 0.75rem; }
+        .s-label::before { content: ''; width: 20px; height: 2px; background: linear-gradient(90deg, var(--y2), var(--y4)); border-radius: 2px; }
+        .s-title { font-family: var(--font-d); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; letter-spacing: -1.5px; color: var(--ink); line-height: 1.05; margin-bottom: 1rem; }
+        .s-desc { font-size: 1rem; color: var(--muted); max-width: 620px; }
+        .s-center { text-align: center; }
+        .s-center .s-label { justify-content: center; }
+        .s-center .s-desc { margin: 0 auto; }
+
+        /* ── FILTER BAR ── */
+        .filter-section { padding: 2rem 0 1rem; background: linear-gradient(180deg, var(--cream) 0%, var(--white) 100%); }
+        .filter-wrap { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; flex-wrap: wrap; }
+        .filter-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; background: rgba(255,255,255,0.5); backdrop-filter: blur(12px); border: 1px solid var(--gborder); border-radius: 22px; padding: 0.4rem; }
+        .f-tab { padding: 0.55rem 1.4rem; border-radius: 14px; font-weight: 600; font-size: 0.82rem; color: var(--muted); cursor: pointer; border: none; background: transparent; transition: all 0.25s var(--ease); display: flex; align-items: center; gap: 0.4rem; font-family: var(--font-b); }
+        .f-tab:hover { color: var(--ink); background: rgba(255,255,255,0.7); }
+        .f-tab.active { background: linear-gradient(135deg, var(--y1), var(--y2)); color: var(--ink); box-shadow: 0 8px 20px -6px rgba(234,179,8,0.45); }
+        .result-count { font-size: 0.82rem; color: var(--muted); font-weight: 500; white-space: nowrap; }
+        .result-count span { font-family: var(--font-d); font-weight: 800; color: var(--y4); font-size: 1rem; }
+        @media(max-width:640px){ .filter-tabs{width:100%;} .filter-wrap{flex-direction:column;align-items:flex-start;} }
+
+        /* ── FEATURED PROJECT ── */
+        .featured-section { background: linear-gradient(160deg, var(--white) 0%, var(--cream) 60%, var(--white) 100%); }
+        .featured-card {
+            background: rgba(13,13,13,0.9); backdrop-filter: blur(20px);
+            border: 1px solid rgba(250,204,21,0.18); border-radius: 40px;
+            overflow: hidden; position: relative;
+            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.4);
+            transition: all 0.4s var(--ease);
+            display: grid; grid-template-columns: 1.1fr 1fr;
+        }
+        .featured-card:hover { border-color: rgba(250,204,21,0.35); box-shadow: 0 50px 100px -20px rgba(0,0,0,0.5), var(--yshadow); }
+        @media(max-width:900px){ .featured-card{grid-template-columns:1fr;} }
+        .fc-visual {
+            position: relative; min-height: 480px; overflow: hidden;
+            background: linear-gradient(145deg, #1a1400, #0d0d0d);
+        }
+        .fc-visual-img {
+            position: absolute; inset: 0;
+            background: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80') center/cover;
+            opacity: 0.35; transition: opacity 0.4s var(--ease);
+        }
+        .featured-card:hover .fc-visual-img { opacity: 0.5; }
+        .fc-visual-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(250,204,21,0.12) 0%, transparent 60%), linear-gradient(to right, transparent 50%, rgba(13,13,13,0.8) 100%); }
+        .fc-tag { position: absolute; top: 1.75rem; left: 1.75rem; background: linear-gradient(135deg, var(--y1), var(--y3)); color: var(--ink); font-weight: 800; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.5rem 1.25rem; border-radius: 100px; box-shadow: 0 8px 20px -4px rgba(234,179,8,0.5); display: flex; align-items: center; gap: 0.4rem; }
+        .fc-year { position: absolute; bottom: 1.75rem; left: 1.75rem; font-family: var(--font-d); font-size: 5rem; font-weight: 800; color: rgba(250,204,21,0.12); line-height: 1; letter-spacing: -4px; }
+        .fc-icon-big { position: absolute; bottom: 2rem; right: 2rem; width: 80px; height: 80px; background: rgba(250,204,21,0.1); backdrop-filter: blur(12px); border: 1px solid rgba(250,204,21,0.25); border-radius: 24px; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--y2); transition: all 0.3s var(--ease); }
+        .featured-card:hover .fc-icon-big { background: rgba(250,204,21,0.2); transform: scale(1.08) rotate(5deg); }
+        .fc-body { padding: 3.5rem; display: flex; flex-direction: column; justify-content: center; }
+        .fc-category { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--y3); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .fc-category::before { content: ''; width: 16px; height: 2px; background: var(--y3); border-radius: 2px; }
+        .fc-body h2 { font-family: var(--font-d); font-size: 2rem; font-weight: 800; color: white; letter-spacing: -1px; line-height: 1.1; margin-bottom: 1.1rem; }
+        .fc-body p { color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.75; margin-bottom: 2rem; }
+        .fc-meta { display: flex; flex-direction: column; gap: 0.85rem; margin-bottom: 2rem; }
+        .fc-meta-row { display: flex; align-items: center; gap: 0.75rem; font-size: 0.82rem; color: rgba(255,255,255,0.55); }
+        .fc-meta-row i { color: var(--y3); width: 14px; flex-shrink: 0; }
+        .fc-meta-row strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+        .fc-outcomes { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.75rem; margin-bottom: 2rem; }
+        .fc-outcome { background: rgba(250,204,21,0.07); border: 1px solid rgba(250,204,21,0.15); border-radius: 16px; padding: 1rem 0.75rem; text-align: center; transition: all 0.25s var(--ease); }
+        .fc-outcome:hover { background: rgba(250,204,21,0.14); border-color: rgba(250,204,21,0.3); }
+        .fc-outcome-n { font-family: var(--font-d); font-size: 1.6rem; font-weight: 800; color: var(--y2); }
+        .fc-outcome-l { font-size: 0.65rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.2rem; }
+
+        /* ── PROJECTS GRID ── */
+        .projects-section { background: linear-gradient(180deg, var(--cream) 0%, var(--white) 50%, var(--cream) 100%); }
+        .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        @media(max-width:1024px){ .projects-grid{grid-template-columns:repeat(2,1fr);} }
+        @media(max-width:640px){ .projects-grid{grid-template-columns:1fr;} }
+
+        .project-card {
+            background: var(--glass1); backdrop-filter: blur(20px);
+            border: 1px solid var(--gborder); border-radius: 32px;
+            overflow: hidden; box-shadow: var(--gshadow), inset 0 1px 0 rgba(255,255,255,0.9);
+            transition: all 0.4s var(--ease); position: relative;
+            display: flex; flex-direction: column;
+        }
+        .project-card[data-category="civil"] { display: flex; }
+        .project-card.hidden { display: none; }
+        .project-card:hover { background: white; transform: translateY(-14px) scale(1.02); box-shadow: var(--yshadow), 0 40px 70px -20px rgba(0,0,0,0.12); border-color: var(--yborder); }
+
+        /* card image top */
+        .pc-img {
+            height: 200px; position: relative; overflow: hidden;
+            background: linear-gradient(135deg, #1a1400, #0d0d0d);
+            flex-shrink: 0;
+        }
+        .pc-img-bg { position: absolute; inset: 0; opacity: 0.4; background-size: cover; background-position: center; transition: all 0.5s var(--ease); }
+        .project-card:hover .pc-img-bg { opacity: 0.6; transform: scale(1.05); }
+        .pc-img-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(13,13,13,0.2) 0%, rgba(13,13,13,0.6) 100%); }
+        .pc-cat-badge { position: absolute; top: 1.1rem; left: 1.1rem; background: linear-gradient(135deg, var(--y1), var(--y2)); color: var(--ink); font-weight: 700; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.35rem 0.9rem; border-radius: 100px; box-shadow: 0 6px 16px -4px rgba(234,179,8,0.5); }
+        .pc-icon { position: absolute; bottom: 1.1rem; right: 1.1rem; width: 52px; height: 52px; border-radius: 16px; background: rgba(250,204,21,0.12); backdrop-filter: blur(12px); border: 1px solid rgba(250,204,21,0.25); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: var(--y2); transition: all 0.3s var(--ease); }
+        .project-card:hover .pc-icon { background: rgba(250,204,21,0.22); transform: scale(1.1) rotate(5deg); }
+        .pc-year-stamp { position: absolute; bottom: 1rem; left: 1.25rem; font-family: var(--font-d); font-size: 0.72rem; font-weight: 700; color: rgba(255,255,255,0.5); letter-spacing: 0.05em; }
+
+        /* card body */
+        .pc-body { padding: 1.75rem 2rem; flex: 1; display: flex; flex-direction: column; }
+        .pc-body h3 { font-family: var(--font-d); font-size: 1.15rem; font-weight: 800; color: var(--ink); letter-spacing: -0.3px; margin-bottom: 0.5rem; line-height: 1.25; }
+        .pc-client { font-size: 0.75rem; font-weight: 600; color: var(--y4); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.4rem; }
+        .pc-client::before { content: ''; width: 12px; height: 1.5px; background: var(--y3); border-radius: 2px; }
+        .pc-desc { color: var(--muted); font-size: 0.84rem; line-height: 1.65; flex: 1; margin-bottom: 1.25rem; }
+        .pc-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; }
+        .pc-tag { background: rgba(250,204,21,0.09); border: 1px solid rgba(250,204,21,0.28); color: var(--y5); font-weight: 600; font-size: 0.68rem; padding: 0.28rem 0.75rem; border-radius: 100px; }
+        .pc-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 1rem; border-top: 1px solid rgba(250,204,21,0.12); }
+        .pc-value { font-family: var(--font-d); font-size: 1.1rem; font-weight: 800; color: var(--ink); }
+        .pc-value span { font-size: 0.68rem; font-weight: 500; color: var(--muted); display: block; font-family: var(--font-b); margin-bottom: 0.1rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .pc-status { display: flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; font-weight: 600; color: #16a34a; background: rgba(22,163,74,0.08); border: 1px solid rgba(22,163,74,0.2); padding: 0.32rem 0.85rem; border-radius: 100px; }
+        .pc-status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #16a34a; box-shadow: 0 0 0 2px rgba(22,163,74,0.25); }
+
+        /* ── TIMELINE ── */
+        .timeline-section { background: linear-gradient(160deg, var(--white) 0%, var(--cream) 100%); }
+        .timeline { position: relative; padding-left: 2rem; }
+        .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--y1), var(--y3), rgba(250,204,21,0.1)); border-radius: 2px; }
+        .tl-item { position: relative; padding: 0 0 3rem 2.5rem; }
+        .tl-item:last-child { padding-bottom: 0; }
+        .tl-dot { position: absolute; left: -2.5rem; top: 0.25rem; width: 18px; height: 18px; border-radius: 50%; background: linear-gradient(135deg, var(--y1), var(--y3)); border: 3px solid var(--cream); box-shadow: 0 0 0 3px rgba(250,204,21,0.3), 0 8px 20px -4px rgba(234,179,8,0.4); transition: all 0.3s var(--ease); }
+        .tl-item:hover .tl-dot { transform: scale(1.3); box-shadow: 0 0 0 5px rgba(250,204,21,0.2), 0 12px 24px -4px rgba(234,179,8,0.5); }
+        .tl-year { font-family: var(--font-d); font-size: 0.75rem; font-weight: 800; color: var(--y4); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.6rem; }
+        .tl-card { background: var(--glass1); backdrop-filter: blur(16px); border: 1px solid var(--gborder); border-radius: 24px; padding: 1.75rem 2rem; box-shadow: var(--gshadow), inset 0 1px 0 rgba(255,255,255,0.9); transition: all 0.35s var(--ease); display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: center; }
+        .tl-card:hover { background: white; border-color: var(--yborder); transform: translateX(8px); box-shadow: var(--yshadow); }
+        @media(max-width:640px){ .tl-card{grid-template-columns:1fr;} }
+        .tl-card h4 { font-family: var(--font-d); font-size: 1.05rem; font-weight: 700; color: var(--ink); letter-spacing: -0.2px; margin-bottom: 0.35rem; }
+        .tl-card p { color: var(--muted); font-size: 0.83rem; line-height: 1.6; }
+        .tl-meta { text-align: right; flex-shrink: 0; }
+        @media(max-width:640px){ .tl-meta{text-align:left;} }
+        .tl-badge { display: inline-block; background: rgba(250,204,21,0.1); border: 1px solid rgba(250,204,21,0.3); color: var(--y5); font-size: 0.7rem; font-weight: 600; padding: 0.28rem 0.85rem; border-radius: 100px; margin-bottom: 0.5rem; }
+        .tl-val { font-family: var(--font-d); font-size: 1.25rem; font-weight: 800; color: var(--y4); }
+
+        /* ── IMPACT SECTION ── */
+        .impact-section { background: var(--ink2); position: relative; overflow: hidden; }
+        .impact-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 15% 40%, rgba(250,204,21,0.1) 0%, transparent 50%), radial-gradient(circle at 85% 60%, rgba(250,204,21,0.06) 0%, transparent 50%); }
+        .impact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; position: relative; z-index: 1; }
+        @media(max-width:900px){ .impact-grid{grid-template-columns:1fr;} }
+        .impact-left .s-label { color: var(--y2); }
+        .impact-left .s-label::before { background: linear-gradient(90deg, transparent, var(--y2), transparent); }
+        .impact-left h2 { font-family: var(--font-d); font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 800; color: white; letter-spacing: -2px; line-height: 1.05; margin-bottom: 1.25rem; }
+        .impact-left h2 span { background: linear-gradient(135deg, var(--y1), var(--y2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .impact-left p { color: rgba(255,255,255,0.6); font-size: 0.95rem; line-height: 1.75; max-width: 480px; }
+        .impact-stats { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; }
+        .i-stat { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; padding: 2rem 1.5rem; text-align: center; transition: all 0.35s var(--ease); }
+        .i-stat:hover { background: rgba(250,204,21,0.08); border-color: rgba(250,204,21,0.25); transform: translateY(-6px); }
+        .i-n { font-family: var(--font-d); font-size: 3rem; font-weight: 800; color: var(--y2); line-height: 1; }
+        .i-l { font-size: 0.75rem; color: rgba(255,255,255,0.45); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.5rem; }
+
+        /* ── CTA ── */
+        .cta-section { background: linear-gradient(160deg, var(--cream) 0%, var(--white) 100%); }
+        .cta-inner { background: rgba(13,13,13,0.9); backdrop-filter: blur(20px); border: 1px solid rgba(250,204,21,0.18); border-radius: 40px; padding: 5rem 4rem; text-align: center; position: relative; overflow: hidden; box-shadow: 0 40px 80px -20px rgba(0,0,0,0.3); }
+        @media(max-width:640px){ .cta-inner{padding:3rem 1.5rem;} }
+        .cta-inner::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(250,204,21,0.08) 0%, transparent 65%); }
+        .cta-inner h2 { font-family: var(--font-d); font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; color: white; letter-spacing: -2px; margin-bottom: 1rem; position: relative; z-index: 1; }
+        .cta-inner h2 span { background: linear-gradient(135deg, var(--y1), var(--y2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .cta-inner p { color: rgba(255,255,255,0.6); font-size: 1rem; max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.75; position: relative; z-index: 1; }
+        .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+
+        /* ── BUTTONS ── */
+        .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.9rem 2.2rem; border-radius: 100px; font-weight: 700; font-size: 0.88rem; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s var(--ease); position: relative; overflow: hidden; font-family: var(--font-b); }
+        .btn::before { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0.2); transform: translateX(-100%); transition: transform 0.4s var(--ease); }
+        .btn:hover::before { transform: translateX(0); }
+        .btn-y { background: linear-gradient(135deg, var(--y1), var(--y2)); color: var(--ink); box-shadow: 0 12px 30px -8px rgba(234,179,8,0.5); }
+        .btn-y:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 20px 40px -8px rgba(234,179,8,0.6); }
+        .btn-ghost-d { background: rgba(255,255,255,0.07); backdrop-filter: blur(12px); border: 1.5px solid rgba(250,204,21,0.4); color: white; }
+        .btn-ghost-d:hover { background: rgba(250,204,21,0.12); border-color: var(--y2); transform: translateY(-3px); }
+
+        /* ── FOOTER ── */
+        footer { background: linear-gradient(135deg, #0d0d0d 0%, #1a1600 100%); color: white; padding: 5rem 0 2rem; position: relative; z-index: 2; border-top: 3px solid transparent; border-image: linear-gradient(90deg, transparent, var(--y2), transparent) 1; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1.5fr; gap: 3rem; margin-bottom: 3.5rem; }
+        @media(max-width:900px){ .footer-grid{grid-template-columns:1fr;gap:2rem;} }
+        .footer-brand { font-family: var(--font-d); font-size: 2rem; font-weight: 800; color: white; letter-spacing: -1px; margin-bottom: 1rem; }
+        .footer-brand span { color: var(--y2); }
+        .footer-tagline { color: rgba(255,255,255,0.5); font-size: 0.83rem; line-height: 1.7; }
+        .footer-bbbee { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(250,204,21,0.1); border: 1px solid rgba(250,204,21,0.25); color: var(--y1); font-weight: 600; font-size: 0.73rem; padding: 0.38rem 0.9rem; border-radius: 100px; margin-top: 1.25rem; }
+        .footer-col h5 { font-family: var(--font-d); font-size: 0.92rem; font-weight: 700; color: var(--y2); margin-bottom: 1.25rem; }
+        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+        .footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.83rem; transition: all 0.2s var(--ease); display: inline-flex; align-items: center; gap: 0.4rem; }
+        .footer-links a:hover { color: var(--y2); transform: translateX(4px); }
+        .fc-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; color: rgba(255,255,255,0.55); font-size: 0.83rem; }
+        .fc-row i { color: var(--y3); width: 16px; flex-shrink: 0; }
+        .footer-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(250,204,21,0.3), transparent); margin-bottom: 2rem; }
+        .footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+        .footer-bottom p { color: rgba(255,255,255,0.4); font-size: 0.76rem; }
+        .f-tag { color: var(--y4); font-weight: 600; font-size: 0.73rem; }
+
+        /* ── REVEAL ── */
+        .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .rd1{transition-delay:.1s;} .rd2{transition-delay:.2s;} .rd3{transition-delay:.3s;}
+
+        /* SCROLLBAR */
+        ::-webkit-scrollbar{width:5px;} ::-webkit-scrollbar-track{background:var(--cream);} ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--y1),var(--y3));border-radius:100px;}
+    </style>
+</head>
+<body>
+    <div class="cur" id="cur"></div>
+    <div class="cur-ring" id="curRing"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- HEADER -->
+    <header id="header">
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-gem"></i></div>
+                <span class="logo-text">MEREN<span>TON</span></span>
+            </a>
+            <button class="mob-btn" id="mobBtn"><i class="fas fa-bars"></i></button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="team.html">Our Team</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="contact.html" class="nav-cta">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="ph-grid"></div>
+        <div class="ph-glow"></div>
+        <div class="ph-orb-1"></div>
+        <div class="ph-orb-2"></div>
+        <div class="container">
+            <div class="ph-content">
+                <div class="ph-badge">
+                    <div class="ph-badge-dot"><i class="fas fa-hard-hat"></i></div>
+                    Proven Track Record · 500+ Projects Delivered
+                </div>
+                <h1>Work That<br><span class="acc">Speaks for</span><br>Itself</h1>
+                <p class="ph-sub">From professional consulting mandates to large-scale civil infrastructure — a portfolio built on precision, accountability, and measurable results.</p>
+                <div class="breadcrumb"><a href="index.html">Home</a><i class="fas fa-chevron-right"></i><span>Completed Projects</span></div>
+                <div class="hero-stats">
+                    <div class="hs"><div class="hs-n">500+</div><div class="hs-l">Projects Done</div></div>
+                    <div class="hs"><div class="hs-n">17+</div><div class="hs-l">Years Active</div></div>
+                    <div class="hs"><div class="hs-n">98%</div><div class="hs-l">On-Time Rate</div></div>
+                    <div class="hs"><div class="hs-n">30+</div><div class="hs-l">Municipalities</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FILTER BAR -->
+    <div class="filter-section">
+        <div class="container">
+            <div class="filter-wrap">
+                <div class="filter-tabs" id="filterTabs">
+                    <button class="f-tab active" data-filter="all"><i class="fas fa-th"></i> All Projects</button>
+                    <button class="f-tab" data-filter="professional"><i class="fas fa-briefcase"></i> Professional</button>
+                    <button class="f-tab" data-filter="civil"><i class="fas fa-road"></i> Civil Works</button>
+                    <button class="f-tab" data-filter="construction"><i class="fas fa-hard-hat"></i> Construction</button>
+                    <button class="f-tab" data-filter="supply"><i class="fas fa-truck"></i> Supply</button>
+                    <button class="f-tab" data-filter="cleaning"><i class="fas fa-broom"></i> Cleaning</button>
+                </div>
+                <div class="result-count"><span id="countNum">12</span> projects shown</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FEATURED PROJECT -->
+    <section class="featured-section">
+        <div class="container">
+            <div class="reveal" style="margin-bottom:2.5rem;">
+                <div class="s-label">Flagship Project</div>
+                <h2 class="s-title">Featured Work</h2>
+            </div>
+            <div class="featured-card reveal">
+                <div class="fc-visual">
+                    <div class="fc-visual-img"></div>
+                    <div class="fc-visual-overlay"></div>
+                    <div class="fc-tag"><i class="fas fa-road"></i> Civil Works</div>
+                    <div class="fc-year">2024</div>
+                    <div class="fc-icon-big"><i class="fas fa-road"></i></div>
+                </div>
+                <div class="fc-body">
+                    <div class="fc-category">John Taolo Gaetsewe District</div>
+                    <h2>Pothole Rehabilitation &amp; Road Maintenance Programme</h2>
+                    <p>Comprehensive road rehabilitation across 14 identified sites in the John Taolo Gaetsewe District Municipality. Included asphalt patching, surface dressing, stormwater clearing, and safety signage installation — restoring critical transport corridors serving over 40,000 residents.</p>
+                    <div class="fc-meta">
+                        <div class="fc-meta-row"><i class="fas fa-calendar-check"></i><strong>Completion:</strong> March 2024</div>
+                        <div class="fc-meta-row"><i class="fas fa-map-marker-alt"></i><strong>Location:</strong> Kuruman &amp; Surrounds, Northern Cape</div>
+                        <div class="fc-meta-row"><i class="fas fa-building"></i><strong>Client:</strong> JTG District Municipality</div>
+                        <div class="fc-meta-row"><i class="fas fa-certificate"></i><strong>Grading:</strong> CIDB PE 1CE</div>
+                    </div>
+                    <div class="fc-outcomes">
+                        <div class="fc-outcome"><div class="fc-outcome-n">14</div><div class="fc-outcome-l">Sites</div></div>
+                        <div class="fc-outcome"><div class="fc-outcome-n">40k+</div><div class="fc-outcome-l">Residents</div></div>
+                        <div class="fc-outcome"><div class="fc-outcome-n">100%</div><div class="fc-outcome-l">On Time</div></div>
+                    </div>
+                    <a href="contact.html" class="btn btn-y"><i class="fas fa-paper-plane"></i> Discuss Similar Work</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS GRID -->
+    <section class="projects-section">
+        <div class="container">
+            <div class="s-center reveal" style="margin-bottom:3rem;">
+                <div class="s-label">Portfolio</div>
+                <h2 class="s-title">All Completed Projects</h2>
+                <p class="s-desc" style="margin-top:1rem;">A cross-section of mandates delivered across sectors since Merenton's founding in 2015.</p>
+            </div>
+
+            <div class="projects-grid" id="projectsGrid">
+
+                <!-- CIVIL -->
+                <div class="project-card reveal" data-category="civil">
+                    <div class="pc-img">
+                        <div class="pc-img-bg" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="pc-img-overlay"></div>
+                        <div class="pc-cat-badge">Civil Works</div>
+                        <div class="pc-icon"><i class="fas fa-road"></i></div>
+                        <div class="pc-year-stamp">2023</div>
+                    </div>
+                    <div class="pc-body">
+                        <h3>Ga-Segonyana Local Municipality Fencing Project</h3>
+                        <div class="pc-client">Ga-Segonyana LM</div>
+                        <div class="pc-desc">Installation of 3.2 km of palisade fencing around municipal properties and public parks. Included concrete post setting, steel palisade panels, and two security access gates with intercom systems.</div>
+                        <div class="pc-tags"><span class="pc-tag">Fencing</span><span class="pc-tag">Site Work</span><span class="pc-tag">CIDB 1CE</span></div>
+                        <div class="pc-footer">
+                            <div class="pc-value"><span>Contract Value</span>R 380,000</div>
+                            <div class="pc-status">Completed</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal rd1" data-category="civil">
+                    <div class="pc-img">
+                        <div class="pc-img-bg" style="background-image:url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="pc-img-overlay"></div>
+                        <div class="pc-cat-badge">Civil Works</div>
+                        <div class="pc-icon"><i class="fas fa-tractor"></i></div>
+                        <div class="pc-year-stamp">2024</div>
+                    </div>
+                    <div class="pc-body">
+                        <h3>Kuruman CBD Site Clearing &amp; Grading</h3>
+                        <div class="pc-client">Private Developer</div>
+                        <div class="pc-desc">Bulk earthworks, vegetation clearing, and sub-grade preparation for a 1.8-hectare commercial development site. Included topsoil stripping, stockpiling, and cut-to-fill balancing.</div>
+                        <div class="pc-tags"><span class="pc-tag">Earthworks</span><span class="pc-tag">Grading</span><span class="pc-tag">Bulk Site</span></div>
+                        <div class="pc-footer">
+                            <div class="pc-value"><span>Contract Value</span>R 520,000</div>
+                            <div class="pc-status">Completed</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal rd2" data-category="civil">
+                    <div class="pc-img">
+                        <div class="pc-img-bg" style="background-image:url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="pc-img-overlay"></div>
+                        <div class="pc-cat-badge">Civil Works</div>
+                        <div class="pc-icon"><i class="fas fa-water"></i></div>
+                        <div class="pc-year-stamp">2023</div>
+                    </div>
+                    <div class="pc-body">
+                        <h3>Stormwater Drainage Rehabilitation — John Taolo Gaetsewe</h3>
+                        <div class="pc-client">JTG District Municipality</div>
+                        <div class="pc-desc">Rehabilitation of blocked and collapsed stormwater infrastructure across 6 townships. Pipe relining, manhole reconstruction, kerb inlets, and road reinstatement to reduce seasonal flooding.</div>
+                        <div class="pc-tags"><span class="pc-tag">Drainage</span><span class="pc-tag">Infrastructure</span><span class="pc-tag">Rehabilitation</span></div>
+                        <div class="pc-footer">
+                            <div class="pc-value"><span>Contract Value</span>R 710,000</div>
+                            <div class="pc-status">Completed</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONSTRUCTION -->
+                <div class="project-card reveal" data-category="construction">
+                    <div class="pc-img">
+                        <div class="pc-img-bg" style="background-image:url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="pc-img-overlay"></div>
+                        <div class="pc-cat-badge">Construction</div>
+                        <div class="pc-icon"><i class="fas fa-tools"></i></div>
+                        <div class="pc-year-stamp">2024</div>
+                    </div>
+                    <div class="pc-body">
+                        <h3>Maintenance &amp; Repairs — Kuruman Government Complex</h3>
+                        <div class="pc-client">Department of Public Works</div>
+                        <div class="pc-desc">Full building maintenance programme including roof repairs, plumbing, electrical compliance upgrades, plastering, and interior repainting across 8 office units in the Kuruman government precinct.</div>
+                        <div class="pc-tags"><span class="pc-tag">Maintenance</span><span class="pc-tag">Electrical</span><span class="pc-tag">Plumbing</span></div>
+                        <div class="pc-footer">
+                            <div class="pc-value"><span>Contract Value</span>R 890,000</div>
+                            <div class="pc-status">Completed</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal rd1" data-category="construction">
+                    <div class="pc-img">
+                        <div class="pc-img-bg" style="background-image:url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="pc-img-overlay"></div>
+                        <div class="pc-cat-badge">Steel Works</div>
+                        <div class="pc-icon"><i class="fas fa-industry"></i></div>
+                        <div class="pc-year-stamp">2024</div>
+                    </div>
+                    <div class="pc-body">
+                        <h3>Custom Steel Carport Structures — Residential Estate</h3>
+                        <div class="pc-client">Private Client, Kuruman</div>
+                        <div class="pc-desc">Design, fabrication, and installation of 12 custom steel carport structures with IBR roofing. Includes foundation anchoring, galvanised frame welding, and IBR roof sheeting with guttering.</div>
+                        <div class="pc-tags"><span class="pc-tag">Steel Works</span><span class="pc-tag">Fabrication</span><span class="pc-tag">Roofing</span></div>
+                        <div class="pc-footer">
+                            <div class="pc-value"><span>Contract Value</span>R 245,000</div>
+                            <div class="pc-status">Completed</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROFESSIONAL -->
+                <div class="project-card reveal rd2" data-category="professional">
+                    <div class="pc-img">
+                        <div class="pc-img-bg" style="background-image:url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="pc-img-overlay"></div>
+                        <div class="pc-cat-badge">Professional</div>
+                        <div class="pc-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                        <div class="pc-year-stamp">2023</div>
+                    </div>
+                    <div class="pc-body">
+                        <h3>Annual Tax Compliance &amp; Payroll Management — SME Portfolio</h3>
+                        <div class="pc-client">Multiple SME Clients</div>
+                        <div class="pc-desc">Ongoing annual tax returns, PAYE submissions, VAT compliance, and payroll management for a portfolio of 18 small and medium enterprises across the Northern Cape and North West provinces.</div>
+                        <div class="pc-tags"><span class="pc-tag">Tax</span><span class="pc-tag">Payroll</span><span class="pc-tag">VAT</span><span class="pc-tag">SAIT</span></div>
+                        <div class="pc-footer">
+                            <div class="pc-value"><span>Clients Served</span>18 SMEs</div>
+                            <div class="pc-status">Completed</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal" data-category="professional">
+                    <div class="pc-img">
+                        <div class="pc-img-bg" style="background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="pc-img-overlay"></div>
+                        <div class="pc-cat-badge">Professional</div>
+                        <div class="pc-icon"><i class="fas fa-chart-pie"></i></div>
+                        <div class="pc-year-stamp">2022</div>
+                    </div>
+                    <div class="pc-body">
+                        <h3>Business Development &amp; Feasibility Study — Agribusiness Cooperative</h3>
+                        <div class="pc-client">NC Agricultural Cooperative</div>
+                        <div class="pc-desc">Comprehensive feasibility study, business plan development, and funding application support for a 120-member agricultural cooperative entering the rooibos export market. Successfully secured DEL funding.</div>
+                        <div class="pc-tags"><span class="pc-tag">Feasibility</span><span class="pc-tag">Business Plan</span><span class="pc-tag">Funding</span></div>
+                        <div class="pc-footer">
+                            <div class="pc-value"><span>Funding Secured</span>R 2.1M</div>
+                            <div class="pc-status">Completed</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal rd1" data-category="professional">
+                    <div class="pc-img">
+                        <div class="pc-img-bg" style="background-image:url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="pc-img-overlay"></div>
+                        <div class="pc-cat-badge">Professional</div>
+                        <div class="pc-icon"><i class="fas fa-users-cog"></i></div>
+                        <div class="pc-year-stamp">2023</div>
+                    </div>
+                    <div class="pc-body">
+                        <h3>HR Policy Development &amp; Staff Training Programme</h3>
+                        <div class="pc-client">Northern Cape Retailer</div>
+                        <div class="pc-desc">Full HR overhaul for a 45-person retail operation including employment contract templates, disciplinary frameworks, leave management systems, and a two-day staff skills training intervention.</div>
+                        <div class="pc-tags"><span class="pc-tag">HR</span><span class="pc-tag">Training</span><span class="pc-tag">Compliance</span></div>
+                        <div class="pc-footer">
+                            <div class="pc-value"><span>Staff Trained</span>45 Employees</div>
+                            <div class="pc-status">Completed</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUPPLY -->
+                <div class="project-card reveal rd2" data-category="supply">
+                    <div class="pc-img">
+                        <div class="pc-img-bg" style="background-image:url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="pc-img-overlay"></div>
+                        <div class="pc-cat-badge">Supply &amp; Delivery</div>
+                        <div class="pc-icon"><i class="fas fa-truck"></i></div>
+                        <div class="pc-year-stamp">2024</div>
+                    </div>
+                    <div class="pc-body">
+                        <h3>Construction Material Supply — Municipal Housing Project</h3>
+                        <div class="pc-client">Joe Morolong LM</div>
+                        <div class="pc-desc">Bulk supply and just-in-time delivery of cement, sand, bricks, and steel reinforcing for 48 low-cost housing units. Managed procurement, transport logistics, and quality verification on-site.</div>
+                        <div class="pc-tags"><span class="pc-tag">Materials</span><span class="pc-tag">Logistics</span><span class="pc-tag">Bulk Supply</span></div>
+                        <div class="pc-footer">
+                            <div class="pc-value"><span>Units Served</span>48 Houses</div>
+                            <div class="pc-status">Completed</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal" data-category="supply">
+                    <div class="pc-img">
+                        <div class="pc-img-bg" style="background-image:url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="pc-img-overlay"></div>
+                        <div class="pc-cat-badge">Supply &amp; Delivery</div>
+                        <div class="pc-icon"><i class="fas fa-box-open"></i></div>
+                        <div class="pc-year-stamp">2023</div>
+                    </div>
+                    <div class="pc-body">
+                        <h3>Office Furniture &amp; Stationery Supply — Government Departments</h3>
+                        <div class="pc-client">SAPS &amp; DSD, Northern Cape</div>
+                        <div class="pc-desc">Procurement and delivery of office furniture, stationery bundles, and IT consumables for two Northern Cape government departments across a 12-month supply agreement period.</div>
+                        <div class="pc-tags"><span class="pc-tag">Stationery</span><span class="pc-tag">Furniture</span><span class="pc-tag">Government</span></div>
+                        <div class="pc-footer">
+                            <div class="pc-value"><span>Contract Duration</span>12 Months</div>
+                            <div class="pc-status">Completed</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CLEANING -->
+                <div class="project-card reveal rd1" data-category="cleaning">
+                    <div class="pc-img">
+                        <div class="pc-img-bg" style="background-image:url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="pc-img-overlay"></div>
+                        <div class="pc-cat-badge">Cleaning Services</div>
+                        <div class="pc-icon"><i class="fas fa-broom"></i></div>
+                        <div class="pc-year-stamp">2024</div>
+                    </div>
+                    <div class="pc-body">
+                        <h3>Post-Construction Deep Clean — New Government Offices</h3>
+                        <div class="pc-client">Dept. of Labour, Kuruman</div>
+                        <div class="pc-desc">Specialist post-construction cleaning for newly built 2,200m² government office complex prior to occupation. Included dust suppression, window cleaning, floor scrubbing, and waste removal.</div>
+                        <div class="pc-tags"><span class="pc-tag">Deep Clean</span><span class="pc-tag">Post-Construction</span><span class="pc-tag">Industrial</span></div>
+                        <div class="pc-footer">
+                            <div class="pc-value"><span>Area Cleaned</span>2,200m²</div>
+                            <div class="pc-status">Completed</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card reveal rd2" data-category="cleaning">
+                    <div class="pc-img">
+                        <div class="pc-img-bg" style="background-image:url('https://images.unsplash.com/photo-1563453392212-326f5e854473?auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="pc-img-overlay"></div>
+                        <div class="pc-cat-badge">Cleaning Services</div>
+                        <div class="pc-icon"><i class="fas fa-leaf"></i></div>
+                        <div class="pc-year-stamp">2023</div>
+                    </div>
+                    <div class="pc-body">
+                        <h3>Pest Control &amp; De-Bushing — Mining Support Facility</h3>
+                        <div class="pc-client">Kalahari Resources (Pty) Ltd</div>
+                        <div class="pc-desc">Comprehensive pest control treatment and alien vegetation removal across a 4-hectare mining support camp. Included chemical treatment, manual clearing, and monthly maintenance visits over 6 months.</div>
+                        <div class="pc-tags"><span class="pc-tag">Pest Control</span><span class="pc-tag">De-Bushing</span><span class="pc-tag">Mining</span></div>
+                        <div class="pc-footer">
+                            <div class="pc-value"><span>Area Treated</span>4 Hectares</div>
+                            <div class="pc-status">Completed</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /projects-grid -->
+        </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="timeline-section">
+        <div class="container">
+            <div class="reveal" style="margin-bottom:3.5rem;">
+                <div class="s-label">Journey</div>
+                <h2 class="s-title">Project Milestones</h2>
+                <p class="s-desc">Key moments in Merenton's growth from professional practice to multi-sector contractor.</p>
+            </div>
+            <div class="timeline">
+                <div class="tl-item reveal">
+                    <div class="tl-dot"></div>
+                    <div class="tl-year">2015 — Founding Year</div>
+                    <div class="tl-card">
+                        <div>
+                            <h4>Registered Practice &amp; First Client Mandates</h4>
+                            <p>Merenton established as a tax and business advisory practice. First six clients onboarded for annual compliance, bookkeeping, and business plan development. SAIT and CIBA registration completed.</p>
+                        </div>
+                        <div class="tl-meta">
+                            <div class="tl-badge">Professional Services</div>
+                            <div class="tl-val">6 Clients</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tl-item reveal rd1">
+                    <div class="tl-dot"></div>
+                    <div class="tl-year">2018 — Growth Phase</div>
+                    <div class="tl-card">
+                        <div>
+                            <h4>Supply &amp; Delivery Division Launched</h4>
+                            <p>Expanded into supply and delivery of office consumables and construction materials. First government supply contract awarded by Northern Cape Department of Social Development.</p>
+                        </div>
+                        <div class="tl-meta">
+                            <div class="tl-badge">Supply &amp; Delivery</div>
+                            <div class="tl-val">R 1.2M Revenue</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tl-item reveal rd2">
+                    <div class="tl-dot"></div>
+                    <div class="tl-year">2020 — Infrastructure Entry</div>
+                    <div class="tl-card">
+                        <div>
+                            <h4>CIDB Registration &amp; First Civil Works Contract</h4>
+                            <p>Secured CIDB grading PE 1CE, enabling participation in public infrastructure projects. First civil works contract: pothole patching in the Gamagara Local Municipality valued at R 290,000.</p>
+                        </div>
+                        <div class="tl-meta">
+                            <div class="tl-badge">Civil Works</div>
+                            <div class="tl-val">R 290,000</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tl-item reveal rd1">
+                    <div class="tl-dot"></div>
+                    <div class="tl-year">2022 — Sector Diversification</div>
+                    <div class="tl-card">
+                        <div>
+                            <h4>Cleaning Services &amp; Steel Works Units Established</h4>
+                            <p>Two new service lines added: industrial cleaning and steel fabrication. Cleaning contract awarded for 3 municipal facilities. First steel carport project completed for a 36-unit residential estate.</p>
+                        </div>
+                        <div class="tl-meta">
+                            <div class="tl-badge">Multi-Service</div>
+                            <div class="tl-val">R 3.8M Revenue</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tl-item reveal rd2">
+                    <div class="tl-dot"></div>
+                    <div class="tl-year">2024 — Full-Service Milestone</div>
+                    <div class="tl-card">
+                        <div>
+                            <h4>500+ Projects Delivered · Construction Division Launched</h4>
+                            <p>Merenton reaches 500+ completed project milestone. CIDB 1GB grading obtained enabling full building construction. Flagship pothole rehabilitation programme completed across 14 sites for JTG District.</p>
+                        </div>
+                        <div class="tl-meta">
+                            <div class="tl-badge">Flagship Year</div>
+                            <div class="tl-val">500+ Projects</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPACT -->
+    <section class="impact-section">
+        <div class="container">
+            <div class="impact-grid">
+                <div class="impact-left reveal">
+                    <div class="s-label">Community Impact</div>
+                    <h2>Building More Than<br><span>Infrastructure</span></h2>
+                    <p>Every project Merenton delivers creates tangible value beyond the contract — jobs for local workers, improved services for communities, and economic activity that stays in the Northern Cape. We measure success not just in Rands, but in lives improved.</p>
+                </div>
+                <div class="impact-stats reveal rd1">
+                    <div class="i-stat"><div class="i-n">45+</div><div class="i-l">Local Jobs Created</div></div>
+                    <div class="i-stat"><div class="i-n">80k+</div><div class="i-l">Residents Served</div></div>
+                    <div class="i-stat"><div class="i-n">6</div><div class="i-l">Municipalities Partnered</div></div>
+                    <div class="i-stat"><div class="i-n">R12M+</div><div class="i-l">Economic Activity</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-inner reveal">
+                <h2>Ready to be Our<br><span>Next Success Story?</span></h2>
+                <p>Whether you need civil infrastructure, professional consulting, or any of our six service lines — we're ready to deliver with the same precision and care.</p>
+                <div class="cta-btns">
+                    <a href="contact.html" class="btn btn-y"><i class="fas fa-paper-plane"></i> Get a Quote</a>
+                    <a href="services.html" class="btn btn-ghost-d"><i class="fas fa-arrow-right"></i> Explore Services</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">MEREN<span>TON</span></div>
+                    <div class="footer-tagline">Merenton Enterprise Reengineering Consultancy (Pty) Ltd<br>Reg. 2015/025597/07 · CIDB: PE 1CE 1GB</div>
+                    <div><span class="footer-bbbee"><i class="fas fa-certificate"></i> Level 1 BBBEE · 135% Recognition</span></div>
+                </div>
+                <div class="footer-col">
+                    <h5>Navigate</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-right" style="font-size:0.55rem;color:var(--y3);"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right" style="font-size:0.55rem;color:var(--y3);"></i> About</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-right" style="font-size:0.55rem;color:var(--y3);"></i> Services</a></li>
+                        <li><a href="team.html"><i class="fas fa-chevron-right" style="font-size:0.55rem;color:var(--y3);"></i> Our Team</a></li>
+                        <li><a href="projects.html"><i class="fas fa-chevron-right" style="font-size:0.55rem;color:var(--y3);"></i> Projects</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right" style="font-size:0.55rem;color:var(--y3);"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Get in Touch</h5>
+                    <div class="fc-row"><i class="fas fa-map-marker-alt"></i> 33 Beare Street, Kuruman, 8460</div>
+                    <div class="fc-row"><i class="fas fa-phone-alt"></i> 083 573 7525</div>
+                    <div class="fc-row"><i class="fas fa-envelope"></i> info@merenton.co.za</div>
+                    <div class="fc-row"><i class="fas fa-globe"></i> www.merenton.co.za</div>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p>© 2026 Merenton Enterprise Reengineering Consultancy (Pty) Ltd. All Rights Reserved.</p>
+                <span class="f-tag">Yellow Glass · Reengineered</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // CURSOR
+        const cur = document.getElementById('cur');
+        const curRing = document.getElementById('curRing');
+        let mx = 0, my = 0, rx = 0, ry = 0;
+        document.addEventListener('mousemove', e => {
+            if(window.innerWidth <= 768) return;
+            mx = e.clientX; my = e.clientY;
+            cur.style.transform = `translate(${mx-5}px,${my-5}px)`;
+        });
+        (function animRing(){
+            rx += (mx - rx - 19) * 0.12;
+            ry += (my - ry - 19) * 0.12;
+            curRing.style.transform = `translate(${rx}px,${ry}px)`;
+            requestAnimationFrame(animRing);
+        })();
+
+        // HEADER SCROLL
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', scrollY > 60);
+        });
+
+        // MOBILE MENU
+        const mobBtn = document.getElementById('mobBtn');
+        const navLinks = document.getElementById('navLinks');
+        mobBtn.addEventListener('click', e => {
+            e.stopPropagation();
+            const open = navLinks.classList.contains('mob-open');
+            navLinks.style.cssText = open ? '' : 'display:flex;flex-direction:column;position:fixed;top:90px;left:1.25rem;right:1.25rem;background:rgba(255,255,255,0.96);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.9);border-radius:28px;padding:1.5rem;gap:0.5rem;z-index:999;box-shadow:0 30px 60px -15px rgba(0,0,0,0.2);';
+            navLinks.classList.toggle('mob-open');
+            mobBtn.innerHTML = open ? '<i class="fas fa-bars"></i>' : '<i class="fas fa-times"></i>';
+        });
+        navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+            navLinks.style.cssText = ''; navLinks.classList.remove('mob-open');
+            mobBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        }));
+        document.addEventListener('click', e => {
+            if(!navLinks.contains(e.target) && !mobBtn.contains(e.target)){
+                navLinks.style.cssText = ''; navLinks.classList.remove('mob-open');
+                mobBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+
+        // FILTER SYSTEM
+        const tabs = document.querySelectorAll('.f-tab');
+        const cards = document.querySelectorAll('.project-card');
+        const countEl = document.getElementById('countNum');
+
+        function applyFilter(filter) {
+            let visible = 0;
+            cards.forEach(card => {
+                const cat = card.dataset.category;
+                const show = filter === 'all' || cat === filter;
+                card.classList.toggle('hidden', !show);
+                if(show) visible++;
+            });
+            countEl.textContent = visible;
+        }
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                applyFilter(tab.dataset.filter);
+            });
+        });
+
+        // SMOOTH SCROLL
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                const href = a.getAttribute('href');
+                if(href.length <= 1) return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if(target) window.scrollTo({ top: target.getBoundingClientRect().top + scrollY - 120, behavior: 'smooth' });
+            });
+        });
+
+        // REVEAL
+        const revEls = document.querySelectorAll('.reveal');
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+        }, { threshold: 0.08 });
+        revEls.forEach(el => io.observe(el));
+
+        // COUNTER ANIMATION
+        function animCount(el, target, suffix) {
+            let start = null;
+            const dur = 1400;
+            (function step(ts){
+                if(!start) start = ts;
+                const p = Math.min((ts - start) / dur, 1);
+                const eased = 1 - Math.pow(1 - p, 3);
+                el.textContent = Math.floor(eased * target) + suffix;
+                if(p < 1) requestAnimationFrame(step);
+            })(performance.now());
+        }
+        const countObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if(e.isIntersecting) {
+                    e.target.querySelectorAll('.hs-n, .i-n').forEach(n => {
+                        const raw = n.textContent.trim();
+                        if(raw === 'L1') return;
+                        const hasPlus = raw.includes('+');
+                        const hasPct = raw.includes('%');
+                        const numStr = raw.replace(/[^0-9.]/g,'');
+                        const num = parseFloat(numStr);
+                        if(!isNaN(num)) animCount(n, num, hasPlus ? '+' : (hasPct ? '%' : ''));
+                    });
+                    countObs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        document.querySelectorAll('.hero-stats, .impact-stats').forEach(el => countObs.observe(el));
+    </script>
+</body>
+</html>
