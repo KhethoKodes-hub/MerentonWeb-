@@ -768,6 +768,32 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
         flex-wrap: wrap; 
     } 
 }
+
+/* Ensure logo container maintains proper size */
+.logo-icon {
+    width: 40px;  /* Keep the original width */
+    height: 40px; /* Keep the original height */
+    background: transparent; /* Remove the gradient background if you want just the image */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Ensure image stays within bounds */
+    border-radius: 13px; /* Keep the rounded corners if desired */
+}
+
+/* Optional: Remove the gradient background if you want just the logo image */
+.logo-icon {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* Make sure the image fills the container properly */
+.logo-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* or 'cover' depending on your preference */
+    display: block;
+}
     </style>
 </head>
 <body>
@@ -781,7 +807,7 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
     <header id="header">
         <nav class="container">
             <a href="index.html" class="logo">
-                <div class="logo-icon"><i class="fas fa-gem"></i></div>
+                <div class="logo-icon"><i class="fas fa-gem"></i><img src="assets/merelogo.jpg" alt="Logo" style="width:90px; height:90px"></div>
                 <span class="logo-text">MEREN<span>TON</span></span>
             </a>
             <button class="mob-btn" id="mobBtn"><i class="fas fa-bars"></i></button>
@@ -1059,7 +1085,7 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
         <div class="container">
             <div class="footer-grid">
                 <div>
-                    <div class="footer-brand">MEREN<span>TON</span></div>
+                    <div class="footer-brand"><img src="assets/merelogo.jpg" alt="Logo" style="width:100px; height:100px"> <span></span></div>
                     <div class="footer-tagline">Merenton Enterprise Reengineering Consultancy (Pty) Ltd<br>Reg. 2015/025597/07 · CIDB: PE 1CE 1GB</div>
                     <div><span class="footer-bbbee"><i class="fas fa-certificate"></i> Level 1 BBBEE · 135% Recognition</span></div>
                 </div>
